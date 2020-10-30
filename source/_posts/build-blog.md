@@ -2,6 +2,10 @@
 title: 搭建个人博客（hexo框架为例）
 date: 2020-10-30 14:18:24
 tags:
+- hexo
+cover: true
+keywords: hexo搭建个人博客
+
 ---
 欢迎大家访问我的博客[dreamITGirl](https://github.com/dreamITGirl)，不要吝啬你们的小星星，点个star～
 有问题的话，你可以将问题在 [GitHub](https://github.com/dreamITGirl/dreamITGirl.github.io/issues)问我.  

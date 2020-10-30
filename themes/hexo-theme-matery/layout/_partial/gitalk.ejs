@@ -18,7 +18,7 @@
         owner: '<%- theme.gitalk.owner %>',
         admin: <%- JSON.stringify(theme.gitalk.admin) %>,
         id: '<%- date(page.date, 'YYYY-MM-DDTHH-mm-ss') %>',
-        distractionFreeMode: false  // Facebook-like distraction free mode
+        distractionFreeMode: true  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
