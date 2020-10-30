@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World test, dreamITGirl">
+    <meta name="keywords" content="搭建个人博客（hexo框架为例）, dreamITGirl">
     <meta name="description" content="技术博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World test | dreamITGirl</title>
+    <title>搭建个人博客（hexo框架为例） | dreamITGirl</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World test</h1>
+                    <h1 class="description center-align post-title">搭建个人博客（hexo框架为例）</h1>
                 </div>
             </div>
         </div>
@@ -458,14 +458,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    75
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -480,19 +480,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <p>欢迎大家访问我的博客<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～<br>有问题的话，你可以将问题在 <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.<br>这篇文章适合有前端基础及会使用git及gitHub的人阅读</p>
+<p><a target="_blank" rel="noopener" href="https://hexo.bootcss.com/">hexo</a>是快速、简洁且高效的博客框架，适合新手。如果平时用vue开发的话，可以使用<a target="_blank" rel="noopener" href="https://www.vuepress.cn/">vuePress</a>;如果使用react开发的话，可使用<a target="_blank" rel="noopener" href="https://github.com/destinytaoer/gatsby-start">Gatsby</a>；如果喜欢自己造轮子的话，也可以自己从0搭建。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装博客框架Hexo"><a href="#安装博客框架Hexo" class="headerlink" title="安装博客框架Hexo"></a>安装博客框架Hexo</h3><p>代码中的blog指的是项目的名称，可以更换成自己的项目名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g </span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h3><p>如果喜欢系统默认的博客主题的话，可以不修改主题；如果不喜欢的话，可以去<a target="_blank" rel="noopener" href="https://github.com/">github</a>官网中<br>搜索<strong>hexo-theme</strong>，选择自己喜欢的主题；<br>这里以<a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">blinkfox/hexo-theme-matery</a>为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;blinkfox&#x2F;hexo-theme-matery.git </span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将克隆到本地的主题移动到hexo根目录themes目录中，将博客中的其他主题删掉</li>
+<li>删除下载的主题中的.git目录，这样做的目的是为了让下载后的主题和我们的博客放在同一个git地址下</li>
+<li>修改Hexo根目录下的_config.yml中的theme，将它改成 hexo-theme-matery</li>
+</ol>
+<h3 id="Hexo根目录下的-config-yml"><a href="#Hexo根目录下的-config-yml" class="headerlink" title="Hexo根目录下的_config.yml"></a>Hexo根目录下的_config.yml</h3><p>Hexo根目录下的_config.yml中可以设置博客站点的标题、副标题、描述、作者、语言等</p>
+<h2 id="上传到github"><a href="#上传到github" class="headerlink" title="上传到github"></a>上传到github</h2><h3 id="创建库"><a href="#创建库" class="headerlink" title="创建库"></a>创建库</h3><ol>
+<li><p>命名博客的方式</p>
+<p> 命名方式一：https://[username].github.io<br> 仓库名必须是[username].github.io,将打包的版本放在master<br> 命名方式二: https://[username].github.io/[repo]<br> 这种方式可以自定义库名，打包的版本放在gh-pages(对应的库名)<br> 第一种方式更适合用来部署博客，第二种方式更适合部署开源项目或者作品展示等</p>
+</li>
+<li><p>创建库<br> 创建库的方式如图所示<br> <img src="/.io//build1.png" alt="创建库"></p>
+<p> 创建成功后，我们需要将本地的代码传到我们创建的库，我习惯使用命令行的方式，把命令写在下面，需要的话自取</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init </span><br><span class="line">git add remote &#39;创建成功后提示的路径&#39;</span><br></pre></td></tr></table></figure>
+<p> 这两行代码是初始化git项目，并给项目添加远程仓库<br> 在使用git管理代码之前，先安装hexo-deployer-git依赖，这个库会帮助我们将生成好的代码放到具体的分支上，<br> 安装好后，打开<strong>_config.yml</strong>文件，找到deploy,设置对应内容</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;dreamITGirl&#x2F;dreamITGirl.github.io</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>接下来运行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm run deploy </span><br><span class="line">&#x2F;&#x2F; 或者运行</span><br><span class="line">hexo deploy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> 部署代码；代码提交完成后，我们就可以在远程仓库中看到我们提交的代码了。我们提交的master的代码就是打包后public目录下的文件。<br> 然后找到这个远程库的setting，找到GitHub Pages,这里面显示了我们的站点已经部署到了我们命名的仓库地址上了，点击就可以看到我们的博客了<br> 到这里为止，我们就完成了一个最基本的博客的部署</p>
+<h3 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h3><p> 在做自动化部署之前，我们需要将我们的源代码提交到远程仓库,master分支现在已经被占用了，我们需要将源代码提交到另一个分支上</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#39;提交源代码&#39;</span><br><span class="line">git branch my-blog &#x2F;&#x2F; my-blog是分支名称</span><br><span class="line">git push --set-upstream origin my-blog</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> 我们也可以在仓库首页放上我们的博客地址，便于访问</p>
+<p> 接下来就是自动化部署了，这里用到github中的actions,我们这里会实现项目的代码部署和自动打包</p>
+<ol>
+<li><p>在根目录创建.github文件夹及子文件夹workflows</p>
+</li>
+<li><p>创建deploy.yml文件</p>
+</li>
+<li><p>deploy.yml代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">name: Build and Deploy</span><br><span class="line">on: [push]</span><br><span class="line">jobs:</span><br><span class="line">  build-and-deploy:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">      - name: Checkout 🛎️</span><br><span class="line">        uses: actions&#x2F;checkout@v2 # If you&#39;re using actions&#x2F;checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.</span><br><span class="line">        with:</span><br><span class="line">          persist-credentials: false</span><br><span class="line"></span><br><span class="line">      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the &#39;build&#39; folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.</span><br><span class="line">        run: |</span><br><span class="line">          npm install</span><br><span class="line">          npm run build</span><br><span class="line">        env:</span><br><span class="line">          CI: false</span><br><span class="line"></span><br><span class="line">      - name: Deploy 🚀</span><br><span class="line">        uses: JamesIves&#x2F;github-pages-deploy-action@releases&#x2F;v3</span><br><span class="line">        with:</span><br><span class="line">          GITHUB_TOKEN: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;</span><br><span class="line">          BRANCH: master # The branch the action should deploy to.</span><br><span class="line">          FOLDER: public # The folder the action should deploy.</span><br></pre></td></tr></table></figure>
+<p>我们将代码设置好之后，将源码提交到刚才创建的分支上后，代码就可以自动打包，生成新的版本</p>
+</li>
+</ol>
+</li>
+</ol>
 
             </div>
             <hr/>
@@ -518,7 +546,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2020/10/30/hello-world/">https://dreamitgirl.github.io/2020/10/30/hello-world/</a>
+                    <a href="https://dreamitgirl.github.io/2020/10/30/build-blog/">https://dreamitgirl.github.io/2020/10/30/build-blog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -721,9 +749,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/10/30/build-blog/">
                     <div class="card-image">
@@ -741,9 +770,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -752,6 +781,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -759,7 +789,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/10/30/hello-world/">
@@ -789,7 +819,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
