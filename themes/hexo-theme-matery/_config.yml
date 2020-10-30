@@ -269,7 +269,7 @@ postCalendar: true
 # Gitalk 评论模块的配置，默认为不激活
 gitalk:
   enable: true
-  owner: https://github.com/dreamITGirl
+  owner: https://github.com/dreamITGirl/dreamITGirl.github.io
   repo: master
   oauth:
     clientId: 1df5a017ccbd4892b4f6
