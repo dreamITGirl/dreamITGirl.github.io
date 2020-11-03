@@ -1,17 +1,15 @@
 ---
 title: vue3的学习（未更新完）
 date: 2020-11-02 10:41:10
+cover: true
 tags:
 - vue
 - js
-category: vue3系列文章
+category: vue3系列
 img: 2020/11/02/vue3/vue.png
+summary: 欢迎大家访问我的博客[dreamITGirl](https://github.com/dreamITGirl)，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 [GitHub](https://github.com/dreamITGirl/dreamITGirl.github.io/issues)问我.
 ---
-欢迎大家访问我的博客[dreamITGirl](https://github.com/dreamITGirl)，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 [GitHub](https://github.com/dreamITGirl/dreamITGirl.github.io/issues)问我. 这篇文章适合有vue基础和js基础的人学习
-
-[vue3.0](https://v3.vuejs.org/guide/installation.html)官方关于vue3的文档是英文的，大家可以慢慢阅读。
-这里给大家提供一个中文版的[vue3.0](https://www.bookstack.cn/books/vue-3.0-zh)版本的文档,建议阅读英文.
-也可以看视频学习，推荐一个视频[李江南vue3正式版的学习](https://space.bilibili.com/305684376/video)
+这篇文章适合有vue基础和js基础的人学习[vue3.0](https://v3.vuejs.org/guide/installation.html)官方关于vue3的文档是英文的，大家可以慢慢阅读。这里给大家提供一个中文版的[vue3.0](https://www.bookstack.cn/books/vue-3.0-zh)版本的文档,建议阅读英文.也可以看视频学习，推荐一个视频[李江南vue3正式版的学习](https://space.bilibili.com/305684376/video)
 
 ## vue3的亮点
 1.  Performance 性能比vue 2.x快1.2～2倍
@@ -49,6 +47,7 @@ export function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 ```
 我们可以看到在vue3中在渲染虚拟dom的时候就标记了一个flag用于后面更新比较
+
 ### 静态提升
 vue2 中，无论创建的元素是否参与更新，每次都会被重新创建，然后再渲染
 vue3 中，对于不参与更新的元素，会做静态提升，只会被创建一次，在渲染的时候直接复用
@@ -272,6 +271,13 @@ function stuFunc() {
 
 
 ### reactive的理解
+1. 什么是reactive
+    >Returns a reactive copy of the object.
+    The reactive conversion is "deep"—it affects all nested properties. In the ES2015 Proxy based implementation, the returned proxy is not equal to the original object. It is recommended to work exclusively with the reactive proxy and avoid relying on the original object.
+
+    reactive 是vue3中提供的实现响应式数据的方法
+    - 在vue2中，通过defineProperty的属性来监听数据的变化
+    - vue3中的响应式数据通过ES6的[proxy的学习](http://localhost:4000/2020/11/03/proxy/) 来实现的.
 ### ref的理解
 ### ref和reactive的区别
 
