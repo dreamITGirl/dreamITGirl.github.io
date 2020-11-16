@@ -244,12 +244,28 @@ mySkills:
     CSS:
       background: 'linear-gradient(to right, #00BCD4 0%, #80DEEA 100%)'
       percent: 90%
-    jQuery:
+    jQuery/Zepto:
       background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
       percent: 70%
     Vue:
-      background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
+      background: 'linear-gradient(to right, #bf55ec 0%, #f1e7fe 100%)'
       percent: 75%
+    Less/Sass:
+      background: 'linear-gradient(to right, #22a7f0 0%, #81cfe0 100%)'
+      percent: 50%
+    前端UI类库:
+      background: 'linear-gradient(to right, #29f1c3 0%, #1e824c 100%)'
+      percent: 70%
+    移动开发:
+      background: 'linear-gradient(to right, #f5e653 0%, #eeee00 100%)'
+      percent: 60%
+    数据结构及算法:
+      background: 'linear-gradient(to right, #f2784b 0%, #f9b42d 100%)'
+      percent: 40%
+    Python:
+      background: 'linear-gradient(to right, #bfbfbf 0%, #6c7a89 100%)'
+      percent: 20%
+
 
 # config gallery of my photos in about page.
 # If you don't want to display this `Gallery` content, you can deactivate or delete this configuration.
