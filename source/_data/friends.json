@@ -1,19 +1,44 @@
-[{
-    "avatar": "http://image.luokangyuan.com/1_qq_27922023.jpg",
-    "name": "码酱",
-    "introduction": "我不是大佬，只是在追寻大佬的脚步",
-    "url": "http://luokangyuan.com/",
-    "title": "前去学习"
-}, {
-    "avatar": "http://image.luokangyuan.com/4027734.jpeg",
-    "name": "闪烁之狐",
-    "introduction": "编程界大佬，技术牛，人还特别好，不懂的都可以请教大佬",
-    "url": "https://blinkfox.github.io/",
-    "title": "前去学习"
-}, {
-    "avatar": "http://image.luokangyuan.com/avatar.jpg",
-    "name": "ja_rome",
-    "introduction": "平凡的脚步也可以走出伟大的行程",
-    "url": "https://me.csdn.net/jlh912008548",
-    "title": "前去学习"
-}]
+[
+    {   
+        "avatar": "https://i.loli.net/2020/11/17/kWr1tEboH8IxgsN.jpg",
+        "name": "冰泪恋心",
+        "introduction": "前端开发学习过程的总结和经验分享",
+        "url":"https://www.cnblogs.com/bllx/",
+        "title": "另一个博客"
+    },
+    {
+        "avatar": "https://i.loli.net/2020/11/17/bXZVqKjcdo5FymW.jpg",
+        "name": "大史不说话",
+        "introduction": "讲述野生前端码农的内功修炼和自我修养",
+        "url": "https://github.com/dashnowords/blogs/",
+        "title": "前去学习"
+    }, 
+    {
+        "avatar": "https://blogimages.jspang.com/blogtouxiang1.jpg",
+        "name": "技术胖",
+        "introduction": "专注于WEB和移动前端开发。哔哩哔哩上有视频",
+        "url": "https://www.jspang.com/",
+        "title": "前去学习"
+    }, 
+    {
+        "avatar": "https://i.loli.net/2020/11/17/PgmciXLx2Ho85F3.png",
+        "name": "未知",
+        "introduction": "Vue3源码解析和最佳实践以及React源码解析",
+        "url": "https://vue3.w2deep.com/source-code/",
+        "title": "前去学习"
+    },
+    {
+        "avatar": "https://i.loli.net/2020/11/17/PgmciXLx2Ho85F3.png",
+        "name": "未知",
+        "introduction": "JS 基础和进阶必备",
+        "url":"https://github.com/lydiahallie/javascript-questions/blob/master/zh-CN/README-zh_CN.md",
+        "title": "前去学习"
+    },
+    {
+        "avatar": "https://www.bookstack.cn//static/images/logo.png",
+        "name": "书栈网",
+        "introduction": "JS 基础和进阶必备",
+        "url":"https://www.bookstack.cn/",
+        "title": "前去学习"
+    }
+]

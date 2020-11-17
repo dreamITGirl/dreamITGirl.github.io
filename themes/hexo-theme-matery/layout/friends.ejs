@@ -8,7 +8,7 @@
     .friends-container .tag-title {
         margin-bottom: 10px;
         color: #3C4858;
-        font-size: 1.75rem;
+        font-size: 1.5rem;
         font-weight: 400;
     }
 
@@ -208,7 +208,7 @@
                                         <img src="<%- url_for(friend.avatar) %>" alt="img">
                                         <div>
                                             <h1 class="friend-name"><%= friend.name %></h1>
-                                            <p style="position: relative;top: -35px;"><%= friend.introduction %></p>
+                                            <p style="position: relative;top: -35px;height: 40px;overflow:hidden;"><%= friend.introduction %></p>
                                         </div>
                                     </div>
                                     <div class="friend-button">
@@ -226,12 +226,12 @@
                 </article>
             </div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
             <div class="card-content">
                 <%- page.content %>
             </div>
-        </div>
-        <div class="card">
+        </div> -->
+        <!-- <div class="card">
 
             <% if (theme.gitalk && theme.gitalk.enable) { %>
             <%- partial('_partial/gitalk') %>
@@ -253,7 +253,7 @@
             <%- partial('_partial/valine') %>
             <% } %>
 
-        </div>
+        </div> -->
     </div>
 </main>
 
