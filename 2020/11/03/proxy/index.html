@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/2020/11/16/promise-de-xue-xi/es6.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -454,14 +454,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    39
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -477,6 +477,124 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>欢迎大家访问我的博客<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p>
+<h3 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
+<li><p>proxy用于修改某些操作的默认行为，等同于语言层面的修改，属于一种”元编程“。</p>
+</li>
+<li><p>proxy可以理解为，在目标对象之前设置了一层拦截，外界访问这个对象时，都要先通过这层拦截。因此提供了一种机制，可以对外界的访问进行过滤和改写。像Vue中的computed属性和双向绑定原理中都是和proxy同样的原理。</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const p &#x3D; new Proxy(target,handler)</span><br></pre></td></tr></table></figure></li>
+<li><p>target：要使用proxy包装的目标对象（可以是任何类型的对象，包括原生数组、函数，甚至另一个代理）</p>
+</li>
+<li><p>handler:一个通常以函数作为属性的对象，各属性的函数分别定义了在执行各种操作时代理p的行为</p>
+</li>
+<li><p>举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var handler &#x3D; &#123;</span><br><span class="line">    get:function(target,name)&#123;</span><br><span class="line">        console.log(target,name)</span><br><span class="line">        return 66</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var proxy &#x3D; new Proxy(&#123;&#125;,handler)</span><br><span class="line"></span><br><span class="line">console.log(proxy.name)</span><br><span class="line">console.log(proxy.time)</span><br><span class="line">console.log(proxy.title)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/11/17/4Rxs8CnJUaPfBzH.png" alt="输出结果"></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var handler &#x3D; &#123;</span><br><span class="line">    get:function(target,name)&#123;</span><br><span class="line">        console.log(&#39;get方法&#39;)</span><br><span class="line">        return 77</span><br><span class="line">    &#125;,</span><br><span class="line">    set:function(target,name,value)&#123;</span><br><span class="line">        console.log(&#39;set方法&#39;)</span><br><span class="line">        target[name] &#x3D; value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var proxy &#x3D; new Proxy(&#123;&#125;,handler)</span><br><span class="line">console.log(proxy.name)</span><br><span class="line">console.log(proxy.time)</span><br><span class="line">proxy.title &#x3D; &#39;测试代码&#39;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/11/17/7ihaTAEXMDQ43zg.png" alt="输出结果"></p>
+<ul>
+<li><p>一个技巧是将 Proxy 对象，设置到object.proxy属性，从而可以在object对象上调用；Proxy 实例也可以作为其他对象的原型对象；<br>同一个拦截函数可以设置多个拦截操作</p>
+</li>
+<li><p>再举个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var handler &#x3D; &#123;</span><br><span class="line">    get:function(target,name)&#123;</span><br><span class="line">        if(name &#x3D;&#x3D; &#39;prototype&#39;)&#123;</span><br><span class="line">            return Object.prototype</span><br><span class="line">        &#125;</span><br><span class="line">        return &#39;Hello&#39; + name</span><br><span class="line">    &#125;,</span><br><span class="line">    apply:function(target,thisBinding,args)&#123;</span><br><span class="line">        console.log(thisBinding) &#x2F;&#x2F; 被调用时的上下文对象。</span><br><span class="line">        return args[0]</span><br><span class="line">    &#125;,</span><br><span class="line">    construct:function(target,args)&#123;</span><br><span class="line">        return &#123;value:args[1]&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var fproxy &#x3D; new Proxy(function(x,y) &#123;</span><br><span class="line">    return x+y</span><br><span class="line">&#125;,handler)</span><br><span class="line"></span><br><span class="line">fproxy(1, 2) &#x2F;&#x2F; 1</span><br><span class="line">new fproxy(1, 2) &#x2F;&#x2F; &#123;value:2&#125;</span><br><span class="line">fproxy.prototype &#x3D;&#x3D;&#x3D; Object.prototype &#x2F;&#x2F; true</span><br><span class="line">fproxy.foo &#x3D;&#x3D;&#x3D; &quot;Hello, foo&quot; &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure></li>
+<li><p>Proxy支持的拦截操作：</p>
+<ul>
+<li><p>get(target,property,receiver) : 拦截对象属性的读取</p>
+</li>
+<li><p>set(target,property,value,receiver):拦截对象属性的设置，返回一个布尔值</p>
+</li>
+<li><p>has(target,property): 拦截<code>property in proxy</code>的操作，返回一个布尔值</p>
+</li>
+<li><p>ownKeys(target):拦截<code>Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、for...in</code>循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys()的返回结果仅包括目标对象自身的可遍历属性。</p>
+</li>
+<li><p>getOwnPropertyDescriptor(target, propKey)：拦截<code>Object.getOwnPropertyDescriptor(proxy, propKey)</code>，返回属性的描述对象。</p>
+</li>
+<li><p>defineProperty(target, propKey, propDesc)：拦截<code>Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)</code>，返回一个布尔值。</p>
+</li>
+<li><p>preventExtensions(target)：拦截<code>Object.preventExtensions(proxy)</code>，返回一个布尔值。</p>
+</li>
+<li><p>getPrototypeOf(target)：拦截<code>Object.getPrototypeOf(proxy)</code>，返回一个对象</p>
+</li>
+<li><p>isExtensible(target)：拦截<code>Object.isExtensible(proxy)</code>，返回一个布尔值</p>
+</li>
+<li><p>setPrototypeOf(target, proto)：拦截<code>Object.setPrototypeOf(proxy, proto)</code>，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截</p>
+</li>
+<li><p>apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作，比如<code>proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)</code>。</p>
+</li>
+<li><p>construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如new <code>proxy(...args)</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><ol>
+<li><p><strong><code>get()</code></strong><br> 该方法会拦截目标对象的以下操作</p>
+<ul>
+<li><p>访问属性：<code>proxy[foo]和proxy.bar</code></p>
+</li>
+<li><p>访问原型链上的属性：<code>Object.create(proxy)[foo]</code></p>
+</li>
+<li><p><code>reflect.get()</code></p>
+<p>以下情况，proxy会抛出<code>TypeError</code></p>
+</li>
+<li><p>如果访问的目标属性是不可写以及不可配置的，则返回的值必须与该目标属性的值相同</p>
+</li>
+<li><p>如果要访问的目标属性没有配置访问的方法，即get方法是undefined，则返回值必须是undefined</p>
+</li>
+</ul>
+<p><em>举个例子</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name:&#39;Alice&#39;</span><br><span class="line">&#125;,</span><br><span class="line">handler &#x3D; &#123;</span><br><span class="line">    get:function(target,propkey)&#123;</span><br><span class="line">        if(propkey in target)&#123;</span><br><span class="line">            return target[propkey]</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            throw new ReferenceError(&#96;prop name $&#123;propkey&#125; does not exist.&#96;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var proxy &#x3D; new Proxy(person,handler)</span><br><span class="line"></span><br><span class="line">console.log(proxy.name) &#x2F;&#x2F; Alice</span><br><span class="line">console.log(proxy.age) &#x2F;&#x2F; ReferenceError</span><br></pre></td></tr></table></figure>
+<p> <strong>get方法可以继承</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  let proto &#x3D; new Proxy(&#123;&#125;,&#123;</span><br><span class="line">    get:function(target,name,receiver)&#123;</span><br><span class="line">        console.log(&#39;get&#39;+name)</span><br><span class="line">        return target[name]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">let obj &#x3D; Object.create(proto)</span><br><span class="line">console.log(obj.foo) &#x2F;&#x2F; getfoo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>set()</code></strong><br>该方法会拦截目标对象的以下操作</p>
+<ul>
+<li>指定属性值 <code>proxy[foo] = bar</code> 和 <code>proxy.foo = bar</code>  </li>
+<li>指定继承者的属性值：<code>Object.create(proxy)[foo] = bar </code></li>
+<li>reflect.set()</li>
+</ul>
+<p>以下的情况，proxy 会抛出一个 TypeError 异常：</p>
+<ul>
+<li>若目标属性是一个不可写及不可配置的数据属性，则不能改变它的值。</li>
+<li>如果目标属性没有配置存储方法，即 [[Set]] 属性的是 undefined，则不能设置它的值。</li>
+<li>在严格模式下，如果 set() 方法返回 false，那么也会抛出一个 TypeError 异常</li>
+</ul>
+<p> <em>举个例子</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let p &#x3D; new Proxy(&#123;&#125;,&#123;</span><br><span class="line">    set:function(target,prop,value,receiver)&#123;</span><br><span class="line">        target[prop] &#x3D; value</span><br><span class="line">        console.log(&#96;property set $&#123;prop&#125; &#x3D; $&#123;value&#125;&#96;)</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&#39;name&#39; in p)  &#x2F;&#x2F; false</span><br><span class="line">p.name &#x3D; 10</span><br><span class="line">console.log(&#39;name&#39; in p) &#x2F;&#x2F; true</span><br><span class="line">console.log(p.name) &#x2F;&#x2F; 10</span><br></pre></td></tr></table></figure>
+<p> <img src="https://i.loli.net/2020/11/17/sIZLMRkuTlVY4Eg.png" alt="输出结果"></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const handler &#x3D; &#123;</span><br><span class="line">    set:function(target,prop,value,receiver)&#123;</span><br><span class="line">        target[prop] &#x3D; receiver</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const proxy &#x3D; new Proxy(&#123;&#125;,handler)</span><br><span class="line">proxy.foo &#x3D; &#39;bar&#39;</span><br><span class="line">proxy,foo &#x3D;&#x3D;&#x3D; proxy</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://i.loli.net/2020/11/17/SUxViMyCZwPoDbz.png" alt="输出结果"></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;</span><br><span class="line">const handler &#x3D; &#123;</span><br><span class="line">    set: function(obj, prop, value, receiver) &#123;</span><br><span class="line">        obj[prop] &#x3D; receiver;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">const proxy &#x3D; new Proxy(&#123;&#125;, handler);</span><br><span class="line">const myObj &#x3D; &#123;&#125;;</span><br><span class="line">Object.setPrototypeOf(myObj, proxy);</span><br><span class="line"></span><br><span class="line">myObj.foo &#x3D; &#39;bar&#39;;</span><br><span class="line">myObj.foo &#x3D;&#x3D;&#x3D; myObj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>apply()</code></strong><br> 该方法会拦截目标对象的以下操作：</p>
+<ul>
+<li><p>proxy(…args)</p>
+</li>
+<li><p><code>Function.prototype.apply()</code> 和 <code>Function.prototype.call()</code></p>
+</li>
+<li><p><code>Reflect.apply()</code></p>
+<p>以下情况，代理将抛出一个TypeError：</p>
+</li>
+<li><p>target必须是可被调用的。也就是说，它必须是一个函数对象。</p>
+</li>
+</ul>
+<p> <em>举个例子</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var p &#x3D; new Proxy(function() &#123;&#125;, &#123;</span><br><span class="line">            apply: function(target, thisArg, argumentsList) &#123;</span><br><span class="line">                console.log(&#39;called: &#39; + argumentsList.join(&#39;, &#39;));</span><br><span class="line">                return argumentsList[0] + argumentsList[1] + argumentsList[2];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">console.log(p(1,2,3))</span><br></pre></td></tr></table></figure></li>
+<li><p><strong><code>construct()</code></strong><br> 该方法用于拦截new操作符，为了使<code>new</code>操作符在生成的proxy对象上生效，用于初始化代理的目标对象自身必须具有[[<code>Construct</code>]]内部方法(也就是说<code>new target</code> 必须是有效的)</p>
+<p> <em>举个例子</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var p &#x3D; new Proxy(function()&#123;&#125;,&#123;</span><br><span class="line">    construct:function(target,args,newTarget)&#123;</span><br><span class="line">        console.log(&#96;called $&#123;args.join(&#39;,&#39;)&#125;&#96;)</span><br><span class="line">        return &#123;value:args[0] * 10&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(new p(1).value)</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://i.loli.net/2020/11/17/jBsqTwRSZ7LJxkh.png" alt="输出结果"></p>
+</li>
+</ol>
+<h4 id="this问题"><a href="#this问题" class="headerlink" title="this问题"></a>this问题</h4><blockquote>
+<p>虽然 Proxy 可以代理针对目标对象的访问，但它不是目标对象的透明代理，即不做任何拦截的情况下，也无法保证与目标对象的行为一致。主要原因就是在 Proxy 代理的情况下，目标对象内部的this关键字会指向 Proxy 代理。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const target &#x3D; &#123;</span><br><span class="line">  m: function () &#123;</span><br><span class="line">    console.log(this &#x3D;&#x3D;&#x3D; proxy);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">const handler &#x3D; &#123;&#125;;</span><br><span class="line"></span><br><span class="line">const proxy &#x3D; new Proxy(target, handler);</span><br><span class="line"></span><br><span class="line">target.m() &#x2F;&#x2F; false</span><br><span class="line">proxy.m()  &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+<p>上面的代码中，一旦proxy代理了target,targot内部的this的指向就会指向proxy,</p>
 
             </div>
             <hr/>
@@ -1073,7 +1191,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8.3k</span>&nbsp;字
+                class="white-color">10k</span>&nbsp;字
             
             
             
