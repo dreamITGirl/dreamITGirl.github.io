@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-18
+                    2020-11-19
                 </div>
                 
 
@@ -500,45 +500,161 @@
 </li>
 </ol>
 <h4 id="Promise方法"><a href="#Promise方法" class="headerlink" title="Promise方法"></a>Promise方法</h4><p>promise必须提供一个<code>then</code>的方法，来访问当前的最终值或者原因</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled,onRejected)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">promise.then(onFulfilled,onRejected)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ol>
 <li><p><code>onFulfilled</code>和<code>onRejected</code>都是可选的参数，<br>如果有个不是函数的话，这个将会被忽略</p>
 <p> 案例：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;</span><br><span class="line">    if(&#x2F;**异步执行成功**&#x2F;)&#123;</span><br><span class="line">        resolve(value)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        resolve(error)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function timeout(ms) &#123;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">        setTimeout(resolve, ms, &#39;done&#39;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">timeout(100).then((value) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(value);</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 输出的结果为：</span><br><span class="line">&#x2F;&#x2F; Promise</span><br><span class="line">&#x2F;&#x2F; done</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">const promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;
+    if(&#x2F;**异步执行成功**&#x2F;)&#123;
+        resolve(value)
+    &#125; else &#123;
+        resolve(error)
+    &#125;
+&#125;)
+
+
+function timeout(ms) &#123;
+    return new Promise((resolve, reject) &#x3D;&gt; &#123;
+        setTimeout(resolve, ms, &#39;done&#39;);
+    &#125;);
+&#125;
+
+timeout(100).then((value) &#x3D;&gt; &#123;
+    console.log(value);
+&#125;);
+&#x2F;&#x2F; 输出的结果为：
+&#x2F;&#x2F; Promise
+&#x2F;&#x2F; done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> 上述代码中，timeout返回一个Promise实例，表示过一段时间以后才会发生的结果。<br> 过了指定的时间(ms)后，Promise的状态变为resolved,然后触发<code>.then</code>的方法绑定的回调函数</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;promise&#39;)</span><br><span class="line">    resolve()</span><br><span class="line">&#125;)</span><br><span class="line">promise.then(() &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;resolved&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&#39;Hi&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出结果：</span><br><span class="line">&#x2F;&#x2F; ‘promise’</span><br><span class="line">&#x2F;&#x2F; ‘Hi’</span><br><span class="line">&#x2F;&#x2F; ‘resolved’</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">let promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;
+    console.log(&#39;promise&#39;)
+    resolve()
+&#125;)
+promise.then(() &#x3D;&gt; &#123;
+    console.log(&#39;resolved&#39;)
+&#125;)
+console.log(&#39;Hi&#39;)
+&#x2F;&#x2F; 输出结果：
+&#x2F;&#x2F; ‘promise’
+&#x2F;&#x2F; ‘Hi’
+&#x2F;&#x2F; ‘resolved’<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> 这个例子中初始化后的Promise对象会立即执行，所以会先输出Promise，然后<code>then</code>方法制定的<br> 回调函数将在当前脚本中所有同步函数执行完后再去执行。所以，<code>resolved</code>最后输出</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;promise&#39;)</span><br><span class="line">    resolve()</span><br><span class="line">&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))</span><br><span class="line">console.log(&#39;here&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出结果：</span><br><span class="line">&#x2F;&#x2F; &#39;promise&#39;</span><br><span class="line">&#x2F;&#x2F; &#39;here&#39;</span><br><span class="line">&#x2F;&#x2F; 成功</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;
+    console.log(&#39;promise&#39;)
+    resolve()
+&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))
+console.log(&#39;here&#39;)
+&#x2F;&#x2F; 输出结果：
+&#x2F;&#x2F; &#39;promise&#39;
+&#x2F;&#x2F; &#39;here&#39;
+&#x2F;&#x2F; 成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> promise创建的过程是在js的同步任务中，所以会先输出promise，然后将resolve()放在微任务里。然后JS会继续执行剩下的同步任务，<br> 所以接下来会输出‘here’，最后当同步的任务执行完之后，开始执行微任务中的函数，输出‘成功’</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">    console.log(&#39;setTimeout&#39;)</span><br><span class="line">&#125;,0)</span><br><span class="line">let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;promise&#39;)</span><br><span class="line">    resolve()</span><br><span class="line">&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))</span><br><span class="line">console.log(&#39;bottom&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出结果</span><br><span class="line">&#x2F;&#x2F; promise</span><br><span class="line">&#x2F;&#x2F; bottom</span><br><span class="line">&#x2F;&#x2F; 成功</span><br><span class="line">&#x2F;&#x2F; setTimeout</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">setTimeout(()&#x3D;&gt;&#123;
+    console.log(&#39;setTimeout&#39;)
+&#125;,0)
+let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;
+    console.log(&#39;promise&#39;)
+    resolve()
+&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))
+console.log(&#39;bottom&#39;)
+&#x2F;&#x2F; 输出结果
+&#x2F;&#x2F; promise
+&#x2F;&#x2F; bottom
+&#x2F;&#x2F; 成功
+&#x2F;&#x2F; setTimeout<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> 代码执行中遇到setTimeout,会将setTimeout放到宏任务中，然后继续执行JS同步任务中的函数，首先是Promise的初始化，输出promise，<br> 然后遇到resolve后，会将resolve中的函数放在微任务中，继续执行同步任务中未执行的。输出bottom后，再输出成功，微任务执行完成后，会开始执行<br> 宏任务，输出setTimeout</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;</span><br><span class="line">   setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">       console.log(&#39;setTimeout&#39;)</span><br><span class="line">       resolve()</span><br><span class="line">   &#125;,0)</span><br><span class="line">   console.log(&#39;promise&#39;)</span><br><span class="line">&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))</span><br><span class="line">console.log(&#39;bottom&#39;)</span><br><span class="line">&#x2F;&#x2F; 输出结果</span><br><span class="line">&#x2F;&#x2F; promise</span><br><span class="line">&#x2F;&#x2F; bottom</span><br><span class="line">&#x2F;&#x2F; setTimeout</span><br><span class="line">&#x2F;&#x2F; 成功</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;
+   setTimeout(() &#x3D;&gt; &#123;
+       console.log(&#39;setTimeout&#39;)
+       resolve()
+   &#125;,0)
+   console.log(&#39;promise&#39;)
+&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))
+console.log(&#39;bottom&#39;)
+&#x2F;&#x2F; 输出结果
+&#x2F;&#x2F; promise
+&#x2F;&#x2F; bottom
+&#x2F;&#x2F; setTimeout
+&#x2F;&#x2F; 成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> 这个例子中首先JS会定义Promise，然后开始执行，发现setTimeout会将setTimeout放在宏任务中，然后继续执行，<br> 输出promise，此时还有同步任务没有执行完，所以会继续执行console.log(‘bottom’)，输出bottom，执行完<br> 这步之后，JS同步任务已经执行完成了，接下来开始执行刚才放在宏任务中的setTimeout，先输出‘setTimeout’后，<br> 发现resolve，将其放在微任务中，如果此时setTimeout中还有其他的代码，会先执行setTimeout中的其他代码，<br> 再执行微任务中，输出‘成功’</p>
 </li>
 </ol>
 <ol start="2">
 <li><p>Promise.prototype.then()</p>
 <p>.then方法是定义在原型对象Promise.prototype上的。它的作用是为Promise添加回调函数。<br>第一个参数是resolve状态的回调函数，第二个参数是reject状态下的回调函数then返回一个<strong>新的</strong><code>Promise</code>实例,后面的then是对前面Promise的处理</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve,reject) &#x3D;&gt; &#123;</span><br><span class="line">    resolve(&#39;买水去了&#39;)</span><br><span class="line">&#125;).then(</span><br><span class="line">    value &#x3D;&gt; &#123;</span><br><span class="line">        console.log(value)</span><br><span class="line">    &#125;,</span><br><span class="line">    error &#x3D;&gt; &#123;</span><br><span class="line">        console.log(error)</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">new Promise((resolve,reject) &#x3D;&gt; &#123;
+    resolve(&#39;买水去了&#39;)
+&#125;).then(
+    value &#x3D;&gt; &#123;
+        console.log(value)
+    &#125;,
+    error &#x3D;&gt; &#123;
+        console.log(error)
+    &#125;
+)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>Promise.prototype.catch()</p>
 </li>
 </ol>
 <p>Promise.prototype.catch()的方法是.then(null,rejection) 或 .then(undefined,rejection)的别名，用于指定发生错误时的回调函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve,reject) &#x3D;&gt; &#123;</span><br><span class="line">    reject(new Error(&#39;出现错误&#39;))</span><br><span class="line">&#125;).then(value &#x3D;&gt; &#123;</span><br><span class="line">    console.log(value)</span><br><span class="line">&#125;).catch(err) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(err) &#x2F;&#x2F; 出现错误</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;</span><br><span class="line">    resolve(&#39;ok&#39;)</span><br><span class="line">    throw new Error(&#39;test Error&#39;)</span><br><span class="line">&#125;)</span><br><span class="line">promise.then(value &#x3D;&gt; &#123;console.log(value)&#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123;console.log(error)&#125;) </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 输出结果</span><br><span class="line">&#x2F;&#x2F;ok</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">new Promise((resolve,reject) &#x3D;&gt; &#123;
+    reject(new Error(&#39;出现错误&#39;))
+&#125;).then(value &#x3D;&gt; &#123;
+    console.log(value)
+&#125;).catch(err) &#x3D;&gt; &#123;
+    console.log(err) &#x2F;&#x2F; 出现错误
+&#125;
+
+const promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;
+    resolve(&#39;ok&#39;)
+    throw new Error(&#39;test Error&#39;)
+&#125;)
+promise.then(value &#x3D;&gt; &#123;console.log(value)&#125;)
+    .catch(error &#x3D;&gt; &#123;console.log(error)&#125;) 
+
+&#x2F;&#x2F; 输出结果
+&#x2F;&#x2F;ok<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果 Promise 状态已经变成resolved，再抛出错误是无效的。<br>Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个catch语句捕获。</p>
 <ol start="4">
 <li>Promise.prototype.finally()</li>
 </ol>
 <p>finally()方法用于不管Promise对象最后的状态如何，都会执行该操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">promise.then(result &#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;).catch(error &#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;).finally(() &#x3D;&gt; &#123;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">promise.then(result &#x3D;&gt; &#123;
+
+&#125;).catch(error &#x3D;&gt; &#123;
+
+&#125;).finally(() &#x3D;&gt; &#123;
+    
+&#125;)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>finally方法的回调函数不接受任何参数，这就说明没办法知道前面的Promise的状态是fulfilled还是<br>rejected.这就表明，在finally中的操作不依赖Promise的执行结果</p>
 <ol start="5">
 <li>Promise.all()</li>
 </ol>
 <p>Promise.all()方法用于多个Promise实例，包装成一个新的promise实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const p &#x3D; Promise.all([p1,p2,p3])</span><br><span class="line">p.then((res) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; res是一个数组，是p1,p2,p3的返回值数组</span><br><span class="line">&#125;).catch((err) &#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const p1 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  resolve(&#39;hello&#39;);</span><br><span class="line">&#125;)</span><br><span class="line">.then(result &#x3D;&gt; result)</span><br><span class="line">.catch(e &#x3D;&gt; e);</span><br><span class="line"></span><br><span class="line">const p2 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  throw new Error(&#39;报错了&#39;);</span><br><span class="line">&#125;)</span><br><span class="line">.then(result &#x3D;&gt; result)</span><br><span class="line">.catch(e &#x3D;&gt; e);</span><br><span class="line"></span><br><span class="line">Promise.all([p1, p2])</span><br><span class="line">.then(result &#x3D;&gt; console.log(result))</span><br><span class="line">.catch(e &#x3D;&gt; console.log(e));</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">const p &#x3D; Promise.all([p1,p2,p3])
+p.then((res) &#x3D;&gt; &#123;
+    &#x2F;&#x2F; res是一个数组，是p1,p2,p3的返回值数组
+&#125;).catch((err) &#x3D;&gt; &#123;
+
+&#125;)
+
+const p1 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;
+  resolve(&#39;hello&#39;);
+&#125;)
+.then(result &#x3D;&gt; result)
+.catch(e &#x3D;&gt; e);
+
+const p2 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;
+  throw new Error(&#39;报错了&#39;);
+&#125;)
+.then(result &#x3D;&gt; result)
+.catch(e &#x3D;&gt; e);
+
+Promise.all([p1, p2])
+.then(result &#x3D;&gt; console.log(result))
+.catch(e &#x3D;&gt; console.log(e));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/16/ZoQPcVENuqOiW4g.png" alt="输出结果"></p>
 <p>上述代码中p1会resolved,p2首先会rejected,但是p2有自己的catch方法，该方法返回一个新的Promise<br>实例，p2的方法实际上指向这个实例。这个实例执行完catch的方法后，会变成resolveed，导致Promise<br>方法参数里的两个实例都会resolved，因此会调用then中的方法</p>
 <p>如果p2中没有catch的方法，就会调用Promise.all()中的catch方法</p>
@@ -549,7 +665,14 @@
 </li>
 </ol>
 <p>Promise.allSettled()方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例。只有等到所有这些参数实例都返回结果，不管是fulfilled还是rejected，包装实例才会结束。该方法由 ES2020 引入。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const p &#x3D; [</span><br><span class="line">    fetch(&#39;&#x2F;api-1),</span><br><span class="line">    fetch(&#39;&#x2F;api-2),</span><br><span class="line">    fetch(&#39;&#x2F;api-3)</span><br><span class="line">]</span><br><span class="line">await Promise.allSettled(p)</span><br><span class="line">removeLoadingIndicator()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">const p &#x3D; [
+    fetch(&#39;&#x2F;api-1),
+    fetch(&#39;&#x2F;api-2),
+    fetch(&#39;&#x2F;api-3)
+]
+await Promise.allSettled(p)
+removeLoadingIndicator()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面代码对服务器发出三个请求，等到三个请求都结束，不管请求成功还是失败，加载的滚动图标就会消失。</p>
 <p>该方法返回的新的 Promise 实例，一旦结束，状态总是fulfilled，不会变成rejected。<br>状态变成fulfilled后，Promise 的监听函数接收到的参数是一个数组，<br>每个成员对应一个传入Promise.allSettled()的 Promise 实例。</p>
 <p>当我们只关心异步操作有没有结束的时候，就可以用Promise.allSettled()的方法。Promise.all()无法确定所有请求都结束。</p>
@@ -773,7 +896,7 @@
         </div>
     </div>
 
-    
+    <!-- 
 
     
 
@@ -803,9 +926,9 @@
     })();
 </script>
 
-    
+     -->
 
-    
+    <!--  -->
 
     
 
@@ -1153,7 +1276,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.5k</span>&nbsp;字
+                class="white-color">10.6k</span>&nbsp;字
             
             
             

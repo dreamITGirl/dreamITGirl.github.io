@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -447,14 +447,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-18
+                    2020-11-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    139
+                    249
                 </div>
                 
 
@@ -482,15 +482,44 @@
 <blockquote>
 <p>输入：s = “We are happy.”<br>输出：”We%20are%20happy.”</p>
 </blockquote>
-<p>解法一:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var replaceSpace &#x3D; function(s) &#123;</span><br><span class="line">    let result &#x3D; s.replace(&#x2F; &#x2F;ig,&#39;%20&#39;)</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解法一: 利用了JS中的<code>replace</code>API</p>
+<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function(s) &#123;
+    let result &#x3D; s.replace(&#x2F; &#x2F;ig,&#39;%20&#39;)
+    return result
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/18/2SwHLAMkQmUyuOR.png" alt="输出结果1"></p>
-<p>解法二：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var replaceSpace &#x3D; function (s) &#123;</span><br><span class="line">    let m &#x3D; s.split(&#39;&#39;)</span><br><span class="line">    for (let i &#x3D; 0; i &lt; m.length; i++) &#123;</span><br><span class="line">        let item &#x3D; m[i].trim()</span><br><span class="line">        if (!item) &#123;</span><br><span class="line">            m[i] &#x3D; &#39;%20&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    m &#x3D; m.join(&#39;&#39;)</span><br><span class="line">    return m</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解法二：将s字符串切割转换成数组，然后遍历整个数组，判断每一项中trim()方法之后的是否是true</p>
+<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function (s) &#123;
+    let m &#x3D; s.split(&#39;&#39;)
+    for (let i &#x3D; 0; i &lt; m.length; i++) &#123;
+        let item &#x3D; m[i].trim()
+        if (!item) &#123;
+            m[i] &#x3D; &#39;%20&#39;
+        &#125;
+    &#125;
+    m &#x3D; m.join(&#39;&#39;)
+    return m
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/18/eYAZOToC3cyR8ut.png" alt="输出结果2"></p>
-<p>解法三：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var replaceSpace &#x3D; function (s) &#123;</span><br><span class="line">    let result &#x3D; s.replaceAll(&#39; &#39;,&#39;%20&#39;)</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解法三：利用了JS中的<code>replaceAll</code>API</p>
+<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function (s) &#123;
+    let result &#x3D; s.replaceAll(&#39; &#39;,&#39;%20&#39;)
+    return result
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/18/NrJmIRwbzXfqgko.png" alt="输出结果3"></p>
+<p>解法四：利用了JS中的<code>charAt</code>API</p>
+<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function (s) &#123;
+    let result &#x3D; &#39;&#39;
+    for (let i &#x3D; 0; i &lt; s.length; i++) &#123;
+        if (s.charAt(i) &#x3D;&#x3D;&#x3D; &#39; &#39;) &#123;
+            result +&#x3D; s[i].concat(&#39;%20&#39;).trim()
+        &#125; else &#123;
+            result +&#x3D; s[i]
+        &#125;
+    &#125;
+    return result
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.loli.net/2020/11/19/IVMrUiCW5cSXfAq.png" alt="输出结果4"></p>
 
             </div>
             <hr/>
@@ -707,7 +736,7 @@
         </div>
     </div>
 
-    
+    <!-- 
 
     
 
@@ -737,9 +766,9 @@
     })();
 </script>
 
-    
+     -->
 
-    
+    <!--  -->
 
     
 
@@ -758,8 +787,7 @@
                 <a href="/2020/11/18/ti-huan-kong-ge/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="替换空格">
+                        <img src="https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg" class="responsive-img" alt="替换空格">
                         
                         <span class="card-title">替换空格</span>
                     </div>
@@ -812,8 +840,7 @@
                 <a href="/2020/11/18/shu-zu-zhong-chong-fu-de-shu-zi/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="数组中重复的数字">
+                        <img src="https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg" class="responsive-img" alt="数组中重复的数字">
                         
                         <span class="card-title">数组中重复的数字</span>
                     </div>
@@ -1090,7 +1117,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.5k</span>&nbsp;字
+                class="white-color">10.6k</span>&nbsp;字
             
             
             

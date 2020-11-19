@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-18
+                    2020-11-19
                 </div>
                 
 
@@ -474,9 +474,13 @@
             <div id="articleContent">
                 <p>欢迎大家访问我的博客<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.<br>这篇文章适合有前端基础及会使用git及gitHub的人阅读.<a target="_blank" rel="noopener" href="https://hexo.bootcss.com/">hexo</a>是快速、简洁且高效的博客框架，适合新手。如果平时用vue开发的话，可以使用<a target="_blank" rel="noopener" href="https://www.vuepress.cn/">vuePress</a>;如果使用react开发的话，可使用<a target="_blank" rel="noopener" href="https://github.com/destinytaoer/gatsby-start">Gatsby</a>；如果喜欢自己造轮子的话，也可以自己从0搭建。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装博客框架Hexo"><a href="#安装博客框架Hexo" class="headerlink" title="安装博客框架Hexo"></a>安装博客框架Hexo</h3><p>代码中的blog指的是项目的名称，可以更换成自己的项目名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g </span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">npm install hexo-cli -g 
+hexo init blog
+cd blog
+npm install
+hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h3><p>如果喜欢系统默认的博客主题的话，可以不修改主题；如果不喜欢的话，可以去<a target="_blank" rel="noopener" href="https://github.com/">github</a>官网中<br>搜索<strong>hexo-theme</strong>，选择自己喜欢的主题；<br>这里以<a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">blinkfox/hexo-theme-matery</a>为例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;blinkfox&#x2F;hexo-theme-matery.git </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;blinkfox&#x2F;hexo-theme-matery.git <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ol start="2">
 <li>将克隆到本地的主题移动到hexo根目录themes目录中，将博客中的其他主题删掉</li>
 <li>删除下载的主题中的.git目录，这样做的目的是为了让下载后的主题和我们的博客放在同一个git地址下</li>
@@ -490,15 +494,26 @@
 <li><p>创建库<br> 创建库的方式如图所示</p>
  <a href="/2020/10/30/build-blog/build1.png" title="点击查看图片">点击查看图片</a>
 <p> 创建成功后，我们需要将本地的代码传到我们创建的库，我习惯使用命令行的方式，把命令写在下面，需要的话自取</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init </span><br><span class="line">git add remote &#39;创建成功后提示的路径&#39;</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">git init 
+git add remote &#39;创建成功后提示的路径&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p> 这两行代码是初始化git项目，并给项目添加远程仓库<br> 在使用git管理代码之前，先安装hexo-deployer-git依赖，这个库会帮助我们将生成好的代码放到具体的分支上，<br> 安装好后，打开<strong>_config.yml</strong>文件，找到deploy,设置对应内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;dreamITGirl&#x2F;dreamITGirl.github.io</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">deploy:
+    type: git
+    repo: https:&#x2F;&#x2F;github.com&#x2F;dreamITGirl&#x2F;dreamITGirl.github.io
+    branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>接下来运行</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm run deploy </span><br><span class="line">&#x2F;&#x2F; 或者运行</span><br><span class="line">hexo deploy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">npm run deploy 
+&#x2F;&#x2F; 或者运行
+hexo deploy
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p> 部署代码；代码提交完成后，我们就可以在远程仓库中看到我们提交的代码了。我们提交的master的代码就是打包后public目录下的文件。<br> 然后找到这个远程库的setting，找到GitHub Pages,这里面显示了我们的站点已经部署到了我们命名的仓库地址上了，点击就可以看到我们的博客了<br> 到这里为止，我们就完成了一个最基本的博客的部署</p>
 <h3 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h3><p> 在做自动化部署之前，我们需要将我们的源代码提交到远程仓库,master分支现在已经被占用了，我们需要将源代码提交到另一个分支上</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#39;提交源代码&#39;</span><br><span class="line">git branch my-blog &#x2F;&#x2F; my-blog是分支名称</span><br><span class="line">git push --set-upstream origin my-blog</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ <pre class="line-numbers language-none"><code class="language-none">git add .
+git commit -m &#39;提交源代码&#39;
+git branch my-blog &#x2F;&#x2F; my-blog是分支名称
+git push --set-upstream origin my-blog
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p> 我们也可以在仓库首页放上我们的博客地址，便于访问</p>
 <p> 接下来就是自动化部署了，这里用到github中的actions,我们这里会实现项目的代码部署和自动打包</p>
 <ol>
@@ -507,7 +522,30 @@
 <li><p>创建deploy.yml文件</p>
 </li>
 <li><p>deploy.yml代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">name: Build and Deploy</span><br><span class="line">on: [push]</span><br><span class="line">jobs:</span><br><span class="line">  build-and-deploy:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">      - name: Checkout 🛎️</span><br><span class="line">        uses: actions&#x2F;checkout@v2 # If you&#39;re using actions&#x2F;checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.</span><br><span class="line">        with:</span><br><span class="line">          persist-credentials: false</span><br><span class="line"></span><br><span class="line">      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the &#39;build&#39; folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.</span><br><span class="line">        run: |</span><br><span class="line">          npm install</span><br><span class="line">          npm run build</span><br><span class="line">        env:</span><br><span class="line">          CI: false</span><br><span class="line"></span><br><span class="line">      - name: Deploy 🚀</span><br><span class="line">        uses: JamesIves&#x2F;github-pages-deploy-action@releases&#x2F;v3</span><br><span class="line">        with:</span><br><span class="line">          GITHUB_TOKEN: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;</span><br><span class="line">          BRANCH: master # The branch the action should deploy to.</span><br><span class="line">          FOLDER: public # The folder the action should deploy.</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions&#x2F;checkout@v2 # If you&#39;re using actions&#x2F;checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the &#39;build&#39; folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: false
+
+      - name: Deploy 🚀
+        uses: JamesIves&#x2F;github-pages-deploy-action@releases&#x2F;v3
+        with:
+          GITHUB_TOKEN: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;
+          BRANCH: master # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们将代码设置好之后，将源码提交到刚才创建的分支上后，代码就可以自动打包，生成新的版本</p>
 </li>
 </ol>
@@ -725,7 +763,7 @@
         </div>
     </div>
 
-    
+    <!-- 
 
     
 
@@ -755,9 +793,9 @@
     })();
 </script>
 
-    
+     -->
 
-    
+    <!--  -->
 
     
 
@@ -1101,7 +1139,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.5k</span>&nbsp;字
+                class="white-color">10.6k</span>&nbsp;字
             
             
             

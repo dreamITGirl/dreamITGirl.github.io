@@ -447,14 +447,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-18
+                    2020-11-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    943
+                    941
                 </div>
                 
 
@@ -487,14 +487,73 @@
 <h3 id="什么是响应式原理"><a href="#什么是响应式原理" class="headerlink" title="什么是响应式原理"></a>什么是响应式原理</h3><p>响应式原理是Vue的特点之一，面试vue的时候十有八九会问到，什么是数据双向绑定/什么是响应式原理。<br>响应式原理就是当修改数据模型中的某些值的时候，视图会更新</p>
 <h3 id="响应式的理解"><a href="#响应式的理解" class="headerlink" title="响应式的理解"></a>响应式的理解</h3><ol>
 <li><p>实现一个简单的监听属性改变的语法糖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;</span><br><span class="line">        &lt;title&gt;响应式原理的理解1&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            &#x2F;&#x2F; 1. 实现了响应式数据的基本功能</span><br><span class="line">            class Vue &#123;</span><br><span class="line">                constructor()&#123;&#125;</span><br><span class="line">                set val(v)&#123;</span><br><span class="line">                    this.render()</span><br><span class="line">                &#125;</span><br><span class="line">                get val()&#123; &#125;</span><br><span class="line">                render()&#123;</span><br><span class="line">                  console.log(&#39;重新渲染了页面&#39;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; </span><br><span class="line">            var vm &#x3D; new Vue()</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!DOCTYPE html&gt;
+    &lt;head&gt;
+        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
+        &lt;title&gt;响应式原理的理解1&lt;&#x2F;title&gt;
+    &lt;&#x2F;head&gt;
+    &lt;body&gt;
+        &lt;script&gt;
+            &#x2F;&#x2F; 1. 实现了响应式数据的基本功能
+            class Vue &#123;
+                constructor()&#123;&#125;
+                set val(v)&#123;
+                    this.render()
+                &#125;
+                get val()&#123; &#125;
+                render()&#123;
+                  console.log(&#39;重新渲染了页面&#39;)
+                &#125;
+            &#125; 
+            var vm &#x3D; new Vue()
+        &lt;&#x2F;script&gt;
+    &lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>我们通过class类中的set，get方法，监听到vm实例上有属性改变的时候，就会触发class类的render事件<br>我们在浏览器中演示了一下，<img src="https://i.loli.net/2020/11/05/o6ERBAuMqhegWNn.gif" alt="演示结果"></p>
 </li>
 <li><p><code>Object.defineProperty()</code>的使用</p>
 </li>
 </ol>
 <p>我们回到官方文档的介绍可以知道当我们把JS对象传给Vue中的data选项时，Vue就会遍历data中所有的属性，并通过<code>Object.defineProperty()</code>给每一个属性增加一个<code>setter/getter</code>的方法。接下来举个例子说一下<code>Object.defineProperty()</code>的用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;</span><br><span class="line">        &lt;title&gt;响应式原理的理解2&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            &#x2F;&#x2F; Object.defineProperty()</span><br><span class="line">            &#x2F;&#x2F; 这里定义一个类Vue</span><br><span class="line">            class Vue&#123;</span><br><span class="line">                constructor(opts)&#123;</span><br><span class="line">                    this.initData(opts.data)</span><br><span class="line">                &#125;</span><br><span class="line">                initData(data)&#123;</span><br><span class="line">                    for (const key in data) &#123;</span><br><span class="line">                        Object.defineProperty(this,key,&#123;</span><br><span class="line">                            set(v)&#123;</span><br><span class="line">                                console.log(v,&#39;v&#x3D;&#x3D;&#x3D;&#39;)</span><br><span class="line">                                this.render()</span><br><span class="line">                            &#125;,</span><br><span class="line">                            get()&#123;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                render()&#123;</span><br><span class="line">                    console.log(&#39;重新渲染了DOM&#39;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            var vm &#x3D; new Vue(&#123;</span><br><span class="line">                data:&#123;</span><br><span class="line">                    name:&#39;Alice&#39;,</span><br><span class="line">                    age:20,</span><br><span class="line">                    dept:&#39;dept1&#39;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!DOCTYPE html&gt;
+    &lt;head&gt;
+        &lt;meta charset&#x3D;&quot;utf-8&quot; &#x2F;&gt;
+        &lt;title&gt;响应式原理的理解2&lt;&#x2F;title&gt;
+    &lt;&#x2F;head&gt;
+    &lt;body&gt;
+        &lt;script&gt;
+            &#x2F;&#x2F; Object.defineProperty()
+            &#x2F;&#x2F; 这里定义一个类Vue
+            class Vue&#123;
+                constructor(opts)&#123;
+                    this.initData(opts.data)
+                &#125;
+                initData(data)&#123;
+                    for (const key in data) &#123;
+                        Object.defineProperty(this,key,&#123;
+                            set(v)&#123;
+                                console.log(v,&#39;v&#x3D;&#x3D;&#x3D;&#39;)
+                                this.render()
+                            &#125;,
+                            get()&#123;
+                            &#125;
+                        &#125;)
+                    &#125;
+                &#125;
+                render()&#123;
+                    console.log(&#39;重新渲染了DOM&#39;)
+                &#125;
+            &#125;
+            var vm &#x3D; new Vue(&#123;
+                data:&#123;
+                    name:&#39;Alice&#39;,
+                    age:20,
+                    dept:&#39;dept1&#39;
+                &#125;
+            &#125;)
+        &lt;&#x2F;script&gt;
+    &lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/05/4StGJkxbeEruqlh.png" alt="演示结果"></p>
 <p>通过结果我们可以看到，当vm实例中的name属性变化的时候，Vue类中的<code>Object.defineProperty()</code>会自动监听到值的变化，并将新的值输出给vm实例，同时触发render函数</p>
 <p>这个案例只是讲了响应式的原理</p>
@@ -717,7 +776,7 @@
         </div>
     </div>
 
-    
+    <!-- 
 
     
 
@@ -747,9 +806,9 @@
     })();
 </script>
 
-    
+     -->
 
-    
+    <!--  -->
 
     
 
@@ -1096,7 +1155,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.5k</span>&nbsp;字
+                class="white-color">10.6k</span>&nbsp;字
             
             
             

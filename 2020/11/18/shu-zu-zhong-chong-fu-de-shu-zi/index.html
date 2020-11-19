@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-18
+                    2020-11-19
                 </div>
                 
 
@@ -483,13 +483,52 @@
 <p>输入：[2, 3, 1, 0, 2, 5, 3]，<br>输出：2 或 3</p>
 </blockquote>
 <p>解法一：通过中间数组，遍历原数组，如果中间数组中没有原数组中的值，则将其放到中间数组，有原数组的值，则停止循环，输出重复值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var findRepeatNumber &#x3D; function(nums) &#123;</span><br><span class="line">    let hash &#x3D; [] , repeatItem &#x3D; undefined</span><br><span class="line">    for (let i &#x3D; 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        if (!hash.includes(nums[i])) &#123;</span><br><span class="line">            hash.push(nums[i])</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            repeatItem &#x3D; nums[i]</span><br><span class="line">            break</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return repeatItem</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var findRepeatNumber &#x3D; function(nums) &#123;
+    let hash &#x3D; [] , repeatItem &#x3D; undefined
+    for (let i &#x3D; 0; i &lt; nums.length; i++) &#123;
+        if (!hash.includes(nums[i])) &#123;
+            hash.push(nums[i])
+        &#125; else &#123;
+            repeatItem &#x3D; nums[i]
+            break
+        &#125;
+    &#125;
+    return repeatItem
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/18/dvjJrDlIWH6tVSm.png" alt="输出结果"></p>
 <p>解法二：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var findRepeatNumber &#x3D; function (nums) &#123;</span><br><span class="line">    const s &#x3D; new Set()</span><br><span class="line">    let result &#x3D; undefined</span><br><span class="line">    if (nums.length &gt; 0) &#123;</span><br><span class="line">        s.add(nums[0])</span><br><span class="line">    &#125;</span><br><span class="line">    for (let i &#x3D; 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">        if (s.has(nums[i])) &#123;</span><br><span class="line">            result &#x3D; nums[i]</span><br><span class="line">            break</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            s.add(nums[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var findRepeatNumber &#x3D; function (nums) &#123;
+    const s &#x3D; new Set()
+    let result &#x3D; undefined
+    if (nums.length &gt; 0) &#123;
+        s.add(nums[0])
+    &#125;
+    for (let i &#x3D; 1; i &lt; nums.length; i++) &#123;
+        if (s.has(nums[i])) &#123;
+            result &#x3D; nums[i]
+            break
+        &#125; else &#123;
+            s.add(nums[i])
+        &#125;
+    &#125;
+    return result
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/18/BFDoqiJQIutKL76.png" alt="输出结果"></p>
 <p>解法三：这种方式在数组长度较小，但是数组中的某一项值很大的时候会导致越界,但是正常情况下是性能最好的，不推荐</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var findRepeatNumber &#x3D; function (nums) &#123;</span><br><span class="line">    let temp &#x3D; undefined</span><br><span class="line">    for (let i &#x3D; 0; i &lt; nums.length; i++) &#123;</span><br><span class="line">        while (nums[i] !&#x3D; i) &#123;</span><br><span class="line">            if (nums[i] &#x3D;&#x3D; nums[nums[i]]) &#123;</span><br><span class="line">                return nums[i]</span><br><span class="line">            &#125;</span><br><span class="line">            temp &#x3D; nums[i]</span><br><span class="line">            nums[i] &#x3D; nums[temp]</span><br><span class="line">            nums[temp] &#x3D; temp</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var findRepeatNumber &#x3D; function (nums) &#123;
+    let temp &#x3D; undefined
+    for (let i &#x3D; 0; i &lt; nums.length; i++) &#123;
+        while (nums[i] !&#x3D; i) &#123;
+            if (nums[i] &#x3D;&#x3D; nums[nums[i]]) &#123;
+                return nums[i]
+            &#125;
+            temp &#x3D; nums[i]
+            nums[i] &#x3D; nums[temp]
+            nums[temp] &#x3D; temp
+        &#125;
+    &#125;
+    return -1
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/11/18/HDUFm4oQcxJkYId.png" alt="输出结果"></p>
 
             </div>
@@ -707,7 +746,7 @@
         </div>
     </div>
 
-    
+    <!-- 
 
     
 
@@ -737,9 +776,9 @@
     })();
 </script>
 
-    
+     -->
 
-    
+    <!--  -->
 
     
 
@@ -757,8 +796,7 @@
                 <a href="/2020/11/18/ti-huan-kong-ge/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="替换空格">
+                        <img src="https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg" class="responsive-img" alt="替换空格">
                         
                         <span class="card-title">替换空格</span>
                     </div>
@@ -1087,7 +1125,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.5k</span>&nbsp;字
+                class="white-color">10.6k</span>&nbsp;字
             
             
             
