@@ -122,7 +122,7 @@ proxy.title = '测试代码'
 
 #### 实例方法
 
-1. **```get()```**
+1. **`get()`**
     该方法会拦截目标对象的以下操作
     - 访问属性：```proxy[foo]和proxy.bar```
     - 访问原型链上的属性：```Object.create(proxy)[foo]```
@@ -155,12 +155,12 @@ proxy.title = '测试代码'
    ```
     **get方法可以继承**
     ```
-     let proto = new Proxy({},{
+    let proto = new Proxy({},{
        get:function(target,name,receiver){
            console.log('get'+name)
            return target[name]
        }
-   })
+    })
    let obj = Object.create(proto)
    console.log(obj.foo) // getfoo
     ```

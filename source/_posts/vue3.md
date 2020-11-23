@@ -6,7 +6,7 @@ toc: false
 tags:
 - vue
 - js
-category: vue3系列
+category: vue
 img: 2020/11/02/vue3/vue.png
 summary: 欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我.
 ---
