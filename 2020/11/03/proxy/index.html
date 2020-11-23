@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-19
+                    2020-11-23
                 </div>
                 
 
@@ -608,12 +608,12 @@ var proxy &#x3D; new Proxy(person,handler)
 console.log(proxy.name) &#x2F;&#x2F; Alice
 console.log(proxy.age) &#x2F;&#x2F; ReferenceError<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> <strong>get方法可以继承</strong></p>
- <pre class="line-numbers language-none"><code class="language-none">  let proto &#x3D; new Proxy(&#123;&#125;,&#123;
+ <pre class="line-numbers language-none"><code class="language-none"> let proto &#x3D; new Proxy(&#123;&#125;,&#123;
     get:function(target,name,receiver)&#123;
         console.log(&#39;get&#39;+name)
         return target[name]
     &#125;
-&#125;)
+ &#125;)
 let obj &#x3D; Object.create(proto)
 console.log(obj.foo) &#x2F;&#x2F; getfoo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
@@ -999,8 +999,8 @@ proxy.m()  &#x2F;&#x2F; true<span aria-hidden="true" class="line-numbers-rows"><
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/vue%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97/" class="post-category">
-                                    vue源码系列
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
                                 </a>
                             
                             
@@ -1051,8 +1051,8 @@ proxy.m()  &#x2F;&#x2F; true<span aria-hidden="true" class="line-numbers-rows"><
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/vue3%E7%B3%BB%E5%88%97/" class="post-category">
-                                    vue3系列
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
                                 </a>
                             
                             
@@ -1309,7 +1309,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.6k</span>&nbsp;字
+                class="white-color">11.4k</span>&nbsp;字
             
             
             

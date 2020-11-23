@@ -419,6 +419,10 @@
                                 <span class="chip bg-color">ES6</span>
                             </a>
                         
+                            <a href="/tags/vue/">
+                                <span class="chip bg-color">vue</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -447,21 +451,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-19
+                    2020-11-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    802
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -476,7 +480,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>欢迎大家访问我的博客<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p>
+<p><strong>写在前面</strong><br>随着Vue3越来越被大家学习，关于Proxy的使用也是不断收到关注。<code>Proxy</code>和<code>Object.defineProperty</code>的对比也备受关注。这篇文章适合有vue开发经验的同学阅读。</p>
+<h4 id="回顾Object-defineProperty"><a href="#回顾Object-defineProperty" class="headerlink" title="回顾Object.defineProperty"></a>回顾<code>Object.defineProperty</code></h4><p>在vue2.x版本中，是通过<code>Object.defineProperty</code>进行双向数据绑定的，接下来看一下<code>Object.defineProperty</code>是如何进行双向绑定的。接下来简单实现一下。</p>
+<pre class="line-numbers language-none"><code class="language-none">function observe(obj) &#123;
+    if (typeof obj &#x3D;&#x3D;&#x3D; &#39;object&#39; ) &#123;
+        for (const key in obj) &#123;
+            defineReactive(obj,key,obj[key])
+        &#125;
+    &#125;
+&#125;
+function defineReactive(obj,key,value) &#123; 
+    &#x2F;&#x2F; 针对value是对象，进行递归
+    observe(value)
+    Object.defineProperty(obj,key,&#123;
+        get:function () &#123;
+            console.log(&#96;获取$&#123;key&#125;:value是$&#123;value&#125;&#96;)
+            return value
+        &#125;,
+        set:function (v) &#123;
+            observe(v)
+            console.log(&#96;$&#123;key&#125;数据改变了&#96;)
+            value &#x3D; v
+        &#125;
+    &#125;)
+&#125;
+
+let obj &#x3D; &#123;  
+    name: &#39;守候&#39;,  
+    flag: &#123;  
+        book: &#123;  
+            name: &#39;js&#39;,  
+            page: 325  
+        &#125;,  
+        interest: [&#39;火锅&#39;, &#39;旅游&#39;],  
+    &#125;  
+&#125;
+observe(obj)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://i.loli.net/2020/11/23/tLFbcE46hAfMIXw.png" alt="测试结果"></p>
+<p><strong>问题一：<code>Object.defineProperty</code>无法监听增加或删除的属性</strong></p>
+<p>我们知道<code>Object.defineProperty</code>无法监听增加或者删除的属性，<br>在我们使用vue2.x中，增加属性我们一般会通过<code>$set</code>的方法进行操作，<code>$set</code>内部也是通过使用<code>Object.defineProperty</code>实现的</p>
+<p><img src="https://i.loli.net/2020/11/23/tVkfeP6QoA8b1C4.png" alt="测试结果1"></p>
+<p><strong>问题二：<code>Object.defineProperty</code>无法监听到数组的变化</strong></p>
+<p><img src="https://i.loli.net/2020/11/23/EaUgiGTpwh8H3vA.png" alt="测试结果2"></p>
+<p>从上面的图片中我们可以看到修改数组中的值是可以的，但是不能被监听到，输出的interest数组还是改之前的数组</p>
+<p><strong>问题三：如果对象的层级很多的情况下，不断的递归，会导致时间过长，影响性能</strong></p>
+<h4 id="回顾Proxy"><a href="#回顾Proxy" class="headerlink" title="回顾Proxy"></a>回顾<code>Proxy</code></h4><p>vue3的版本中，采用了<code>Proxy</code>的方式。MDN 中的定义如下：</p>
+<blockquote>
+<p>对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）</p>
+</blockquote>
+<p>简单来说就是，对目标对象设置一层拦截，任何对这个对象的操作都会经常这层拦截。这就相当于Axios的拦截器。</p>
+<p>接下来写个案例，理解一下Proxy</p>
+<pre class="line-numbers language-none"><code class="language-none">function observerProxy(obj) &#123;  
+    let handler &#x3D; &#123;  
+        get(target, key, receiver) &#123;  
+            console.log(&#39;获取：&#39; + key) &#x2F;&#x2F; 如果是对象，就递归添加 proxy 拦截  
+            if (typeof target[key] &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; target[key] !&#x3D;&#x3D; null) &#123;  
+                return new Proxy(target[key], handler)  
+            &#125;  
+            return Reflect.get(target, key, receiver)  
+        &#125;,  
+        set(target, key, value, receiver) &#123;  
+            console.log(key + &quot;-数据改变了&quot;) 
+            return Reflect.set(target, key, value, receiver)  
+        &#125;  
+    &#125;  
+    return new Proxy(obj, handler)  
+&#125;  
+let obj &#x3D; &#123;  
+    name: &#39;守候&#39;,  
+    flag: &#123;  
+        book: &#123;  
+            name: &#39;js&#39;,  
+            page: 325  
+        &#125;,  
+        interest: [&#39;火锅&#39;, &#39;旅游&#39;],  
+    &#125;  
+&#125;  
+let objTest &#x3D; observerProxy(obj)  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.loli.net/2020/11/23/TJg1GciB2FuPE9x.png" alt="Proxy输出结果"></p>
+<p>操作数组的时候也会监听到</p>
+<p><img src="https://i.loli.net/2020/11/23/3hUBpJHeKoX6vbl.png" alt="修改数组"></p>
+<p>操作对象属性中是对象的时候也会监听到</p>
+<p><img src="https://i.loli.net/2020/11/23/CqVv39JjmSt2MoE.png" alt="修改对象"></p>
+<h4 id="比较两者的区别"><a href="#比较两者的区别" class="headerlink" title="比较两者的区别"></a>比较两者的区别</h4><p>通过上面的代码，我们不难看出来它们的区别，<code>proxy</code>还是很强大的，有11种方法。能够处理<code>Object.defineProperty</code>这个方法中无法处理的。</p>
+<h4 id="Proxy的处理场景"><a href="#Proxy的处理场景" class="headerlink" title="Proxy的处理场景"></a>Proxy的处理场景</h4><h5 id="负索引数组"><a href="#负索引数组" class="headerlink" title="负索引数组"></a>负索引数组</h5><h5 id="表单校验"><a href="#表单校验" class="headerlink" title="表单校验"></a>表单校验</h5><h5 id="增加附属属性"><a href="#增加附属属性" class="headerlink" title="增加附属属性"></a>增加附属属性</h5><h5 id="数据格式化"><a href="#数据格式化" class="headerlink" title="数据格式化"></a>数据格式化</h5><h5 id="负索引数组-1"><a href="#负索引数组-1" class="headerlink" title="负索引数组"></a>负索引数组</h5>
             </div>
             <hr/>
 
@@ -545,6 +634,10 @@
                             
                                 <a href="/tags/ES6/">
                                     <span class="chip bg-color">ES6</span>
+                                </a>
+                            
+                                <a href="/tags/vue/">
+                                    <span class="chip bg-color">vue</span>
                                 </a>
                             
                         </div>
@@ -1071,7 +1164,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.6k</span>&nbsp;字
+                class="white-color">11.4k</span>&nbsp;字
             
             
             
