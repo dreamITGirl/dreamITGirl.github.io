@@ -126,8 +126,76 @@ let objTest = observerProxy(obj)
 
 #### Proxy的处理场景
 ##### 负索引数组
+在使用`splice(-1)` 和 `slice(-1)`等API的时候，当输入的是负数时，会自动定位到数组的尾部最后一项，但是在普通的数组中，负数是不能用的。
+```
+let arr = [1,2,3]
+console.log(arr.splice(-1)) // [3]
+console.log(arr[-1]) // undefined
+```
+
+这种情况下我们可以通过创建一个`proxy`对象，进行控制返回值
+
+```
+function arrProxy(params) {
+    let handler = {
+        get(target,key){
+            if (target instanceof Array && target.length > 0) {
+                if (key > 0) {
+                    return target[key]
+                } else {
+                    let len = target.length 
+                    if (key * -1 > len) {
+                        return new Error('该下标不存在')
+                    }
+                    let index = len + Number(key) // key是字符串
+                    return target[index]
+                }
+            } else if (typeof target === 'object' && target !== null) {
+                console.log('这是一个对象')
+                return target[key]
+            }
+        }
+    }
+    return new Proxy(params,handler)
+}
+let arr = [1,2,3,4,5,6]
+let testArr = arrProxy(arr)
+console.log(testArr[-1]) // 6
+```
 ##### 表单校验
-##### 增加附属属性
+在对于表单的验证上，当用户修改表单中的数据时，可通过`proxy`进行设置拦截。
+举个例子：
+```
+function validFrom(formObj) {
+    let handler = {
+        set(target,key,value){
+            if (key === 'age') {
+                console.log('here',value > 10 && value < 40,typeof value == 'number' )
+
+                if (typeof value == 'number' && (value > 10 && value < 40)) {
+                    target[key] = value
+                } else {
+                    console.log('出现错误')
+                    throw new Error('请输入准确的值')
+                }
+            }
+        }
+    }
+    return new Proxy(formObj,handler)
+}
+
+let form = {
+    name:'Alice',
+    age:20
+}
+let testForm = validFrom(form)
+testArr.age = 60 // '请输入准确的值'
+```
+##### 根据用户输入值，解析存储
+比如有一个需求，根据用户输入的值，将其解析分成对应属性的值。这样的话可以使用proxy。我看到网站上有其他博客写的一个案例，案例的需求是这样的，根据用户输入的身份证号码，将其所在省份、出生日期分别写在表单中的对应表格中。
+[文章链接](https://www.imooc.com/article/305773)
+
 ##### 数据格式化
-##### 负索引数组
+数据格式化，相对来说好理解一些。当后台返回接口数据不是我们想要的格式时，我们可以通过修改设置成我们想要的格式。这里就不再举例了赘述了。
+
 
