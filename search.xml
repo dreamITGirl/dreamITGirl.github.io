@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Git知识点</title>
+      <link href="2020/11/24/git-zhi-shi-dian/"/>
+      <url>2020/11/24/git-zhi-shi-dian/</url>
+      
+        <content type="html"><![CDATA[<p>欢迎大家访问我的博客<a href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p><h4 id="初次使用Git"><a href="#初次使用Git" class="headerlink" title="初次使用Git"></a>初次使用Git</h4><h6 id="Git的全局配置"><a href="#Git的全局配置" class="headerlink" title="Git的全局配置"></a>Git的全局配置</h6><pre class="line-numbers language-none"><code class="language-none">git config --global user.name &#39;用户名&#39;git comfig --global user.email &#39;邮箱&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><strong>注意点：</strong></p><ol><li>用户名需要是英文的，不可以是中文</li><li>输入配置完成后，可输入<code>git list</code>查看自己刚才的配置。</li></ol><h6 id="Git理论"><a href="#Git理论" class="headerlink" title="Git理论"></a>Git理论</h6><ol><li><p>Git保存的是什么？</p><ul><li>SVN保存的是每次版本更新的内容</li><li>Git则是将每个版本都独立保存</li></ul><p>工作区域、暂存区域、Git仓库</p></li><li><p>Git的工作流程：</p><ul><li>在工作目录中添加、修改文件</li><li>将需要进行版本管理的文件放在暂存区域</li><li>将暂存区域的文件提交到Git仓库</li></ul></li><li><p>Git管理的文件有三种状态：</p><ul><li>已修改(modified)</li><li>已暂存(staged)</li><li>已提交(committed)</li></ul></li></ol><h6 id="Git相关命令行"><a href="#Git相关命令行" class="headerlink" title="Git相关命令行"></a>Git相关命令行</h6><ol><li>创建Git库</li></ol><pre class="line-numbers language-none"><code class="language-none">git init &#x2F;&#x2F; 初始化仓库git clone &#39;库的地址&#39;  &#x2F;&#x2F; 克隆远程库<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>替换空格</title>
       <link href="2020/11/18/ti-huan-kong-ge/"/>
       <url>2020/11/18/ti-huan-kong-ge/</url>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="promise的学习, dreamITGirl">
+    <meta name="keywords" content="Git知识点">
     <meta name="description" content="前端相关的技术博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>promise的学习 | dreamITGirl</title>
+    <title>Git知识点 | dreamITGirl</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/2020/11/16/promise-de-xue-xi/es6.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">promise的学习</h1>
+                    <h1 class="description center-align post-title">Git知识点</h1>
                 </div>
             </div>
         </div>
@@ -411,12 +411,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/js/">
-                                <span class="chip bg-color">js</span>
-                            </a>
-                        
-                            <a href="/tags/ES6/">
-                                <span class="chip bg-color">ES6</span>
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
                     </div>
@@ -427,8 +423,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ES6%E7%B3%BB%E5%88%97/" class="post-category">
-                                ES6系列
+                            <a href="/categories/Git/" class="post-category">
+                                Git
                             </a>
                         
                     </div>
@@ -440,7 +436,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-16
+                    2020-11-24
                 </div>
                 
 
@@ -454,14 +450,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    261
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    1 分
                 </div>
                 
 
@@ -477,209 +473,41 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>欢迎大家访问我的博客<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p>
-<p>这篇文章是阅读完<a target="_blank" rel="noopener" href="https://promisesaplus.com/">promiseA+</a>规范和<a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/">ES6入门教程</a>，写的总结。</p>
-<h3 id="Promise对象"><a href="#Promise对象" class="headerlink" title="Promise对象"></a>Promise对象</h3><p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。</p>
-<h4 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h4><ol>
-<li><p>promise : 是拥有then方法的对象或者函数</p>
-</li>
-<li><p>thenable : 定义了then方法的对象或者函数</p>
-</li>
-<li><p>value : 任何JS的合法值</p>
-</li>
-<li><p>exception : 使用throw抛出的一个值</p>
-</li>
-<li><p>reason : promise被拒绝的原因</p>
-</li>
-</ol>
-<h4 id="Promise的状态"><a href="#Promise的状态" class="headerlink" title="Promise的状态"></a>Promise的状态</h4><ol>
-<li><p>pending (等待) ：promise初始化状态</p>
-</li>
-<li><p>fulfilled (执行) : pending =&gt; resolve</p>
-</li>
-<li><p>rejected （拒绝）: pending =&gt; rejected</p>
-</li>
-</ol>
-<h4 id="Promise方法"><a href="#Promise方法" class="headerlink" title="Promise方法"></a>Promise方法</h4><p>promise必须提供一个<code>then</code>的方法，来访问当前的最终值或者原因</p>
-<pre class="line-numbers language-none"><code class="language-none">promise.then(onFulfilled,onRejected)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<h4 id="初次使用Git"><a href="#初次使用Git" class="headerlink" title="初次使用Git"></a>初次使用Git</h4><h6 id="Git的全局配置"><a href="#Git的全局配置" class="headerlink" title="Git的全局配置"></a>Git的全局配置</h6><pre class="line-numbers language-none"><code class="language-none">git config --global user.name &#39;用户名&#39;
+git comfig --global user.email &#39;邮箱&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>注意点：</strong></p>
 <ol>
-<li><p><code>onFulfilled</code>和<code>onRejected</code>都是可选的参数，<br>如果有个不是函数的话，这个将会被忽略</p>
-<p> 案例：</p>
- <pre class="line-numbers language-none"><code class="language-none">const promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;
-    if(&#x2F;**异步执行成功**&#x2F;)&#123;
-        resolve(value)
-    &#125; else &#123;
-        resolve(error)
-    &#125;
-&#125;)
-
-
-function timeout(ms) &#123;
-    return new Promise((resolve, reject) &#x3D;&gt; &#123;
-        setTimeout(resolve, ms, &#39;done&#39;);
-    &#125;);
-&#125;
-
-timeout(100).then((value) &#x3D;&gt; &#123;
-    console.log(value);
-&#125;);
-&#x2F;&#x2F; 输出的结果为：
-&#x2F;&#x2F; Promise
-&#x2F;&#x2F; done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> 上述代码中，timeout返回一个Promise实例，表示过一段时间以后才会发生的结果。<br> 过了指定的时间(ms)后，Promise的状态变为resolved,然后触发<code>.then</code>的方法绑定的回调函数</p>
- <pre class="line-numbers language-none"><code class="language-none">let promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;
-    console.log(&#39;promise&#39;)
-    resolve()
-&#125;)
-promise.then(() &#x3D;&gt; &#123;
-    console.log(&#39;resolved&#39;)
-&#125;)
-console.log(&#39;Hi&#39;)
-&#x2F;&#x2F; 输出结果：
-&#x2F;&#x2F; ‘promise’
-&#x2F;&#x2F; ‘Hi’
-&#x2F;&#x2F; ‘resolved’<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> 这个例子中初始化后的Promise对象会立即执行，所以会先输出Promise，然后<code>then</code>方法制定的<br> 回调函数将在当前脚本中所有同步函数执行完后再去执行。所以，<code>resolved</code>最后输出</p>
- <pre class="line-numbers language-none"><code class="language-none">let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;
-    console.log(&#39;promise&#39;)
-    resolve()
-&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))
-console.log(&#39;here&#39;)
-&#x2F;&#x2F; 输出结果：
-&#x2F;&#x2F; &#39;promise&#39;
-&#x2F;&#x2F; &#39;here&#39;
-&#x2F;&#x2F; 成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> promise创建的过程是在js的同步任务中，所以会先输出promise，然后将resolve()放在微任务里。然后JS会继续执行剩下的同步任务，<br> 所以接下来会输出‘here’，最后当同步的任务执行完之后，开始执行微任务中的函数，输出‘成功’</p>
- <pre class="line-numbers language-none"><code class="language-none">setTimeout(()&#x3D;&gt;&#123;
-    console.log(&#39;setTimeout&#39;)
-&#125;,0)
-let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;
-    console.log(&#39;promise&#39;)
-    resolve()
-&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))
-console.log(&#39;bottom&#39;)
-&#x2F;&#x2F; 输出结果
-&#x2F;&#x2F; promise
-&#x2F;&#x2F; bottom
-&#x2F;&#x2F; 成功
-&#x2F;&#x2F; setTimeout<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> 代码执行中遇到setTimeout,会将setTimeout放到宏任务中，然后继续执行JS同步任务中的函数，首先是Promise的初始化，输出promise，<br> 然后遇到resolve后，会将resolve中的函数放在微任务中，继续执行同步任务中未执行的。输出bottom后，再输出成功，微任务执行完成后，会开始执行<br> 宏任务，输出setTimeout</p>
- <pre class="line-numbers language-none"><code class="language-none">let promise &#x3D; new Promise(resolve &#x3D;&gt; &#123;
-   setTimeout(() &#x3D;&gt; &#123;
-       console.log(&#39;setTimeout&#39;)
-       resolve()
-   &#125;,0)
-   console.log(&#39;promise&#39;)
-&#125;).then(value &#x3D;&gt; console.log(&#39;成功&#39;))
-console.log(&#39;bottom&#39;)
-&#x2F;&#x2F; 输出结果
-&#x2F;&#x2F; promise
-&#x2F;&#x2F; bottom
-&#x2F;&#x2F; setTimeout
-&#x2F;&#x2F; 成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> 这个例子中首先JS会定义Promise，然后开始执行，发现setTimeout会将setTimeout放在宏任务中，然后继续执行，<br> 输出promise，此时还有同步任务没有执行完，所以会继续执行console.log(‘bottom’)，输出bottom，执行完<br> 这步之后，JS同步任务已经执行完成了，接下来开始执行刚才放在宏任务中的setTimeout，先输出‘setTimeout’后，<br> 发现resolve，将其放在微任务中，如果此时setTimeout中还有其他的代码，会先执行setTimeout中的其他代码，<br> 再执行微任务中，输出‘成功’</p>
+<li>用户名需要是英文的，不可以是中文</li>
+<li>输入配置完成后，可输入<code>git list</code>查看自己刚才的配置。</li>
+</ol>
+<h6 id="Git理论"><a href="#Git理论" class="headerlink" title="Git理论"></a>Git理论</h6><ol>
+<li><p>Git保存的是什么？</p>
+<ul>
+<li>SVN保存的是每次版本更新的内容</li>
+<li>Git则是将每个版本都独立保存</li>
+</ul>
+<p>工作区域、暂存区域、Git仓库</p>
+</li>
+<li><p>Git的工作流程：</p>
+<ul>
+<li>在工作目录中添加、修改文件</li>
+<li>将需要进行版本管理的文件放在暂存区域</li>
+<li>将暂存区域的文件提交到Git仓库</li>
+</ul>
+</li>
+<li><p>Git管理的文件有三种状态：</p>
+<ul>
+<li>已修改(modified)</li>
+<li>已暂存(staged)</li>
+<li>已提交(committed)</li>
+</ul>
 </li>
 </ol>
-<ol start="2">
-<li><p>Promise.prototype.then()</p>
-<p>.then方法是定义在原型对象Promise.prototype上的。它的作用是为Promise添加回调函数。<br>第一个参数是resolve状态的回调函数，第二个参数是reject状态下的回调函数then返回一个<strong>新的</strong><code>Promise</code>实例,后面的then是对前面Promise的处理</p>
- <pre class="line-numbers language-none"><code class="language-none">new Promise((resolve,reject) &#x3D;&gt; &#123;
-    resolve(&#39;买水去了&#39;)
-&#125;).then(
-    value &#x3D;&gt; &#123;
-        console.log(value)
-    &#125;,
-    error &#x3D;&gt; &#123;
-        console.log(error)
-    &#125;
-)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>Promise.prototype.catch()</p>
-</li>
+<h6 id="Git相关命令行"><a href="#Git相关命令行" class="headerlink" title="Git相关命令行"></a>Git相关命令行</h6><ol>
+<li>创建Git库</li>
 </ol>
-<p>Promise.prototype.catch()的方法是.then(null,rejection) 或 .then(undefined,rejection)的别名，用于指定发生错误时的回调函数。</p>
-<pre class="line-numbers language-none"><code class="language-none">new Promise((resolve,reject) &#x3D;&gt; &#123;
-    reject(new Error(&#39;出现错误&#39;))
-&#125;).then(value &#x3D;&gt; &#123;
-    console.log(value)
-&#125;).catch(err) &#x3D;&gt; &#123;
-    console.log(err) &#x2F;&#x2F; 出现错误
-&#125;
-
-const promise &#x3D; new Promise((resolve,reject) &#x3D;&gt; &#123;
-    resolve(&#39;ok&#39;)
-    throw new Error(&#39;test Error&#39;)
-&#125;)
-promise.then(value &#x3D;&gt; &#123;console.log(value)&#125;)
-    .catch(error &#x3D;&gt; &#123;console.log(error)&#125;) 
-
-&#x2F;&#x2F; 输出结果
-&#x2F;&#x2F;ok<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果 Promise 状态已经变成resolved，再抛出错误是无效的。<br>Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个catch语句捕获。</p>
-<ol start="4">
-<li>Promise.prototype.finally()</li>
-</ol>
-<p>finally()方法用于不管Promise对象最后的状态如何，都会执行该操作</p>
-<pre class="line-numbers language-none"><code class="language-none">promise.then(result &#x3D;&gt; &#123;
-
-&#125;).catch(error &#x3D;&gt; &#123;
-
-&#125;).finally(() &#x3D;&gt; &#123;
-    
-&#125;)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>finally方法的回调函数不接受任何参数，这就说明没办法知道前面的Promise的状态是fulfilled还是<br>rejected.这就表明，在finally中的操作不依赖Promise的执行结果</p>
-<ol start="5">
-<li>Promise.all()</li>
-</ol>
-<p>Promise.all()方法用于多个Promise实例，包装成一个新的promise实例</p>
-<pre class="line-numbers language-none"><code class="language-none">const p &#x3D; Promise.all([p1,p2,p3])
-p.then((res) &#x3D;&gt; &#123;
-    &#x2F;&#x2F; res是一个数组，是p1,p2,p3的返回值数组
-&#125;).catch((err) &#x3D;&gt; &#123;
-
-&#125;)
-
-const p1 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;
-  resolve(&#39;hello&#39;);
-&#125;)
-.then(result &#x3D;&gt; result)
-.catch(e &#x3D;&gt; e);
-
-const p2 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;
-  throw new Error(&#39;报错了&#39;);
-&#125;)
-.then(result &#x3D;&gt; result)
-.catch(e &#x3D;&gt; e);
-
-Promise.all([p1, p2])
-.then(result &#x3D;&gt; console.log(result))
-.catch(e &#x3D;&gt; console.log(e));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.loli.net/2020/11/16/ZoQPcVENuqOiW4g.png" alt="输出结果"></p>
-<p>上述代码中p1会resolved,p2首先会rejected,但是p2有自己的catch方法，该方法返回一个新的Promise<br>实例，p2的方法实际上指向这个实例。这个实例执行完catch的方法后，会变成resolveed，导致Promise<br>方法参数里的两个实例都会resolved，因此会调用then中的方法</p>
-<p>如果p2中没有catch的方法，就会调用Promise.all()中的catch方法</p>
-<ol start="6">
-<li><p>Promise.race() 和Promise.all()方法一样，这里不再赘述</p>
-</li>
-<li><p>Promise.allSettled() – ES2020 </p>
-</li>
-</ol>
-<p>Promise.allSettled()方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例。只有等到所有这些参数实例都返回结果，不管是fulfilled还是rejected，包装实例才会结束。该方法由 ES2020 引入。</p>
-<pre class="line-numbers language-none"><code class="language-none">const p &#x3D; [
-    fetch(&#39;&#x2F;api-1),
-    fetch(&#39;&#x2F;api-2),
-    fetch(&#39;&#x2F;api-3)
-]
-await Promise.allSettled(p)
-removeLoadingIndicator()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上面代码对服务器发出三个请求，等到三个请求都结束，不管请求成功还是失败，加载的滚动图标就会消失。</p>
-<p>该方法返回的新的 Promise 实例，一旦结束，状态总是fulfilled，不会变成rejected。<br>状态变成fulfilled后，Promise 的监听函数接收到的参数是一个数组，<br>每个成员对应一个传入Promise.allSettled()的 Promise 实例。</p>
-<p>当我们只关心异步操作有没有结束的时候，就可以用Promise.allSettled()的方法。Promise.all()无法确定所有请求都结束。</p>
-<ol start="8">
-<li>Promise.any()<br>ES2021 引入了Promise.any()方法。该方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例返回。<br>只要参数实例有一个变成fulfilled状态，包装实例就会变成fulfilled状态；<br>如果所有参数实例都变成rejected状态，包装实例就会变成rejected状态。</li>
-</ol>
-<p>Promise.any()跟Promise.race()方法很像，只有一点不同，<br>就是不会因为某个 Promise 变成rejected状态而结束</p>
+<pre class="line-numbers language-none"><code class="language-none">git init &#x2F;&#x2F; 初始化仓库
+git clone &#39;库的地址&#39;  &#x2F;&#x2F; 克隆远程库<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -705,7 +533,7 @@ removeLoadingIndicator()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2020/11/16/promise-de-xue-xi/">https://dreamitgirl.github.io/2020/11/16/promise-de-xue-xi/</a>
+                    <a href="https://dreamitgirl.github.io/2020/11/24/git-zhi-shi-dian/">https://dreamitgirl.github.io/2020/11/24/git-zhi-shi-dian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -743,12 +571,8 @@ removeLoadingIndicator()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/js/">
-                                    <span class="chip bg-color">js</span>
-                                </a>
-                            
-                                <a href="/tags/ES6/">
-                                    <span class="chip bg-color">ES6</span>
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
                                 </a>
                             
                         </div>
@@ -911,9 +735,9 @@ removeLoadingIndicator()
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://dreamitgirl.github.io/2020/11/16/promise-de-xue-xi/';
-        this.page.identifier = '/2020/11/16/promise-de-xue-xi/';
-        this.page.title = 'promise的学习';
+        this.page.url = 'https://dreamitgirl.github.io/2020/11/24/git-zhi-shi-dian/';
+        this.page.identifier = '/2020/11/24/git-zhi-shi-dian/';
+        this.page.title = 'Git知识点';
     };
     let disqus_shortname = '';
 
@@ -939,16 +763,18 @@ removeLoadingIndicator()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/17/proxy-de-ying-yong-chang-jing/">
+                <a href="/2020/11/24/git-zhi-shi-dian/">
                     <div class="card-image">
                         
-                        <img src="/2020/11/16/promise-de-xue-xi/es6.jpeg" class="responsive-img" alt="proxy的应用场景">
                         
-                        <span class="card-title">proxy的应用场景</span>
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Git知识点">
+                        
+                        <span class="card-title">Git知识点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -958,34 +784,27 @@ removeLoadingIndicator()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ES6%E7%B3%BB%E5%88%97/" class="post-category">
-                                    ES6系列
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/js/">
-                        <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/ES6/">
-                        <span class="chip bg-color">ES6</span>
-                    </a>
-                    
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
@@ -999,13 +818,12 @@ removeLoadingIndicator()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/05/xiang-ying-shi-yuan-li/">
+                <a href="/2020/11/18/ti-huan-kong-ge/">
                     <div class="card-image">
                         
+                        <img src="https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg" class="responsive-img" alt="替换空格">
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="响应式原理的理解">
-                        
-                        <span class="card-title">响应式原理的理解</span>
+                        <span class="card-title">替换空格</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1016,14 +834,14 @@ removeLoadingIndicator()
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/vue/" class="post-category">
-                                    vue
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
@@ -1037,8 +855,8 @@ removeLoadingIndicator()
                         <span class="chip bg-color">js</span>
                     </a>
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
