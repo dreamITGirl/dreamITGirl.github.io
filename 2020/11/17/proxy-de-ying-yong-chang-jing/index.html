@@ -451,21 +451,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-23
+                    2020-11-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    802
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
 
@@ -565,7 +565,65 @@ let objTest &#x3D; observerProxy(obj)  <span aria-hidden="true" class="line-numb
 <p>操作对象属性中是对象的时候也会监听到</p>
 <p><img src="https://i.loli.net/2020/11/23/CqVv39JjmSt2MoE.png" alt="修改对象"></p>
 <h4 id="比较两者的区别"><a href="#比较两者的区别" class="headerlink" title="比较两者的区别"></a>比较两者的区别</h4><p>通过上面的代码，我们不难看出来它们的区别，<code>proxy</code>还是很强大的，有11种方法。能够处理<code>Object.defineProperty</code>这个方法中无法处理的。</p>
-<h4 id="Proxy的处理场景"><a href="#Proxy的处理场景" class="headerlink" title="Proxy的处理场景"></a>Proxy的处理场景</h4><h5 id="负索引数组"><a href="#负索引数组" class="headerlink" title="负索引数组"></a>负索引数组</h5><h5 id="表单校验"><a href="#表单校验" class="headerlink" title="表单校验"></a>表单校验</h5><h5 id="增加附属属性"><a href="#增加附属属性" class="headerlink" title="增加附属属性"></a>增加附属属性</h5><h5 id="数据格式化"><a href="#数据格式化" class="headerlink" title="数据格式化"></a>数据格式化</h5><h5 id="负索引数组-1"><a href="#负索引数组-1" class="headerlink" title="负索引数组"></a>负索引数组</h5>
+<h4 id="Proxy的处理场景"><a href="#Proxy的处理场景" class="headerlink" title="Proxy的处理场景"></a>Proxy的处理场景</h4><h5 id="负索引数组"><a href="#负索引数组" class="headerlink" title="负索引数组"></a>负索引数组</h5><p>在使用<code>splice(-1)</code> 和 <code>slice(-1)</code>等API的时候，当输入的是负数时，会自动定位到数组的尾部最后一项，但是在普通的数组中，负数是不能用的。</p>
+<pre class="line-numbers language-none"><code class="language-none">let arr &#x3D; [1,2,3]
+console.log(arr.splice(-1)) &#x2F;&#x2F; [3]
+console.log(arr[-1]) &#x2F;&#x2F; undefined<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这种情况下我们可以通过创建一个<code>proxy</code>对象，进行控制返回值</p>
+<pre class="line-numbers language-none"><code class="language-none">function arrProxy(params) &#123;
+    let handler &#x3D; &#123;
+        get(target,key)&#123;
+            if (target instanceof Array &amp;&amp; target.length &gt; 0) &#123;
+                if (key &gt; 0) &#123;
+                    return target[key]
+                &#125; else &#123;
+                    let len &#x3D; target.length 
+                    if (key * -1 &gt; len) &#123;
+                        return new Error(&#39;该下标不存在&#39;)
+                    &#125;
+                    let index &#x3D; len + Number(key) &#x2F;&#x2F; key是字符串
+                    return target[index]
+                &#125;
+            &#125; else if (typeof target &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; target !&#x3D;&#x3D; null) &#123;
+                console.log(&#39;这是一个对象&#39;)
+                return target[key]
+            &#125;
+        &#125;
+    &#125;
+    return new Proxy(params,handler)
+&#125;
+let arr &#x3D; [1,2,3,4,5,6]
+let testArr &#x3D; arrProxy(arr)
+console.log(testArr[-1]) &#x2F;&#x2F; 6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="表单校验"><a href="#表单校验" class="headerlink" title="表单校验"></a>表单校验</h5><p>在对于表单的验证上，当用户修改表单中的数据时，可通过<code>proxy</code>进行设置拦截。<br>举个例子：</p>
+<pre class="line-numbers language-none"><code class="language-none">function validFrom(formObj) &#123;
+    let handler &#x3D; &#123;
+        set(target,key,value)&#123;
+            if (key &#x3D;&#x3D;&#x3D; &#39;age&#39;) &#123;
+                console.log(&#39;here&#39;,value &gt; 10 &amp;&amp; value &lt; 40,typeof value &#x3D;&#x3D; &#39;number&#39; )
+
+                if (typeof value &#x3D;&#x3D; &#39;number&#39; &amp;&amp; (value &gt; 10 &amp;&amp; value &lt; 40)) &#123;
+                    target[key] &#x3D; value
+                &#125; else &#123;
+                    console.log(&#39;出现错误&#39;)
+                    throw new Error(&#39;请输入准确的值&#39;)
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    return new Proxy(formObj,handler)
+&#125;
+
+let form &#x3D; &#123;
+    name:&#39;Alice&#39;,
+    age:20
+&#125;
+let testForm &#x3D; validFrom(form)
+testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="根据用户输入值，解析存储"><a href="#根据用户输入值，解析存储" class="headerlink" title="根据用户输入值，解析存储"></a>根据用户输入值，解析存储</h5><p>比如有一个需求，根据用户输入的值，将其解析分成对应属性的值。这样的话可以使用proxy。我看到网站上有其他博客写的一个案例，案例的需求是这样的，根据用户输入的身份证号码，将其所在省份、出生日期分别写在表单中的对应表格中。<br><a target="_blank" rel="noopener" href="https://www.imooc.com/article/305773">文章链接</a></p>
+<h5 id="数据格式化"><a href="#数据格式化" class="headerlink" title="数据格式化"></a>数据格式化</h5><p>数据格式化，相对来说好理解一些。当后台返回接口数据不是我们想要的格式时，我们可以通过修改设置成我们想要的格式。这里就不再举例了赘述了。</p>
+
             </div>
             <hr/>
 
@@ -1164,7 +1222,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.4k</span>&nbsp;字
+                class="white-color">12k</span>&nbsp;字
             
             
             
