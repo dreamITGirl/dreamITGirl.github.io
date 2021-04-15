@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title>2021.03 - 2021.04面总结</title>
+      <link href="2020/12/09/vue-gao-pin-mian-shi-ti-1/"/>
+      <url>2020/12/09/vue-gao-pin-mian-shi-ti-1/</url>
+      
+        <content type="html"><![CDATA[<p>欢迎大家访问我的博客<a href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p><p>经历了一个月的准备加面试，收获也是蛮大的。今天把这一个月所经历的面试总结整理出来。这一个月面试了大厂和一些普通的公司。因为我没有react的项目以及对webpack的了解不深入，这两方面的面试题目面试官也没有深入去问。</p><h4 id="JS相关"><a href="#JS相关" class="headerlink" title="JS相关"></a>JS相关</h4><p><em>这里每个知识点单拎出来都是一个知识体系，这里总结的只是在面试中的回答方式</em></p><ol><li><p>什么是原型链？</p><ul><li>每个对象都有__proto__的属性，该属性的指向其实例对象中的原型对象的属性/方法，如果该实例对象找不到要查的属性/方法，就会向上查找该实例的原型对象的实例和方法</li><li>构造函数的prototype属性指向其原型对象</li><li>原型对象的constructor 属性指向构造函数</li></ul></li><li><p>new这个关键词</p><ul><li>创建对象，并继承该构造函数</li><li>执行该构造函数，并将this 指向新的对象实例</li><li>返回新的值</li></ul></li><li><p>JS实现new</p> <pre class="line-numbers language-none"><code class="language-none">function myNew(foo,...args)&#123;    let obj &#x3D; Object.create(foo.prototype)    let result &#x3D; foo.apply(obj,args)    return Object.prototype.toString.call(result) &#x3D;&#x3D;&#x3D; &#39;[object object]&#39; ? return : obj&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>你了解的ES5的继承</p><ul><li>原型链继承<br> <strong>原型链继承的原理</strong>：直接让子类的原型对象指向父类实例。当子类实例找不到对应的属性和方法时，就会往它的父类实例上查找，从而实现对父类的属性和方法的继承<br> <em>代码示例</em>  <pre class="line-numbers language-none"><code class="language-none">function Person()&#123;    this.name &#x3D; [&#39;Alice&#39;] &#x2F;&#x2F;如果这里只是基本类型，那么最不会出现缺点1的情况&#125;&#x2F;&#x2F; 父类原型的方法Parent.prototype.getName &#x3D; function()&#123;    return this.name&#125;&#x2F;&#x2F; 子类function Child()&#123;&#125;&#x2F;&#x2F; 让子类的原型对象指向父类实例，这样Child实例上找不到的方法和属性就会到原型对象上找Child.prototype &#x3D; new Person()Child.prototype.constructor &#x3D; Child&#x2F;&#x2F; 然后Child实例就能访问到父类及其原型上的name属性和getName()方法const c1 &#x3D; new Child()console.log(c1.name) &#x2F;&#x2F; Aliceconsole.log(c1.getName()) &#x2F;&#x2F; Alice<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> <strong>原型链继承的缺点</strong> <ul><li>所有的Child实例原型都指向同一个Parent实例，因此对某个Child实例的父类引用类型变量修改会影响所有实例的Child实例</li><li>创建子类实例时无法向父类构造传参，没有实现<code>super()</code>的功能<pre class="line-numbers language-none"><code class="language-none">const c2 &#x3D; new Child()c1.name[0] &#x3D; &#39;foo&#39;console.log(c1.name) &#x2F;&#x2F; [&#39;foo&#39;]console.log(c2.name) &#x2F;&#x2F; [&#39;foo&#39;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li></ul></li><li>构造函数继承<br>  构造函数的继承：是在子类的构造函数中执行父类的构造函数，并为其绑定子类的this，让父类的构造函数把成员属性和方法挂到子类的this上，这样就避免了多个实例之间共享一个原型实例，又能向父类的方法传参  <pre class="line-numbers language-none"><code class="language-none">function Parent(name) &#123;    this.name &#x3D; [name]&#125;Parent.prototype.getName &#x3D; function() &#123;    return this.name&#125;function Child() &#123;    Parent.call(this, &#39;zhangsan&#39;)   &#x2F;&#x2F; 执行父类构造方法并绑定子类的this, 使得父类中的属性能够赋到子类的this上&#125;&#x2F;&#x2F;测试const c1 &#x3D; new Child()const c2 &#x3D; new Child()c1.name[0] &#x3D; &#39;foo&#39;console.log(c1.name)          &#x2F;&#x2F; [&#39;foo&#39;]console.log(c2.name)          &#x2F;&#x2F; [&#39;zhangsan&#39;]c2.getName()  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>  <strong>构造函数继承</strong><ul><li>继承不到父类原型的属性和方法</li></ul></li><li>组合式继承<br>  原型链继承和构造函数继承组合  <pre class="line-numbers language-none"><code class="language-none">function Parent(name) &#123;    this.name &#x3D; [name]&#125;Parent.prototype.getName &#x3D; function() &#123;    return this.name&#125;function Child() &#123;    &#x2F;&#x2F; 构造函数继承    Parent.call(this, &#39;Alice&#39;) &#125;&#x2F;&#x2F;原型链继承Child.prototype &#x3D; new Parent()Child.prototype.constructor &#x3D; Child&#x2F;&#x2F;测试const c1 &#x3D; new Child()const c2 &#x3D; new Child()c1.name[0] &#x3D; &#39;foo&#39;console.log(c1.name)          &#x2F;&#x2F; [&#39;foo&#39;]console.log(c2.name)          &#x2F;&#x2F; [&#39;Alice&#39;]c2.getName() <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>  <strong>组合式继承的缺点</strong><ul><li>每次创建子类实例都执行链两次构造函数(<code>Parent.call()</code> 和 <code>new Parent()</code>),在子类创建实例时，原型中会存在两份相同的属性和方法。代码不优雅</li></ul></li><li>寄生式组合继承<br>  针对组合式继承的缺点，将指向父类实例改成指向父类的原型。这样就减少了一次构造函数的执行  <pre class="line-numbers language-none"><code class="language-none">function Parent(name) &#123;    this.name &#x3D; [name]&#125;Parent.prototype.getName &#x3D; function() &#123;    return this.name&#125;function Child() &#123;    &#x2F;&#x2F; 构造函数继承    Parent.call(this, &#39;Alice&#39;) &#125;&#x2F;&#x2F;原型链继承Child.prototype &#x3D; Object.create(Parent.prototype)  &#x2F;&#x2F;将&#96;指向父类实例&#96;改为&#96;指向父类原型&#96;Child.prototype.constructor &#x3D; Child&#x2F;&#x2F;测试const c1 &#x3D; new Child()const c2 &#x3D; new Child()c1.name[0] &#x3D; &#39;foo&#39;console.log(c1.name)          &#x2F;&#x2F; [&#39;foo&#39;]console.log(c2.name)          &#x2F;&#x2F; [&#39;Alice&#39;]c2.getName()                  &#x2F;&#x2F; [&#39;Alice&#39;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+            <tag> 前端面试题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>渲染几十万条数据不卡顿</title>
+      <link href="2020/12/07/xuan-ran-ji-shi-wan-tiao-shu-ju-bu-qia-dun/"/>
+      <url>2020/12/07/xuan-ran-ji-shi-wan-tiao-shu-ju-bu-qia-dun/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端优化 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端优化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>XXS攻击</title>
+      <link href="2020/11/25/xxs-gong-ji/"/>
+      <url>2020/11/25/xxs-gong-ji/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络安全 </tag>
+            
+            <tag> HTTP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git知识点</title>
       <link href="2020/11/24/git-zhi-shi-dian/"/>
       <url>2020/11/24/git-zhi-shi-dian/</url>
