@@ -101,9 +101,9 @@ class Win {
 
 #### 4. 知识点链接
 
-    * [history MDN文档](https://developer.mozilla.org/zh-CN/docs/Web/API/History)
-    * [history API ](https://juejin.cn/post/6844903602641862663#heading-17)
-    * [前端路由实现原理](https://juejin.cn/post/6844903634954633224)
+* [history MDN文档](https://developer.mozilla.org/zh-CN/docs/Web/API/History)
+* [history API ](https://juejin.cn/post/6844903602641862663#heading-17)
+* [前端路由实现原理](https://juejin.cn/post/6844903634954633224)
 
 
    
