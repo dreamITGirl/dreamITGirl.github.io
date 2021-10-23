@@ -1,5 +1,5 @@
 ---
-title: vue3的学习1
+title: vue3的学习一
 date: 2020-11-02 10:41:10
 cover: true
 toc: false
@@ -7,7 +7,7 @@ tags:
 - vue
 - js
 category: vue
-img: 2020/11/02/vue3/vue.png
+img: https://i.loli.net/2021/10/23/AG8oT9q1pMCj2Z5.jpg
 summary: 欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我.
 ---
 欢迎大家访问我的博客[dreamITGirl](https://github.com/dreamITGirl)，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 [GitHub](https://github.com/dreamITGirl/dreamITGirl.github.io/issues)问我.

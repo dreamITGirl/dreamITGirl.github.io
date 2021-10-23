@@ -9,7 +9,7 @@ var myprojects = theme.myProjects.data;
     <div class="row">
         <% if (myprojects) { %>
         <% Object.keys(myprojects).forEach(function(project) { %>
-        <div class="col s12 m6 l4" data-aos="fade-up">
+        <div class="col s6 m3 l6" data-aos="fade-up">
             <div class="info center-align">
                 <a href="<%- myprojects[project].url %>" class="icon"
                    style="background: <%- myprojects[project].iconBackground %>" target="_blank">
@@ -19,6 +19,7 @@ var myprojects = theme.myProjects.data;
                     <a href="<%- url_for(myprojects[project].url) %>" target="_blank"><%- project %></a>
                 </div>
                 <div class="info-desc"><%= myprojects[project].desc %></div>
+                <div class="info-desc" style="color: #333;"><%= myprojects[project].myDuty %></div>
             </div>
         </div>
         <% }); %>

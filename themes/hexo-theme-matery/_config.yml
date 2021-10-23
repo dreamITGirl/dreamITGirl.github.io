@@ -213,21 +213,55 @@ profile:
 myProjects:
   enable: true
   data:
+    好身体医生问诊平台:
+      icon: fas fa-file-alt
+      iconBackground: 'linear-gradient(to bottom right, #f5e653 0%, #eeee00)'
+      url: https://hospital-mis.lepudigital.com
+      desc: 产品简介：该平台是乐普(医疗)器械公司内为医生研发的互联网医院，配合乐普医院好身体APP共同使用。好身体问诊平台是用于医生的，医生通过视频、图文等问诊方式为患者看病
+      myDuty: 责任描述：1.参与医生角色的工作台模块及IM视频的代码编写 2.负责前端与后端数据的交互以及复杂数据的处理 
+    乐普后台管理系统:
+      icon: fas fa-database
+      iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
+      url: 
+      desc: 产品简介：该平台是乐普(医疗)器械公司内关于购药、问诊、员工和交易等后台管理系统的管理，主要使用者为公司内部运营同学
+      myDuty: 责任描述：1.负责该项目中问诊系统、基础系统、会员系统及交易管理系统的需求确认及组员工作安排及进度；
+              2. 负责医院模块、药店及会员优惠券模块的代码编写及联调
     NETNO平台:
       icon: fas fa-file-alt
       iconBackground: 'linear-gradient(to bottom right, #66BB6A 0%, #81C784 100%)'
       url: 
-      desc: 搜狐公司企业内部关于IDC机房、带宽链路及网络配置的企业管理平台(仅供企业内部人员使用)
+      desc: 产品简介：搜狐公司企业内部关于IDC机房、带宽链路及网络配置的企业管理平台(仅供企业内部人员使用).
+            该项目在原有旧平台的基础上进行了重构，目的是为了给网络运维的同学提供便于管理机房以及带宽链路的管理，
+            以及重要线路的实时监控。项目的主要功能包括了 IDC 机房的管理、骨干拓扑图的绘制及实时监控、IP 的流量查询、割接信息、区域机房链路的实时监控及交换机的管理、角色权限的设置等
+      myDuty: 责任描述：1.负责前端项目的前端框架选型 
+              2. 前端页面的绘制  
+              3.负责前端与后端数据的交互以及复杂数据的处理 
+              4.配合测试同学测试
     安全运营中心:
         icon: fas fa-database
         iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
         url:
-        desc: 搜狐公司企业内部关于漏洞监控统计的平台，为公司内部安全运维人员提供，实时监控漏洞(仅供企业内部人员使用)
-    考勤系统:
+        desc:  产品简介：搜狐公司企业内部关于漏洞监控统计的平台，为公司内部安全运维人员提供，实时监控漏洞(仅供企业内部人员使用).
+              该平台属于后台管理平台，目的是为了网络安全组的同学便于更好的监控管理漏洞及通知相关人员修改设计的一套管理平台。
+              项目的主要功能有入侵检测、权限管理、安全事件的管理、WAF、安全制度、测试工单等相关模块
+        myDuty: 责任描述：1. 前端功能的迭代及页面的绘制  
+              2.负责前端与后端数据的交互以及复杂数据的处理 
+              3.配合测试同学测试
+    拉新裂变H5:
+        icon: fas fa-file-alt
+        iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
+        url: https://pullnewfission.lepudigital.com/pullnew.html  
+        desc: 乐普好身体App的H5拉新裂变H5
+        myDuty: 责任描述：1.负责该项目产品的需求确认
+              2. 负责设计项目中的技术难点
+    考勤系统(PC && H5):
         icon: fas fa-file-alt
         iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
         url: 
-        desc: 搜狐公司企业内部为员工提供的考勤平台，涉及模块有我的日历及任务、请假、加班申请及历史考勤记录及考勤流程的发起(仅供企业内部人员使用)
+        desc: 产品简介：搜狐公司企业内部为员工提供的考勤平台，涉及模块有我的日历及任务、请假、加班申请及历史考勤记录及考勤流程的发起(仅供企业内部人员使用)
+        myDuty: 责任描述：1. 前端功能的迭代及页面的绘制  
+              2.负责前端与后端数据的交互以及复杂数据的处理 
+              3.配合测试同学测试
 
 # config my skills informations in about page.
 # If you don't want to display this `My Skills` content, you can deactivate or delete this configuration.
@@ -237,22 +271,31 @@ mySkills:
   data:
     JavaScript:
       background: 'linear-gradient(to right, #9900FF 0%, #CC66FF 100%)'
-      percent: 80%
+      percent: 85%
     HTML5:
       background: 'linear-gradient(to right, #2196F3 0%, #42A5F5 100%)'
       percent: 90%
     CSS:
       background: 'linear-gradient(to right, #00BCD4 0%, #80DEEA 100%)'
       percent: 90%
-    jQuery/Zepto:
-      background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
-      percent: 70%
     Vue:
-      background: 'linear-gradient(to right, #bf55ec 0%, #f1e7fe 100%)'
+      background: 'linear-gradient(to right, #bf55ec 0%, #29f1c3 100%)'
       percent: 75%
+    webpack:
+      background: 'linear-gradient(to right, #bf55ec 0%, #29f1c3 100%)'
+      percent: 75%
+    Git&&SVN:
+      background: 'linear-gradient(to right, #CDDC39 0%, #F0F4C3 100%)'
+      percent: 80%
+    前端设计模式:
+      background: 'linear-gradient(to right, ##4CAF50 0%, #29f1c3 100%)'
+      percent: 50%
     Less/Sass:
       background: 'linear-gradient(to right, #22a7f0 0%, #81cfe0 100%)'
       percent: 50%
+    jQuery/Zepto:
+      background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
+      percent: 70%
     前端UI类库:
       background: 'linear-gradient(to right, #29f1c3 0%, #1e824c 100%)'
       percent: 70%
@@ -261,7 +304,7 @@ mySkills:
       percent: 60%
     数据结构及算法:
       background: 'linear-gradient(to right, #f2784b 0%, #f9b42d 100%)'
-      percent: 40%
+      percent: 50%
     Python:
       background: 'linear-gradient(to right, #bfbfbf 0%, #6c7a89 100%)'
       percent: 20%

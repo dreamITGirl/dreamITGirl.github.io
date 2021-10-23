@@ -5,10 +5,11 @@ tags:
 - hexo
 cover: true
 keywords: hexo搭建个人博客
-img: 2020/10/30/build-blog/build1.png
+img: https://i.loli.net/2021/10/23/gPLnNiko92TmWVA.jpg
 category: 
 - 框架学习
 summary: 欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我.
+
 ---
 欢迎大家访问我的博客[dreamITGirl](https://github.com/dreamITGirl)，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 [GitHub](https://github.com/dreamITGirl/dreamITGirl.github.io/issues)问我.
 这篇文章适合有前端基础及会使用git及gitHub的人阅读.[hexo](https://hexo.bootcss.com/)是快速、简洁且高效的博客框架，适合新手。如果平时用vue开发的话，可以使用[vuePress](https://www.vuepress.cn/);如果使用react开发的话，可使用[Gatsby](https://github.com/destinytaoer/gatsby-start)；如果喜欢自己造轮子的话，也可以自己从0搭建。
