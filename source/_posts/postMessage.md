@@ -3,7 +3,7 @@ title: 关于新开页面的传值问题
 date: 2021-05-20 18:31:54
 tags: 
 - H5
-- JavaScript
+- js
 category:
 - JavaScript
 summary: 欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我

@@ -18,8 +18,10 @@ var myprojects = theme.myProjects.data;
                 <div class="info-title">
                     <a href="<%- url_for(myprojects[project].url) %>" target="_blank"><%- project %></a>
                 </div>
-                <div class="info-desc"><%= myprojects[project].desc %></div>
-                <div class="info-desc" style="color: #333;"><%= myprojects[project].myDuty %></div>
+                <div class="info-desc" style="text-align: left;"><%= myprojects[project].desc %></div>
+                <div class="info-desc" style="color: #333;">
+                   <p style="text-align: left;">责任描述 :<%= myprojects[project].myDuty %></p>
+                </div>
             </div>
         </div>
         <% }); %>
