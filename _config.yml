@@ -17,7 +17,7 @@ url:
   https://bllx_admin.gitee.io/yaruli-blog/
   https://dreamitgirl.github.io/
   
-root: /
+root: /yaruli-blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
