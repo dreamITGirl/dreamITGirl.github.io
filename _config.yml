@@ -103,8 +103,11 @@ theme: hexo-theme-matery
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/dreamITGirl/dreamITGirl.github.io
+  repo: 
+    github: https://github.com/dreamITGirl/dreamITGirl.github.io
+    gitee: git@gitee.com:bllx_admin/yaruli-blog.git
   branch: master
+
 # 中文链接转拼音
 permalink_pinyin:
   enable: true
