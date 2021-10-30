@@ -13,8 +13,8 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: [https://dreamitgirl.github.io/, https://bllx_admin.gitee.io/dreamitgirl.github.io/]
-root: [/,/dreamitgirl.github.io/]
+url: https://dreamitgirl.github.io/
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
