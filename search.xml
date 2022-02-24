@@ -4,19 +4,52 @@
   
     
     <entry>
-      <title>微前端在后台管理系统中的实践</title>
-      <link href="2021/10/28/wei-qian-duan-zai-hou-tai-guan-li-xi-tong-zhong-de-shi-jian/"/>
-      <url>2021/10/28/wei-qian-duan-zai-hou-tai-guan-li-xi-tong-zhong-de-shi-jian/</url>
+      <title>数组</title>
+      <link href="2022/02/24/shu-zu/"/>
+      <url>2022/02/24/shu-zu/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>###数组</p><p>JS中有很多关于数组的API，之所以增加关于数组的介绍，是为了方便后面的知识。</p><p> <strong>创建数组</strong></p><pre class="line-numbers language-none"><code class="language-none">let arr &#x3D; new Array() &#x2F;&#x2F; 通过new的这种方式创建let arrOne &#x3D; [] <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>这两种是常用的创建数组的方式</p><p><strong>访问数组</strong></p><p>我们在访问数组时，通常采用遍历的方式去查找数组中的某个值，如果知道该值在数组中的位置，可以直接通过<code>arr[index]</code>下标值的方式获取。</p><pre class="line-numbers language-none"><code class="language-none">const a &#x3D; arr[0] &#x2F;&#x2F; 在知道index坐标的情况下<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>还可以通过<code>forEach</code>、<code>map</code> 、<code>filter</code>等方式进行访问数组</p><p><strong>插入值</strong></p><p>数组中有插入值的API，<code>push</code> 和 <code>shift</code>两种，<code>push</code>是从数组尾部推入值，<code>shift</code> 是往数组头部插入值，如果在数组某一位置插入值的话，需要用到遍历的方式。</p><pre class="line-numbers language-none"><code class="language-none">class Array &#123;  constructor()&#123;    this.arr &#x3D; []    this.length &#x3D; this.arr.length  &#125;  push(value)&#123;      this.arr[this.length] &#x3D; value      this.length +&#x3D; 1      return this.arr  &#125;  shift(value)&#123;     this.arr &#x3D; [value,...this.arr]     this.length +&#x3D; 1     return this.arr  &#125;  insertValue(value,index)&#123;      if(this.length &#x3D;&#x3D; 0)&#123;          this.arr[index] &#x3D; value          this.length +&#x3D; 1        &#125;      if(this.length &gt; 0)&#123;          if(index &gt; this.length)&#123;            this.length &#x3D; index + 1            this.arr[index] &#x3D; value          &#125; else &#123;             this.length +&#x3D; 1              for (let i &#x3D; this.length - 1; i &gt;&#x3D; index; i--) &#123;                this.arr[i] &#x3D; this.arr[i-1]                  if (i&#x3D;&#x3D; index) &#123;                    this.arr[i] &#x3D; value                 &#125;              &#125;          &#125;      &#125;  &#125;&#125;&#x2F;&#x2F; 测试一下var arr &#x3D; new Arr()arr.push(1)arr.shift(2)arr.insertValue(3,5)arr.insertValue(4,0)arr.insertValue(5,3)arr.insertValue(6,2)arr.insertValue(7,4)arr.insertValue(8,4)console.log(arr); &#x2F;** Array &#123;arr: [    4,         2,    6,         1,    8,         7,    5,         undefined,    undefined, undefined,    3  ],  length: 11&#125;**&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>删除值</strong></p><p>接下来看数组中删除某个值，数组中常见的删除方法有<code>pop()</code> 、 <code>unshift()</code>两种方法 ，<code>pop()</code>是数组删除最后一个元素，<code>unshift()</code>是数组删除第一个元素,还是在我们创建的Array的类中写一下方法</p><pre class="line-numbers language-none"><code class="language-none">pop()&#123;    const lastValue &#x3D; this.arr[this.length - 1]    this.arr.splice(this.length-1,1)    this.length -&#x3D; 1    return lastValue&#125;unshift()&#123;    const firstValue &#x3D; this.arr[0]    this.arr.splice(0,1)    this.length -&#x3D; 1    return firstValue&#125;deleteValue(index)&#123; &#x2F;&#x2F; 删除某个位置的值    if(index &#x3D;&#x3D;&#x3D; 0)&#123;        this.unshift()    &#125; else if(index &#x3D;&#x3D; this.length - 1)&#123;        this.pop()    &#125; else &#123;        const delVal &#x3D; this.arr[index]        this.arr.splice(index,1)        this.length -&#x3D; 1        return delVal    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>测试一下删除的结果</p><pre class="line-numbers language-none"><code class="language-none">arr.pop() &#x2F;** Array &#123;  arr: [ 4, 2, 6, 1, 8, 7, 5, undefined, undefined, undefined ],  length: 10&#125; **&#x2F;arr.unshift()&#x2F;**Array &#123;  arr: [ 2, 6, 1, 8, 7, 5, undefined, undefined, undefined ],  length: 9&#125;**&#x2F;arr.deleteValue(2)console.log(arr);&#x2F;**Array &#123;  arr: [ 2, 6, 8, 7, 5, undefined, undefined, undefined ],  length: 8&#125;**&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>JS数组方法参考</strong></p><ol><li>数组的合并</li></ol><p><code>caoncat()</code> 可以将两个数组合并，也可以使用ES6中的解构方法</p><pre class="line-numbers language-none"><code class="language-none">const arr &#x3D; [1,2,3].concat(4,5,6) &#x2F;&#x2F; [ 1, 2, 3, 4, 5, 6 ]const arr1 &#x3D; [7,8,9,...arr] &#x2F;&#x2F; [7, 8, 9, 1, 2, 3, 4, 5, 6]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><ol start="2"><li>迭代器函数</li></ol><p><code>forEach()</code> 、<code>map()</code> 、 <code>every()</code> 、 <code>some()</code> 、<code>filter()</code> 、<code>reduce()</code> 这几种方法都是迭代器函数</p><pre class="line-numbers language-none"><code class="language-none">var arr &#x3D; [1,2,3,4,5,6]arr.forEach((item,index) &#x3D;&gt; &#123;   arr[index] &#x3D; 2 * item&#125;)console.log(arr) &#x2F;&#x2F; [ 2, 4, 6, 8, 10, 12 ]&#x2F;&#x2F; map 返回新的数组const arr1 &#x3D; arr.map((item,index) &#x3D;&gt;&#123;    return arr[index] &#x3D; item + index&#125;)console.log(arr1,&#39;arr1) &#x2F;&#x2F; [ 1, 3, 5, 7, 9, 11 ]&#x2F;&#x2F; every 返回为true的数组const arr2 &#x3D; arr.every((item) &#x3D;&gt; &#123;    return item % 2 &#x3D;&#x3D; 0&#125;)&#x2F;&#x2F; 如果每个值都满足条件，则返回true,否则，返回falseconst arr3 &#x3D; arr.some((item) &#x3D;&gt; &#123;    return item % 2 &#x3D;&#x3D; 0&#125;)&#x2F;&#x2F; 如果有一个满足，则返回true，这是和every不同的地方const arr4 &#x3D; arr.filter((item) &#x3D;&gt; &#123;    return item % 2 &#x3D;&#x3D;&#x3D; 0&#125;)&#x2F;&#x2F; [ 2, 4, 6 ]&#x2F;&#x2F; filter()的方法返回数组中满足条件的数据，返回新的数组const arr5 &#x3D; arr.reduce((prev,cur) &#x3D;&gt; &#123;    return cur &#x3D; Number(cur) + Number(prev)&#125;)&#x2F;&#x2F; 21&#x2F;&#x2F; reduce是累加器，返回来的是数组各项的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="3"><li>ES6中的常用的新的方法</li></ol><p><code>for...of..</code> 、<code>for...in...</code> 、<code>Array.from()</code> 、 <code>findIndex()</code> 、 <code>entries()</code> 、<code>keys()</code> 、<code>values()</code>、<code>includes()</code> 等方法，此处不再一一赘述。</p><ol start="4"><li>数组排序</li></ol><p><code>sort(cb)</code>一般是数组排序常用的API。我们接下来在我们的<code>Array</code>类中封装一个比较的函数</p><pre class="line-numbers language-none"><code class="language-none">sort()&#123;    if (this.length &#x3D;&#x3D; 0) &#123;        return []    &#125;    const arr &#x3D; this.arr.sort(this.compareFn)    return arr&#125;compareFn(a,b)&#123;    if (a - b &#x3D;&#x3D; 0) &#123;        return 0    &#125; else if (a - b &gt; 0) &#123;        return 1    &#125; else &#123;        return -1    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>但是在业务中，我们常见的都是比较数组对象中某一属性的大小，这种情况下该如何比较呢？如果是比较字符串呢？<br>在比较自定义的对象属性时，可以针对这一属性，写一个比较函数。但是原理和<code>compareFn</code>是一样的。比较字符串时，比较的是ASCII的值。</p><ol start="5"><li>搜索方法</li></ol><p><code>findIndex()</code> 和 <code>find()</code> , <code>indexOf()</code> 和 <code>includes</code> 都是搜索数组中某一值的是否存在。</p><p><strong>TypeScript中的数组</strong></p><p>如果是声明简单的数组，和 <code>const numbers : numbers[] </code> 是一样的</p><pre class="line-numbers language-none"><code class="language-none">const numbers &#x3D; [1,2,3,4,5,6]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果是声明数组对象的话，举个例子</p><pre class="line-numbers language-none"><code class="language-none">interface Person&#123;    name:String,    age:number&#125;const friends &#x3D; [    &#123;        name:&#39;Alice&#39;,        age:20    &#125;,    &#123;        name:&#39;Alice1&#39;,        age:22    &#125;]&#x2F;&#x2F; 这种情况下，我们比较friends数组中的数据年龄大小时，可以根据类型判断function compareAge(a:Person,b:Person)&#123; &#x2F;&#x2F; 这样确保我们接收的每一个值都满足了Person的类型    &#x2F;&#x2F; 函数体&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>总结</strong></p><p>在前端开发中，最常用最简单的就是数组类型数据的处理。这篇文章主要介绍了数组中常用的方法以及ES6和最新的数组的特性。接下来将会介绍栈的学习</p>]]></content>
       
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
       
       
         <tags>
             
             <tag> js </tag>
             
-            <tag> 项目实践 </tag>
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>什么是微前端</title>
+      <link href="2021/10/30/shi-me-shi-wei-qian-duan/"/>
+      <url>2021/10/30/shi-me-shi-wei-qian-duan/</url>
+      
+        <content type="html"><![CDATA[<h4 id="什么是微前端"><a href="#什么是微前端" class="headerlink" title="什么是微前端"></a>什么是微前端</h4><p><a href="https://micro-frontends.org/">官网</a>上是这么描述的</p><blockquote><p>Techniques, strategies and recipes for building a modern web app with multiple teams that can ship features independently.</p></blockquote><ul><li>背景</li></ul><p>从官网我们可以了解到：微前端最早是出现在2016年的ThoughtWorks Technology Radar。它将微服务的概念推广到了前端。当前的趋势是构建一个功能丰富且强大的单页面应用程序，它位于微服务架构之上。但是随着我们不断的迭代产品，前端层的业务变得繁重复杂且越来越难维护。这就是我们说的前端单体( Frontend Monolith)</p><ul><li>什么是微前端</li></ul><p>微前端背后的想法是将整个的网站或者Web应用程序看作是独立团队所拥有的功能组合，每个团队负责各自的功能模块，每个团队是跨职能的，从数据库到用户界面，端到端的开发其功能。</p><blockquote><p>通过下面这个图，我们可以更好的了解到：底部垂直排列的团队是这个架构的核心。<br>它们各自以页面或片段的形式产生特征。您可以使用 SSI 或 Web Components 之类的技术将它们集成到到达客户的组合页面中。</p></blockquote><blockquote><p><em>前端集成</em>描述了一组用于将团队的用户界面（页面和片段）组装到集成应用程序中的技术。您可以将这些技术分为三类：路由、组合和通信。根据您的架构选择，您有不同的选择来解决这些类别。</p></blockquote><p><img src="https://drek4537l1klr.cloudfront.net/geers/Figures/CH01_F01_Geers.png" alt="微前端方法大图概览"></p><p>从上述的介绍我们可以了解到微前端更像是一种概念而不是具体的技术。它是一种组织和架构的方法。</p><h4 id="微前端解决什么问题"><a href="#微前端解决什么问题" class="headerlink" title="微前端解决什么问题"></a>微前端解决什么问题</h4><ul><li>公司选择使用微前端的第一个路线是提高开发效率。在分层架构中，多个团队参与构建新的功能。减少团队之间的等待时间是微前端的主要目标<br>现在的架构都没有扩展到前端开发的概念，依然是单体、前端/后端拆分和微服务。他们都带有一个整体式的前端。<br>从这里我们可以理解微前端的优点：</li></ul><ol><li>可独立部署</li><li>将故障风险隔离到更小的区域</li><li>范围更窄，因此更容易理解</li><li>具有较小的代码库，可以在您想要重构或替换它时提供帮助；并且可以减少意外耦合的情况出现</li><li>更可预测，因为它不与其他系统共享状态</li></ol><p><strong>解决的问题：</strong></p><ol><li><p>拆分和细化<br> 当下前端领域中，单页面应用（SPA）是非常流行的前端趋势。但是随着项目的迭代，功能和代码会越来越繁杂。耦合度也会越来也高。微前端的意义之一就在于将这些繁杂的代码和功能模块进行拆分和细化</p></li><li><p>整合历史系统<br> 在不少的业务中，老系统和新系统是共存的，作为开发人员没办法浪费时间和经历将老系统进行改写。微前端可以将新旧系统进行整合。在一套系统中同时兼顾两个子系统</p></li></ol><h4 id="微前端的好处"><a href="#微前端的好处" class="headerlink" title="微前端的好处"></a>微前端的好处</h4><blockquote><p>我们不是根据特定的技术方法或实现细节来定义微前端，而是强调其出现的属性及其带来的好处</p></blockquote><ul><li>增量升级</li><li>简单、解耦的代码库</li><li>独立部署</li><li>自治团队</li></ul><h4 id="目前国内的微前端的种类"><a href="#目前国内的微前端的种类" class="headerlink" title="目前国内的微前端的种类"></a>目前国内的微前端的种类</h4><ul><li>基座模式<br>  通过搭建基座、配置中心来管理子应用。如目前大部分的单页面应用基本都会选择qiankun框架，也存在基于业务的自制方案</li><li>自组织模式<br>  通过约定进行互相调用</li><li>去中心模式<br>  脱离基座模式，，每个应用之间可以彼此分享资源。如基于<code>webpack 5 moudle Federation</code> 实现的 <strong>EMP微前端方案</strong>,可以实现多个应用彼此共享资源的分享</li></ul><h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><ol><li><a href="https://martinfowler.com/articles/microservices.html#CharacteristicsOfAMicroserviceArchitecture">微服务架构</a></li><li><a href="https://github.com/efoxTeam/emp/wiki/%E3%80%8A%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E5%89%8D%E7%AB%AF%E3%80%8B">什么是微前端</a></li><li><a href="https://martinfowler.com/articles/micro-frontends.html#IncrementalUpgrades">微前端基础</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端架构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> js </tag>
+            
+            <tag> 前端架构 </tag>
             
         </tags>
       
@@ -68,9 +101,9 @@
       
         <tags>
             
-            <tag> js </tag>
-            
             <tag> H5 </tag>
+            
+            <tag> js </tag>
             
         </tags>
       
@@ -106,31 +139,6 @@
     
     
     <entry>
-      <title>渲染几十万条数据不卡顿</title>
-      <link href="2020/12/07/xuan-ran-ji-shi-wan-tiao-shu-ju-bu-qia-dun/"/>
-      <url>2020/12/07/xuan-ran-ji-shi-wan-tiao-shu-ju-bu-qia-dun/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 前端优化 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 前端优化 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>XXS攻击</title>
       <link href="2020/11/25/xxs-gong-ji/"/>
       <url>2020/11/25/xxs-gong-ji/</url>
@@ -148,31 +156,6 @@
         <tags>
             
             <tag> 网络安全 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Git知识点</title>
-      <link href="2020/11/24/git-zhi-shi-dian/"/>
-      <url>2020/11/24/git-zhi-shi-dian/</url>
-      
-        <content type="html"><![CDATA[<p>欢迎大家访问我的博客<a href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p><h4 id="初次使用Git"><a href="#初次使用Git" class="headerlink" title="初次使用Git"></a>初次使用Git</h4><h6 id="Git的全局配置"><a href="#Git的全局配置" class="headerlink" title="Git的全局配置"></a>Git的全局配置</h6><pre class="line-numbers language-none"><code class="language-none">git config --global user.name &#39;用户名&#39;git comfig --global user.email &#39;邮箱&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><strong>注意点：</strong></p><ol><li>用户名需要是英文的，不可以是中文</li><li>输入配置完成后，可输入<code>git list</code>查看自己刚才的配置。</li></ol><h6 id="Git理论"><a href="#Git理论" class="headerlink" title="Git理论"></a>Git理论</h6><ol><li><p>Git保存的是什么？</p><ul><li>SVN保存的是每次版本更新的内容</li><li>Git则是将每个版本都独立保存</li></ul><p>工作区域、暂存区域、Git仓库</p></li><li><p>Git的工作流程：</p><ul><li>在工作目录中添加、修改文件</li><li>将需要进行版本管理的文件放在暂存区域</li><li>将暂存区域的文件提交到Git仓库</li></ul></li><li><p>Git管理的文件有三种状态：</p><ul><li>已修改(modified)</li><li>已暂存(staged)</li><li>已提交(committed)</li></ul></li></ol><h6 id="Git相关命令行"><a href="#Git相关命令行" class="headerlink" title="Git相关命令行"></a>Git相关命令行</h6><ol><li>创建Git库</li></ol><pre class="line-numbers language-none"><code class="language-none">git init &#x2F;&#x2F; 初始化仓库git clone &#39;库的地址&#39;  &#x2F;&#x2F; 克隆远程库<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Git </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Git </tag>
             
         </tags>
       
