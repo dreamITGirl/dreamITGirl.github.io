@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="webpack的学习；适用于对webpack不了解想要学习的前端同学。内容比较基础">
+    <meta name="keywords" content="算法 数据结构">
     <meta name="description" content="前端技术博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>webpack学习记录(基础入门篇) | yaru.Li的博客</title>
+    <title>数组 | yaru.Li的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://i.loli.net/2021/10/23/ATlKvnwmgZ1YS78.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">webpack学习记录(基础入门篇)</h1>
+                    <h1 class="description center-align post-title">数组</h1>
                 </div>
             </div>
         </div>
@@ -411,8 +411,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/webpack/">
-                                <span class="chip bg-color">webpack</span>
+                            <a href="/tags/js/">
+                                <span class="chip bg-color">js</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
                             </a>
                         
                     </div>
@@ -423,8 +427,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" class="post-category">
-                                构建工具
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -436,28 +440,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-02
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-11-18
+                    2022-02-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    407
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -472,64 +476,252 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="webpack-核心概念"><a href="#webpack-核心概念" class="headerlink" title="webpack 核心概念"></a>webpack 核心概念</h4><h5 id="入口-entry"><a href="#入口-entry" class="headerlink" title="入口(entry)"></a>入口(entry)</h5><p>入口起点(entry point) 指示webpack 应该使用哪个模块，作为项目的入口。一般情况下是<code>./src/index.js</code> ,我们也可以直接在webpakck.configuration 中配置 <code>entry</code> 的属性。来指定项目一个或多个入口起点</p>
-<p>用法: <code>entry:&#123; &lt;entryChunkName&gt; string | [string]&#125; | &#123;&#125;</code></p>
-<p>案例一：</p>
-<pre class="line-numbers language-none"><code class="language-none">modules.export &#x3D; &#123;
-    entry:&#39;.&#x2F;src&#x2F;main.js&#39;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>案例二：</p>
-<pre class="line-numbers language-none"><code class="language-none">modules.export &#x3D; &#123;
-    entry:&#123;
-        a:&#39;.&#x2F;src&#x2F;a.html&#39;，
-        b:&#39;.&#x2F;src&#x2F;b.html&#39;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <p>###数组</p>
+<p>JS中有很多关于数组的API，之所以增加关于数组的介绍，是为了方便后面的知识。</p>
+<p> <strong>创建数组</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">let arr &#x3D; new Array() &#x2F;&#x2F; 通过new的这种方式创建
+let arrOne &#x3D; [] <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这两种是常用的创建数组的方式</p>
+<p><strong>访问数组</strong></p>
+<p>我们在访问数组时，通常采用遍历的方式去查找数组中的某个值，如果知道该值在数组中的位置，可以直接通过<code>arr[index]</code>下标值的方式获取。</p>
+<pre class="line-numbers language-none"><code class="language-none">const a &#x3D; arr[0] &#x2F;&#x2F; 在知道index坐标的情况下<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h6 id="描述入口的对象"><a href="#描述入口的对象" class="headerlink" title="描述入口的对象"></a>描述入口的对象</h6><ul>
-<li><code>dependon</code> : 当前入口所依赖的入口，必须在加载入口文件之前加载</li>
-<li><code>filename</code> : 指定要输出的文件名称</li>
-<li><code>import</code> : 启动时需要加载的模块</li>
-<li><code>library</code> : 指定library选项，为当前entry 构建一个library</li>
-<li><code>runtime</code> : 运行时chunk 的名字，如果设置了 就会创建一个新的运行时chunk.在webpack5.43.0之后可将其设置为false,以避免一个新的运行时的chunk</li>
-<li><code>publicPath</code> : 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共的URL地址</li>
-</ul>
-<p><strong>注意：</strong></p>
+<p>还可以通过<code>forEach</code>、<code>map</code> 、<code>filter</code>等方式进行访问数组</p>
+<p><strong>插入值</strong></p>
+<p>数组中有插入值的API，<code>push</code> 和 <code>shift</code>两种，<code>push</code>是从数组尾部推入值，<code>shift</code> 是往数组头部插入值，如果在数组某一位置插入值的话，需要用到遍历的方式。</p>
+<pre class="line-numbers language-none"><code class="language-none">class Array &#123;
+  constructor()&#123;
+    this.arr &#x3D; []
+    this.length &#x3D; this.arr.length
+  &#125;
+  push(value)&#123;
+      this.arr[this.length] &#x3D; value
+      this.length +&#x3D; 1
+      return this.arr
+  &#125;
+  shift(value)&#123;
+     this.arr &#x3D; [value,...this.arr]
+     this.length +&#x3D; 1
+     return this.arr
+  &#125;
+  insertValue(value,index)&#123;
+      if(this.length &#x3D;&#x3D; 0)&#123;
+          this.arr[index] &#x3D; value
+          this.length +&#x3D; 1  
+      &#125;
+      if(this.length &gt; 0)&#123;
+          if(index &gt; this.length)&#123;
+            this.length &#x3D; index + 1
+            this.arr[index] &#x3D; value
+          &#125; else &#123;
+             this.length +&#x3D; 1
+              for (let i &#x3D; this.length - 1; i &gt;&#x3D; index; i--) &#123;
+                this.arr[i] &#x3D; this.arr[i-1]  
+                if (i&#x3D;&#x3D; index) &#123;
+                    this.arr[i] &#x3D; value 
+                &#125;
+              &#125;
+          &#125;
+      &#125;
+  &#125;
+&#125;
+
+&#x2F;&#x2F; 测试一下
+var arr &#x3D; new Arr()
+
+arr.push(1)
+
+arr.shift(2)
+
+arr.insertValue(3,5)
+
+
+arr.insertValue(4,0)
+
+arr.insertValue(5,3)
+
+arr.insertValue(6,2)
+
+arr.insertValue(7,4)
+
+arr.insertValue(8,4)
+
+console.log(arr); 
+&#x2F;** Array &#123;
+arr: [
+    4,         2,
+    6,         1,
+    8,         7,
+    5,         undefined,
+    undefined, undefined,
+    3
+  ],
+  length: 11
+&#125;
+**&#x2F;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>删除值</strong></p>
+<p>接下来看数组中删除某个值，数组中常见的删除方法有<code>pop()</code> 、 <code>unshift()</code>两种方法 ，<code>pop()</code>是数组删除最后一个元素，<code>unshift()</code>是数组删除第一个元素,还是在我们创建的Array的类中写一下方法</p>
+<pre class="line-numbers language-none"><code class="language-none">pop()&#123;
+    const lastValue &#x3D; this.arr[this.length - 1]
+    this.arr.splice(this.length-1,1)
+    this.length -&#x3D; 1
+    return lastValue
+&#125;
+unshift()&#123;
+    const firstValue &#x3D; this.arr[0]
+    this.arr.splice(0,1)
+    this.length -&#x3D; 1
+    return firstValue
+&#125;
+deleteValue(index)&#123; &#x2F;&#x2F; 删除某个位置的值
+    if(index &#x3D;&#x3D;&#x3D; 0)&#123;
+        this.unshift()
+    &#125; else if(index &#x3D;&#x3D; this.length - 1)&#123;
+        this.pop()
+    &#125; else &#123;
+        const delVal &#x3D; this.arr[index]
+        this.arr.splice(index,1)
+        this.length -&#x3D; 1
+        return delVal
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>测试一下删除的结果</p>
+<pre class="line-numbers language-none"><code class="language-none">
+arr.pop() 
+
+&#x2F;** Array &#123;
+  arr: [ 4, 2, 6, 1, 8, 7, 5, undefined, undefined, undefined ],
+  length: 10
+&#125; **&#x2F;
+
+arr.unshift()
+&#x2F;**
+Array &#123;
+  arr: [ 2, 6, 1, 8, 7, 5, undefined, undefined, undefined ],
+  length: 9
+&#125;
+**&#x2F;
+
+arr.deleteValue(2)
+
+console.log(arr);
+&#x2F;**
+Array &#123;
+  arr: [ 2, 6, 8, 7, 5, undefined, undefined, undefined ],
+  length: 8
+&#125;
+**&#x2F;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>JS数组方法参考</strong></p>
 <ol>
-<li><code>runtime</code> 和 <code>dependon</code> 不应该出现在同一个入口上使用。</li>
-<li>确保 <code>runtime</code> 不能指向已存在的入口名称，<pre class="line-numbers language-none"><code class="language-none">modules.export &#x3D; &#123;
-    entry:&#123;
-        a:&#39;.&#x2F;a&#39;,
-        b:&#123;
-            runtime:&#39;x&#39;,
-            dependon:&#39;a&#39;, &#x2F;&#x2F; 报错 本次配置无效
-            import :&#39;.&#x2F;b1&#39;
-        &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><code>dependOn</code> 不能是循环引用的<pre class="line-numbers language-none"><code class="language-none">modules.export &#x3D; &#123;
-    entry:&#123;
-        a:&#123;
-            import :&#39;.&#x2F;a2&#39;,
-            dependon:&#39;b&#39;
-        &#125;,
-        b:&#123;
-            runtime:&#39;x&#39;,
-            dependon:&#39;a&#39;, &#x2F;&#x2F; 报错 本次配置无效
-            import :&#39;.&#x2F;b1&#39;
-        &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
-
-
-
-</li>
+<li>数组的合并</li>
 </ol>
-<h5 id="出口-output"><a href="#出口-output" class="headerlink" title="出口(output)"></a>出口(output)</h5>
+<p><code>caoncat()</code> 可以将两个数组合并，也可以使用ES6中的解构方法</p>
+<pre class="line-numbers language-none"><code class="language-none">const arr &#x3D; [1,2,3].concat(4,5,6) &#x2F;&#x2F; [ 1, 2, 3, 4, 5, 6 ]
+const arr1 &#x3D; [7,8,9,...arr] &#x2F;&#x2F; [7, 8, 9, 1, 2, 3, 4, 5, 6]
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>迭代器函数</li>
+</ol>
+<p><code>forEach()</code> 、<code>map()</code> 、 <code>every()</code> 、 <code>some()</code> 、<code>filter()</code> 、<code>reduce()</code> 这几种方法都是迭代器函数</p>
+<pre class="line-numbers language-none"><code class="language-none">var arr &#x3D; [1,2,3,4,5,6]
+arr.forEach((item,index) &#x3D;&gt; &#123;
+   arr[index] &#x3D; 2 * item
+&#125;)
+console.log(arr) &#x2F;&#x2F; [ 2, 4, 6, 8, 10, 12 ]
+
+&#x2F;&#x2F; map 返回新的数组
+const arr1 &#x3D; arr.map((item,index) &#x3D;&gt;&#123;
+    return arr[index] &#x3D; item + index
+&#125;)
+console.log(arr1,&#39;arr1) &#x2F;&#x2F; [ 1, 3, 5, 7, 9, 11 ]
+
+&#x2F;&#x2F; every 返回为true的数组
+
+const arr2 &#x3D; arr.every((item) &#x3D;&gt; &#123;
+    return item % 2 &#x3D;&#x3D; 0
+&#125;)
+&#x2F;&#x2F; 如果每个值都满足条件，则返回true,否则，返回false
+
+const arr3 &#x3D; arr.some((item) &#x3D;&gt; &#123;
+    return item % 2 &#x3D;&#x3D; 0
+&#125;)
+&#x2F;&#x2F; 如果有一个满足，则返回true，这是和every不同的地方
+
+const arr4 &#x3D; arr.filter((item) &#x3D;&gt; &#123;
+    return item % 2 &#x3D;&#x3D;&#x3D; 0
+&#125;)
+&#x2F;&#x2F; [ 2, 4, 6 ]
+
+&#x2F;&#x2F; filter()的方法返回数组中满足条件的数据，返回新的数组
+
+const arr5 &#x3D; arr.reduce((prev,cur) &#x3D;&gt; &#123;
+    return cur &#x3D; Number(cur) + Number(prev)
+&#125;)
+&#x2F;&#x2F; 21
+
+&#x2F;&#x2F; reduce是累加器，返回来的是数组各项的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>ES6中的常用的新的方法</li>
+</ol>
+<p><code>for...of..</code> 、<code>for...in...</code> 、<code>Array.from()</code> 、 <code>findIndex()</code> 、 <code>entries()</code> 、<code>keys()</code> 、<code>values()</code>、<code>includes()</code> 等方法，此处不再一一赘述。</p>
+<ol start="4">
+<li>数组排序</li>
+</ol>
+<p><code>sort(cb)</code>一般是数组排序常用的API。我们接下来在我们的<code>Array</code>类中封装一个比较的函数</p>
+<pre class="line-numbers language-none"><code class="language-none">sort()&#123;
+    if (this.length &#x3D;&#x3D; 0) &#123;
+        return []
+    &#125;
+    const arr &#x3D; this.arr.sort(this.compareFn)
+    return arr
+&#125;
+compareFn(a,b)&#123;
+    if (a - b &#x3D;&#x3D; 0) &#123;
+        return 0
+    &#125; else if (a - b &gt; 0) &#123;
+        return 1
+    &#125; else &#123;
+        return -1
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是在业务中，我们常见的都是比较数组对象中某一属性的大小，这种情况下该如何比较呢？如果是比较字符串呢？<br>在比较自定义的对象属性时，可以针对这一属性，写一个比较函数。但是原理和<code>compareFn</code>是一样的。比较字符串时，比较的是ASCII的值。</p>
+<ol start="5">
+<li>搜索方法</li>
+</ol>
+<p><code>findIndex()</code> 和 <code>find()</code> , <code>indexOf()</code> 和 <code>includes</code> 都是搜索数组中某一值的是否存在。</p>
+<p><strong>TypeScript中的数组</strong></p>
+<p>如果是声明简单的数组，和 <code>const numbers : numbers[] </code> 是一样的</p>
+<pre class="line-numbers language-none"><code class="language-none">const numbers &#x3D; [1,2,3,4,5,6]
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果是声明数组对象的话，举个例子</p>
+<pre class="line-numbers language-none"><code class="language-none">interface Person&#123;
+    name:String,
+    age:number
+&#125;
+const friends &#x3D; [
+    &#123;
+        name:&#39;Alice&#39;,
+        age:20
+    &#125;,
+    &#123;
+        name:&#39;Alice1&#39;,
+        age:22
+    &#125;
+]
+&#x2F;&#x2F; 这种情况下，我们比较friends数组中的数据年龄大小时，可以根据类型判断
+
+function compareAge(a:Person,b:Person)&#123; &#x2F;&#x2F; 这样确保我们接收的每一个值都满足了Person的类型
+    &#x2F;&#x2F; 函数体
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>总结</strong></p>
+<p>前端开发中，最常用最简单的就是数组类型数据的处理。这篇文章主要介绍了数组中常用的方法以及ES6和最新的数组的特性。接下来将会介绍栈的学习</p>
+
             </div>
             <hr/>
 
@@ -554,7 +746,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2021/11/02/webpack-xue-xi-ji-lu/">https://dreamitgirl.github.io/2021/11/02/webpack-xue-xi-ji-lu/</a>
+                    <a href="https://dreamitgirl.github.io/2022/02/24/shu-zu/">https://dreamitgirl.github.io/2022/02/24/shu-zu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -592,8 +784,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/webpack/">
-                                    <span class="chip bg-color">webpack</span>
+                                <a href="/tags/js/">
+                                    <span class="chip bg-color">js</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
@@ -756,9 +952,9 @@
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://dreamitgirl.github.io/2021/11/02/webpack-xue-xi-ji-lu/';
-        this.page.identifier = '/2021/11/02/webpack-xue-xi-ji-lu/';
-        this.page.title = 'webpack学习记录(基础入门篇)';
+        this.page.url = 'https://dreamitgirl.github.io/2022/02/24/shu-zu/';
+        this.page.identifier = '/2022/02/24/shu-zu/';
+        this.page.title = '数组';
     };
     let disqus_shortname = '';
 
@@ -789,12 +985,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/11/02/webpack-xue-xi-ji-lu/">
+                <a href="/2022/02/24/shu-zu/">
                     <div class="card-image">
                         
-                        <img src="https://i.loli.net/2021/10/23/ATlKvnwmgZ1YS78.jpg" class="responsive-img" alt="webpack学习记录(基础入门篇)">
                         
-                        <span class="card-title">webpack学习记录(基础入门篇)</span>
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="数组">
+                        
+                        <span class="card-title">数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -805,14 +1002,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" class="post-category">
-                                    构建工具
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
@@ -823,8 +1020,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/webpack/">
-                        <span class="chip bg-color">webpack</span>
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -1119,7 +1320,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">20.2k</span>&nbsp;字
+                class="white-color">21k</span>&nbsp;字
             
             
             
