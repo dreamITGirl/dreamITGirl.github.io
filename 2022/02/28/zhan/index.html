@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于新开页面的传值问题, yaru.Li的博客">
+    <meta name="keywords" content="算法 数据结构">
     <meta name="description" content="前端技术博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于新开页面的传值问题 | yaru.Li的博客</title>
+    <title>栈 | yaru.Li的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于新开页面的传值问题</h1>
+                    <h1 class="description center-align post-title">栈</h1>
                 </div>
             </div>
         </div>
@@ -411,12 +411,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/H5/">
-                                <span class="chip bg-color">H5</span>
-                            </a>
-                        
                             <a href="/tags/js/">
                                 <span class="chip bg-color">js</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
                             </a>
                         
                     </div>
@@ -427,8 +427,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/JavaScript/" class="post-category">
-                                JavaScript
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                算法
                             </a>
                         
                     </div>
@@ -440,7 +440,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-20
+                    2022-02-28
                 </div>
                 
 
@@ -454,14 +454,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    807
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
 
@@ -476,89 +476,192 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>欢迎大家访问我的博客<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p>
-<h3 id="新开浏览器页签的传值问题"><a href="#新开浏览器页签的传值问题" class="headerlink" title="新开浏览器页签的传值问题"></a>新开浏览器页签的传值问题</h3><h4 id="1-业务背景"><a href="#1-业务背景" class="headerlink" title="1. 业务背景"></a>1. 业务背景</h4><p>在新建/修改/详情等二级或者三级新打开的页签中，需要实现传递参数的功能，并同时刷新上一级页面</p>
-<h4 id="2-思考方式："><a href="#2-思考方式：" class="headerlink" title="2. 思考方式："></a>2. 思考方式：</h4><ol>
-<li>使用 <code>localStorage</code> 的方式<br>这种方式的最大的弊端是当项目较大的时候存储的信息量极易超过浏览器中要求的存储空间。所以我们在第一次迭代时放弃了这种方式。</li>
-<li>使用<code>window.postMessage</code><br>这种方式在列表页面中打开一个新建页面时是没有问题的，但是当打开多个新建页面，这个传的值就会发生问题。导致信息接收失败。在调研这个方式后也放弃了这种思路</li>
-<li>自封装插件<br>思路：采用了JS打开页面的初始化事件，利用H5的新特性<code>history</code>来实现的。</li>
-</ol>
-<h4 id="3-代码解析"><a href="#3-代码解析" class="headerlink" title="3. 代码解析"></a>3. 代码解析</h4><p>主要是利用了<code>history</code>中的<code>pushState</code>和 <code>replaceState</code>这两个API，通过监听页面的渲染顺序，将函数设计成发布/订阅者模式，从而达到想要的效果</p>
-<pre class="line-numbers language-none"><code class="language-none">function parseConfig (config) &#123; &#x2F;&#x2F; 将传递的参数String化
-    let str &#x3D; &#39;&#39;
-    for (let key in config) &#123;
-        if (config[key] !&#x3D;&#x3D; null) &#123;
-            str+&#x3D;&#96;$&#123;key&#125;&#x3D;$&#123;config[key]&#125;,&#96;
-        &#125;
+                <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>通过数组的学习，我们复习了数组的一些API，这些在JS中是很基础的。我会从这一节开始，将一些函数整理到自己的<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/JS-Data-structure">github</a>库中，以便大家查看及学习。</p>
+<p>本次内容主要包括</p>
+<ul>
+<li>栈数据结构</li>
+<li>向栈中增加元素</li>
+<li>删除栈中的元素</li>
+<li>如何使用Stack类</li>
+<li>十进制转二进制</li>
+</ul>
+<h4 id="1-栈数据结构"><a href="#1-栈数据结构" class="headerlink" title="1. 栈数据结构"></a>1. 栈数据结构</h4><p>栈是一种遵循后进先出(LIFO = last in first out)原则,是一种用来表示元素的集合，主要操作有两种，<code>push</code> 和 <code>pop</code></p>
+<p><code>push</code> 是向栈的顶部(尾部)中增加一个元素<br><code>pop</code> 是移除栈中最顶端(尾部)的元素 </p>
+<p><img src="https://camo.githubusercontent.com/7163784baed9e988949a1dfbf1e749eac91ea38cd1f738ec5094469f22242675/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f622f62342f4c69666f5f737461636b2e706e67" alt="如图所示"></p>
+<h4 id="2-创建一个基于数组的栈"><a href="#2-创建一个基于数组的栈" class="headerlink" title="2. 创建一个基于数组的栈"></a>2. 创建一个基于数组的栈</h4><p>根据栈遵循的LIFO的原则，我们需要对元素的插入和删除功能做一些限制，我们要为栈声明以下几种方法</p>
+<ul>
+<li><code>push(elements)</code>：向栈顶添加一个或几个元素到栈顶</li>
+<li><code>pop()</code> ： 移除栈顶的元素，返回值为移除的元素</li>
+<li><code>peek()</code> : 返回栈顶的元素，不对它做任何处理（只是返回这一值）</li>
+<li><code>isEmpty()</code>: 判断栈是否为空</li>
+<li><code>clear()</code> : 清空栈中的元素</li>
+<li><code>size()</code> : 返回栈中元素的个数，类似于数组的<code>length</code></li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">class Stack &#123;
+    constructor()&#123;
+        this.items &#x3D; [] &#x2F;&#x2F; 我们可以用数组来保存栈中的数据
     &#125;
-    return str
+    push(elem)&#123;
+        this.items.push(elem) &#x2F;&#x2F; 通过上面的图，我们可以使用数组中的push方法将元素推到栈顶
+    &#125;
+    pop()&#123;
+       return this.items.pop()
+    &#125;
+    peek()&#123;
+      return this.items[this.items.length - 1]  
+    &#125;
+    isEmpty()&#123;
+        return this.items.length &#x3D;&#x3D;&#x3D; 0
+    &#125;
+    clear()&#123;
+        this.items &#x3D; []
+    &#125;
+    size()&#123;
+        return this.items.length 
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来我们使用一下我们封装的<code>Stack</code>类</p>
+<pre class="line-numbers language-none"><code class="language-none">var stack &#x3D; new Stack()
+console.log(stack.isEmpty()) &#x2F;&#x2F; true
+stack.push(9)
+stack.push(8)
+console.log(stack.size()) &#x2F;&#x2F; 2
+console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8 ] &#125;
+stack.push(7)
+stack.push(6)
+console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8, 7, 6] &#125;
+
+console.log(stack.peek()) &#x2F;&#x2F; 6
+
+console.log(stack.pop()) &#x2F;&#x2F; 6
+
+console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8, 7 ] &#125;
+
+stack.clear()
+console.log(stack) &#x2F;&#x2F; Stack &#123; items: [] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-如何使用Stack类"><a href="#3-如何使用Stack类" class="headerlink" title="3. 如何使用Stack类"></a>3. 如何使用Stack类</h4><p>在我们使用数组中的方法是，大部分的API的时间复杂度是O(n)</p>
+<p>上述的代码中我们只是在栈顶去推入一个元素。我们现在需要改进一下我们的例子,在<code>Stack</code>的构造函数中增加<code>count</code>的属性，这样可以在栈的任何位置插入元素,下面的代码只拿出来修改的部分</p>
+<pre class="line-numbers language-none"><code class="language-none">constructor()&#123;
+    this.items &#x3D; [] &#x2F;&#x2F; 我们可以用数组来保存栈中的数据
+    this.count &#x3D; 0
+&#125;
+push(elem)&#123;
+   &#x2F;&#x2F; this.items.push(elem) &#x2F;&#x2F; 通过上面的图，我们可以使用数组中的push方法将元素推到栈顶
+   this.items[this.count] &#x3D; elem
+   this.count ++
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我们测试之后</p>
+<pre class="line-numbers language-none"><code class="language-none">var stack &#x3D; new Stack()
+console.log(stack) &#x2F;&#x2F; Stack &#123; items: [], count: 0 &#125;
+stack.push(9)
+stack.push(8)
+console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8 ], count: 2 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>同样的思路，我们将其他方法也修改一下，升级后的<code>Stack</code>类如下</p>
+<pre class="line-numbers language-none"><code class="language-none">class Stack &#123;
+    constructor()&#123;
+        this.items &#x3D; [] &#x2F;&#x2F; 我们可以用数组来保存栈中的数据
+        this.count &#x3D; 0
+    &#125;
+    push(elem)&#123;
+        this.items[this.count] &#x3D; elem
+        this.count++
+        &#x2F;&#x2F; this.items.push(elem)
+    &#125;
+    pop()&#123;
+        if (this.isEmpty()) &#123;
+            return undefined 
+        &#125;
+        const item &#x3D; this.items[this.count-1]
+        this.count--
+        return item
+    &#x2F;&#x2F;    return this.items.pop()
+    &#125;
+    peek()&#123;
+        if (this.isEmpty()) &#123;
+           return undefined 
+        &#125;
+        return this.items[this.count - 1]  
+    &#125;
+    isEmpty()&#123;
+        return this.count &#x3D;&#x3D;&#x3D; 0
+    &#125;
+    clear()&#123;
+        this.items &#x3D; []
+        this.count &#x3D; 0
+    &#125;
+    size()&#123;
+        return this.count
+    &#125;
+    
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>接下来，我们在<code>Stack</code>类中增加一个<code>toString()</code>的方法，将数组结构转化为字符串</p>
+<pre class="line-numbers language-none"><code class="language-none">toString()&#123;
+    if (this.isEmpty()) &#123;
+        return &#39;&#39;
+    &#125;
+    let objString &#x3D; &#96;$&#123;this.items[0]&#125;&#96;
+    for (let i &#x3D; 1; i &lt; this.items.length; i++) &#123;
+        objString &#x3D; &#96;$&#123;objString&#125;,$&#123;this.items[i]&#125;&#96;
+    &#125;
+    return objString
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">var stack &#x3D; new Stack()
+stack.push(9)
+stack.push(8)
+stack.push(7)
+stack.push(6)
+console.log(stack.toString()) &#x2F;&#x2F; 9,8,7,6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-用栈解决问题"><a href="#4-用栈解决问题" class="headerlink" title="4. 用栈解决问题"></a>4. 用栈解决问题</h4><p>我们在回溯算法问题中，栈可以用来存储访问过的任务或者路径、撤销操作。又或者在前端访问页面时的历史记录就是一个栈，我们这里介绍的是十进制转化为二进制，以及任意进制转换的算法</p>
+<p><img src="https://s2.loli.net/2022/02/28/6lvSIfqXbxD1Pen.png" alt="进制转换.png"></p>
+<p>通过上述的图我们可以看到十进制转化为二进制的过程</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;  进制转换函数
+function decimalToBinary(decNumber) &#123;
+    const remStack &#x3D; new Stack()
+    let number &#x3D; decNumber
+    let rem;
+    let binaryString &#x3D; &#39;&#39;
+    while (number &gt; 0) &#123;
+        rem &#x3D; Math.floor(number % 2)
+        remStack.push(rem)
+        number &#x3D; Math.floor(number &#x2F; 2)
+    &#125;
+    console.log(remStack,&#39;remStack&#39;,remStack.isEmpty())
+    while (!remStack.isEmpty()) &#123;
+        binaryString +&#x3D; remStack.pop().toString()
+    &#125;
+    return binaryString
 &#125;
 
-const _historyWrap &#x3D; function(type) &#123; 
-    const orig &#x3D; history[type];
-    const e &#x3D; new Event(type);
-    return function() &#123;
-        const rv &#x3D; orig.apply(this, arguments);
-        e.arguments &#x3D; arguments;
-        window.dispatchEvent(e); &#x2F;&#x2F; 向一个指定的事件目标派发一个事件,  并以合适的顺序同步调用目标元素相关的事件处理函数
-        return rv;
-    &#125;
-&#125;;
+console.log(decimalToBinary(10)) &#x2F;&#x2F; 1010<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>接下来我们可以对这个函数进行改造一下，让它可以实现任意进制转换</p>
+<pre class="line-numbers language-none"><code class="language-none">function baseConvert(decNumber,base) &#123;
+    const remStack &#x3D; new Stack()
+    const digits &#x3D; &#39;0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ&#39;
+    let number &#x3D; decNumber
+    let rem ;
+    let binaryString &#x3D; &#39;&#39;
 
-history.pushState &#x3D; _historyWrap(&#39;pushState&#39;);
-history.replaceState &#x3D; _historyWrap(&#39;replaceState&#39;);
+    if (!(base &gt;&#x3D; 2 &amp;&amp; base &lt;&#x3D; 36)) &#123;
+        return &#39;&#39;
+    &#125;
+    while (number &gt; 0) &#123;
+        rem &#x3D; Math.floor(number % base)
+        remStack.push(rem)
+        number &#x3D; Math.floor(number &#x2F; base)
+    &#125;
 
-class Win &#123;
-    constructor (url, config) &#123;
-        config &#x3D; config || &#123;&#125;
-        if (!url) &#123;
-            throw Error(&#39;url is not defined!&#39;)
-        &#125;
-        let name &#x3D; &#39;_&#39;+Date.now() &#x2F;&#x2F; 确保name的唯一性
-        this.win &#x3D; window.open(url, name, parseConfig(config))
-        window.addEventListener(&#39;beforeunload&#39;, ()&#x3D;&gt;&#123;this.win.close()&#125;) &#x2F;&#x2F; 监听window，document 及其资源即将被载。
-        window.addEventListener(&#39;pushState&#39;, ()&#x3D;&gt;&#123;this.win.close()&#125;); &#x2F;&#x2F; history在会话历史堆栈顶部插入一条记录
-        window.addEventListener(&#39;replaceState&#39;, ()&#x3D;&gt;&#123;this.win.close()&#125;); &#x2F;&#x2F; history更新会话历史堆栈顶部记录信息
-        window.addEventListener(&#39;popstate&#39;, ()&#x3D;&gt;&#123;this.win.close()&#125;); &#x2F;&#x2F;history在会话历史堆栈顶部弹出一条记录
-        if (this.win &#x3D;&#x3D;&#x3D; null) &#123;
-            alert(&#39;请将“弹出式窗口和重定向”设置为允许&#39;)
-            throw Error(&#39;新窗口创建失败，窗口被拦截！&#39;)
-        &#125;
-        return this
+    while (!remStack.isEmpty()) &#123;
+        binaryString +&#x3D; digits[remStack.pop()]
     &#125;
-    on(eventName, cb) &#123;
-        if (eventName &#x3D;&#x3D;&#x3D; &#39;load&#39;) &#123;
-            this.win.onload &#x3D; (ev) &#x3D;&gt; &#123;
-                cb(ev, this)
-            &#125;
-        &#125;
-        if (eventName &#x3D;&#x3D;&#x3D; &#39;message&#39;) &#123;
-            let _this &#x3D; this
-            function closeListener() &#123;
-                setTimeout(()&#x3D;&gt;&#123;
-                    _this.win.send &#x3D; function(message)&#123;
-                        cb(message)
-                    &#125;
-                    _this.win.addEventListener(&#39;unload&#39;, closeListener)
-                &#125;)
-            &#125;
-            this.win.addEventListener(&#39;unload&#39;, closeListener)
-        &#125;
-    &#125;
-    close(cb) &#123;
-        cb &amp;&amp; cb()
-        window.name &#x3D; &#39;Win_&#39;+Date.now()
-        this.win.open(&#39;&#39;,window.name)
-        window.name &#x3D; &#39;&#39;
-        this.win.close()
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    
+    return binaryString
+&#125;
+console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="4-知识点链接"><a href="#4-知识点链接" class="headerlink" title="4. 知识点链接"></a>4. 知识点链接</h4><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History">history MDN文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903602641862663#heading-17">history API </a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903634954633224">前端路由实现原理</a></li>
-</ul>
+<p><strong>下一篇文章是关于队列的，队列则和我们生活中的排队是一样的，遵循先进先出，后进后出的原则。这也是和栈最重要的区别</strong></p>
 
             </div>
             <hr/>
@@ -584,7 +687,7 @@ class Win &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2021/05/20/postmessage/">https://dreamitgirl.github.io/2021/05/20/postmessage/</a>
+                    <a href="https://dreamitgirl.github.io/2022/02/28/zhan/">https://dreamitgirl.github.io/2022/02/28/zhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -622,12 +725,12 @@ class Win &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/H5/">
-                                    <span class="chip bg-color">H5</span>
-                                </a>
-                            
                                 <a href="/tags/js/">
                                     <span class="chip bg-color">js</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
@@ -790,9 +893,9 @@ class Win &#123;
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://dreamitgirl.github.io/2021/05/20/postmessage/';
-        this.page.identifier = '/2021/05/20/postmessage/';
-        this.page.title = '关于新开页面的传值问题';
+        this.page.url = 'https://dreamitgirl.github.io/2022/02/28/zhan/';
+        this.page.identifier = '/2022/02/28/zhan/';
+        this.page.title = '栈';
     };
     let disqus_shortname = '';
 
@@ -818,40 +921,43 @@ class Win &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/10/25/vue3-xue-xi-er/">
+                <a href="/2022/02/28/zhan/">
                     <div class="card-image">
                         
-                        <img src="https://i.loli.net/2021/10/23/AG8oT9q1pMCj2Z5.jpg" class="responsive-img" alt="vue3学习二(深入理解响应性基础)">
                         
-                        <span class="card-title">vue3学习二(深入理解响应性基础)</span>
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="栈">
+                        
+                        <span class="card-title">栈</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要讲Vue3.x版本的响应性基础及原理。适合有vue基础和js基础的人学习
+                            欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/vue/" class="post-category">
-                                    vue
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -859,8 +965,8 @@ class Win &#123;
                         <span class="chip bg-color">js</span>
                     </a>
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -874,31 +980,31 @@ class Win &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/09/vue-gao-pin-mian-shi-ti-1/">
+                <a href="/2022/02/24/shu-zu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="2021.03 - 2021.04面试总结">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="数组">
                         
-                        <span class="card-title">2021.03 - 2021.04面试总结</span>
+                        <span class="card-title">数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我
+                            欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我.
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-category">
-                                    前端面试题
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
@@ -908,12 +1014,12 @@ class Win &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
                     </a>
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                        <span class="chip bg-color">前端面试题</span>
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
