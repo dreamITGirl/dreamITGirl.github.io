@@ -206,38 +206,37 @@ clicklove:
 profile:
   avatar: /medias/avatar.jpg
   career: 前端开发工程师
-  introduction: 前端开发经验6年，目前在乐普医疗器械（北京）有限公司做医疗类的项目 
+  introduction: 前端开发经验6年，目前在乐普（北京）医疗器械有限公司做互联网医院类的项目 
 # config my projects informations in about page.
 # If you don't want to display this `My Projects` content, you can deactivate or delete this configuration.
 # 在“关于”页面配置"我的项目"信息，如果你不需要这些信息则可以将其设置为不激活或者将其删除.
 myProjects:
   enable: true
   data:
-    好身体医院管理平台:
+    好身体互联网医院管理平台:
       icon: fas fa-file-alt
       iconBackground: 'linear-gradient(to bottom right, #f5e653 0%, #eeee00)'
-      #url: https://hospital-mis.lepudigital.com
-      desc: 产品简介：该平台是乐普(医疗)器械公司内为医生研发的互联网医院，配合乐普医院好身体APP共同使用。好身体问诊平台是用于医生的，医生通过视频、图文问诊方式为患者看病。
-      myDuty: 1. 参与医生角色的核心业务代码编写  
-              2. 负责前端与后端数据的交互以及复杂数据的处理 
+      url: https://hospital.lepudigital.com
+      desc: 互联网医疗健康对患者、医生、医院、新医改的价值不言而喻，互联网+ 医疗，健康的发展已成大势所趋。在互联网+ 医疗健康快速发展的过程中，顶层生产关系已基本确立，下一步的重点是如何提升互联网+ 医疗健康的生产力水平，乐普拥有业务基础，好身体互联网医院平台提供了数字化能力。实现线下医疗服务与在线健康管理之间无缝整合。传统看病、买药流程繁琐且耗时，效率十分低下。为了改善医疗行业现状，启动了好身体互联网医院平台项目，用互联网思维去整合乐普现有的医疗场景，并扩展更多医疗业务的可能性如慢病管理家庭医生等，让每个人有病可问，有药可买，有器会用，有药会吃，将资源合理化，效率化
+      myDuty: 1. 参与医生角色的诊疗服务中诊断模块的编写 
+              2. 参与前端与后端数据的交互以及复杂数据的处理 
     乐普后台管理系统:
       icon: fas fa-database
       iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
       url: 
-      desc: 产品简介：该平台是乐普(医疗)器械公司内关于购药、问诊、员工和交易等后台管理系统的管理，主要使用者为公司内部运营同学
-      myDuty: 1.负责该项目中问诊系统、基础系统、会员系统及交易管理系统的需求确认及组员工作安排及进度；
+      desc: 产品简介：该平台是乐普(医疗)器械公司内关于会员、药店管理、电商系统、基础系统、问诊系统、交易管理系统等后台管理系统的管理，主要使用对象为公司内部运营同学
+      myDuty: 1. 负责该项目中问诊系统、基础系统、会员系统及交易管理系统的需求确认及组员工作安排及进度；
               2. 负责医院模块、药店及会员优惠券模块的代码编写及联调
-    NETNO平台:
+              3. 和组员共同制定提交规范
+    NETNO平台(自动化网络监控与运维平台):
       icon: fas fa-file-alt
       iconBackground: 'linear-gradient(to bottom right, #66BB6A 0%, #81C784 100%)'
-      url: 
       desc: 产品简介：搜狐公司企业内部关于IDC机房、带宽链路及网络配置的企业管理平台(仅供企业内部人员使用).
-            该项目在原有旧平台的基础上进行了重构，目的是为了给网络运维的同学提供便于管理机房以及带宽链路的管理，
-            以及重要线路的实时监控。项目的主要功能包括了 IDC 机房的管理、骨干拓扑图的绘制及实时监控、IP 的流量查询、割接信息、区域机房链路的实时监控及交换机的管理、角色权限的设置等
-      myDuty: 1.负责前端项目的前端框架选型 
+            网络运营部NET平台全称为网络监控与自动化运维平台，主要提供了 IP管理、IP资源监控、IDC机房管理、带宽使用率查看与监控、流量查询、网络质量监控、交换机以及交换机配置管理、网络设备日志告警等功能。
+      myDuty: 1. 负责前端项目的前端框架选型 
               2. 前端页面的绘制  
-              3.负责前端与后端数据的交互以及复杂数据的处理 
-              4.配合测试同学测试
+              3. 负责前端与后端数据的交互以及复杂数据的处理 
+              4. 配合测试同学测试
     安全运营中心:
         icon: fas fa-database
         iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
@@ -248,12 +247,12 @@ myProjects:
         myDuty: 1. 前端功能的迭代及页面的绘制  
               2.负责前端与后端数据的交互以及复杂数据的处理 
               3.配合测试同学测试
-    拉新裂变H5:
+    问题反馈H5:
         icon: fas fa-file-alt
         iconBackground: 'linear-gradient(to bottom right, #f5ab35 0%, #d35400 100%)'
         url: 
-        desc: 乐普好身体App的H5拉新裂变H5，配合好身体APP的拉新裂变的H5活动页，增加用户粘性及扩展用户
-        myDuty: 1.负责该项目产品的需求确认
+        desc: 乐普好身体App的中的内嵌H5页面，提供了用户售后的功能。
+        myDuty: 1. 负责该项目产品的需求确认
                 2. 负责设计项目中的技术难点
                 3. 负责部署开发环境的项目
     考勤系统:
@@ -280,36 +279,35 @@ mySkills:
     CSS:
       background: 'linear-gradient(to right, #00BCD4 0%, #80DEEA 100%)'
       percent: 90%
+    H5:
+      background: 'linear-gradient(to right, #f5e653 0%, #eeee00 100%)'
+      percent: 90%
     Vue:
       background: 'linear-gradient(to right, #bf55ec 0%, #29f1c3 100%)'
       percent: 75%
+    jQuery/Zepto:
+      background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
+      percent: 70%
     webpack:
-      background: 'linear-gradient(to right, #bf55ec 0%, #29f1c3 100%)'
+      background: 'linear-gradient(to right, #29f1f2 0%, #29f1c3 100%)'
       percent: 75%
     Git&&SVN:
       background: 'linear-gradient(to right, #CDDC39 0%, #F0F4C3 100%)'
       percent: 80%
-    前端设计模式:
-      background: 'linear-gradient(to right, ##4CAF50 0%, #29f1c3 100%)'
-      percent: 50%
     Less/Sass:
       background: 'linear-gradient(to right, #22a7f0 0%, #16a085 100%)'
       percent: 50%
-    jQuery/Zepto:
-      background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
-      percent: 70%
-    NODEJS:
-      background: 'linear-gradient(to right, #19b5fe 0%, #e4f1fe 100%)'
-      percent: 50%
-    前端UI类库:
-      background: 'linear-gradient(to right, #29f1c3 0%, #1e824c 100%)'
-      percent: 70%
-    移动开发:
-      background: 'linear-gradient(to right, #f5e653 0%, #eeee00 100%)'
-      percent: 60%
     数据结构及算法:
       background: 'linear-gradient(to right, #f2784b 0%, #f9b42d 100%)'
-      percent: 30%
+      percent: 50%
+    前端设计模式:
+      background: 'linear-gradient(to right, ##4CAF50 0%, #29f1c3 100%)'
+      percent: 40%
+    # NODEJS:
+    #   background: 'linear-gradient(to right, #19b5fe 0%, #e4f1fe 100%)'
+    #   percent: 50%
+   
+    
     # Python:
     #   background: 'linear-gradient(to right, #bfbfbf 0%, #6c7a89 100%)'
     #   percent: 20%
@@ -648,7 +646,7 @@ jsDelivr:
   
 # 网站背景图
 background:
-  enable: false
+  enable: true
   url: "https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/res/site/medias/background.jpg"
 
 # 说说 https://artitalk.js.org/
