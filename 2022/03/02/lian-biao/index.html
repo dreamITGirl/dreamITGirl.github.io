@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法">
+    <meta name="keywords" content="算法 数据结构">
     <meta name="description" content="前端技术博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>替换空格 | yaru.Li的博客</title>
+    <title>链表 | yaru.Li的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://i.loli.net/2021/10/23/ATlKvnwmgZ1YS78.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">替换空格</h1>
+                    <h1 class="description center-align post-title">链表</h1>
                 </div>
             </div>
         </div>
@@ -450,7 +450,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-18
+                    2022-03-02
                 </div>
                 
 
@@ -464,14 +464,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    249
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    12 分
                 </div>
                 
 
@@ -486,50 +486,430 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h3><p><strong>题目：</strong></p>
-<p>请实现一个函数，把字符串 s 中的每个空格替换成”%20”。</p>
-<p>示例：</p>
+                <p>本篇博客的所有代码都整理到自己的<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/JS-Data-structure">github</a>库中，以便大家查看及学习。</p>
+<p>本篇文章主要内容有：</p>
+<ul>
+<li>链表数据结构</li>
+<li>向链表添加元素</li>
+<li>从链表移除元素</li>
+<li>使用 <code>linkList</code> 类</li>
+<li>双向链表</li>
+<li>循环链表</li>
+<li>排序链表</li>
+<li>通过链表实现栈</li>
+</ul>
+<h4 id="1-链表的数据结构"><a href="#1-链表的数据结构" class="headerlink" title="1. 链表的数据结构"></a>1. 链表的数据结构</h4><p>链表存储有序的元素集合，链表中的元素在内存中并不是连续放置的，每个元素都是有一个存储元素本身的节点和一个指向下一个元素的引用(这个引用也称为指针或链接)组成。</p>
+<p><img src="https://s2.loli.net/2022/03/02/kgw1dGBcnFMEZbA.png" alt="链表.png"></p>
+<p>通过这幅图，我们可以更清晰理解链表的数据结构。也从这个图中可以看到，当添加或者移除元素的时候，不需要移动其他的元素，可以改变指针的指向。需要注意的是，链表的表头(<code>head</code>)指向链表第一个元素。</p>
+<p>现实生活中链表的例子也比较常见，最常见的就是火车。</p>
+<h4 id="2-创建链表"><a href="#2-创建链表" class="headerlink" title="2. 创建链表"></a>2. <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/JS-Data-structure/blob/main/JS/LinkList.js">创建链表</a></h4><p>接下来，我们将会创建一个链表的骨架</p>
+<pre class="line-numbers language-none"><code class="language-none">function defaultEquals(a, b) &#123;
+    return a &#x3D;&#x3D;&#x3D; b;
+&#125;
+
+class LinkList&#123;
+    constructor(equalsFn &#x3D; defaultEquals)&#123;
+        this.count &#x3D; 0
+        this.head &#x3D; undefined
+        this.equalsFn &#x3D; equalsFn
+    &#125;
+&#125;
+
+&#x2F;&#x2F; 创建链表中的节点
+class Node &#123;
+    constructor(element)&#123;
+        this.element &#x3D; element
+        this.next &#x3D; undefined
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>接下来我们会实现以下方法</p>
+<ul>
+<li><code>push(elements)</code> : 向链表尾部添加数据</li>
+<li><code>insert(element,position)</code> : 向链表中特定位置插入数据</li>
+<li><code>getElementAt(index)</code> : 返回指定位置的元素</li>
+<li><code>remove(element)</code> : 从链表中移除某一元素</li>
+<li><code>indexOf(element)</code> : 返回元素在链表中的索引值，如果没有找到，则返回-1</li>
+<li><code>removeAt(position)</code> : 移除链表特定位置的值</li>
+<li><code>isEmpty()</code> : 返回链表是否为空</li>
+<li><code>size()</code> : 返回链表元素的个数</li>
+<li><code>toString()</code>: 返回表示整个链表的字符串，由于链表中使用了Node类，需要重新定义指输出value值的元素方法</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/03/03/mDcywRKqpEV982C.png" alt="xuxieban.png"></p>
 <blockquote>
-<p>输入：s = “We are happy.”<br>输出：”We%20are%20happy.”</p>
+<p>这里需要注意的是： 链表的最后一个节点的下一个元素始终都是<code>undefined</code>或<code>null</code></p>
 </blockquote>
-<p>解法一: 利用了JS中的<code>replace</code>API</p>
-<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function(s) &#123;
-    let result &#x3D; s.replace(&#x2F; &#x2F;ig,&#39;%20&#39;)
-    return result
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.loli.net/2020/11/18/2SwHLAMkQmUyuOR.png" alt="输出结果1"></p>
-<p>解法二：将s字符串切割转换成数组，然后遍历整个数组，判断每一项中trim()方法之后的是否是true</p>
-<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function (s) &#123;
-    let m &#x3D; s.split(&#39;&#39;)
-    for (let i &#x3D; 0; i &lt; m.length; i++) &#123;
-        let item &#x3D; m[i].trim()
-        if (!item) &#123;
-            m[i] &#x3D; &#39;%20&#39;
-        &#125;
+<pre class="line-numbers language-none"><code class="language-none">function defaultEquals(a, b) &#123;
+    return a &#x3D;&#x3D;&#x3D; b;
+&#125;
+
+class LinkList&#123;
+    constructor(equalsFn &#x3D; defaultEquals)&#123;
+        this.count &#x3D; 0
+        this.head &#x3D; undefined
+        this.equalsFn &#x3D; equalsFn
     &#125;
-    m &#x3D; m.join(&#39;&#39;)
-    return m
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.loli.net/2020/11/18/eYAZOToC3cyR8ut.png" alt="输出结果2"></p>
-<p>解法三：利用了JS中的<code>replaceAll</code>API</p>
-<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function (s) &#123;
-    let result &#x3D; s.replaceAll(&#39; &#39;,&#39;%20&#39;)
-    return result
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.loli.net/2020/11/18/NrJmIRwbzXfqgko.png" alt="输出结果3"></p>
-<p>解法四：利用了JS中的<code>charAt</code>API</p>
-<pre class="line-numbers language-none"><code class="language-none">var replaceSpace &#x3D; function (s) &#123;
-    let result &#x3D; &#39;&#39;
-    for (let i &#x3D; 0; i &lt; s.length; i++) &#123;
-        if (s.charAt(i) &#x3D;&#x3D;&#x3D; &#39; &#39;) &#123;
-            result +&#x3D; s[i].concat(&#39;%20&#39;).trim()
+    push(element)&#123;
+        const node &#x3D; new Node(element) &#x2F;&#x2F; 创建一个节点
+        let current
+        if (this.head &#x3D;&#x3D; null) &#123; &#x2F;&#x2F; 判断链表是否为空 ，如果链表为空，则链表表头指针指向新的节点
+            this.head &#x3D; node
+        &#125; else &#123; &#x2F;&#x2F; 否则，通过遍历的方式将
+            current  &#x3D; this.head
+            while (current.next !&#x3D; null) &#123;
+                current &#x3D; current.next
+            &#125;
+            current.next &#x3D; node
+        &#125;
+        this.count++
+    &#125;
+    insert(element,position)&#123;
+        const node &#x3D; new Node(element)
+        &#x2F;&#x2F; 向链表尾部插入值
+        if (position &#x3D;&#x3D; this.count) &#123;
+            this.push(element)
         &#125; else &#123;
-            result +&#x3D; s[i]
+            &#x2F;&#x2F; 向链表头部插入值
+            if (position &#x3D;&#x3D; 0) &#123;
+                const current &#x3D; this.head
+                this.head &#x3D; node
+                this.head.next &#x3D; current
+                this.count++
+            &#125;
+            &#x2F;&#x2F; 向链表中间插入值
+            if (position &gt; 0 &amp;&amp; position &lt; this.count) &#123;
+                let prev 
+                let current &#x3D; this.head
+                for (let i &#x3D; 0; i &lt; position; i++) &#123;
+                    prev &#x3D; current
+                    current &#x3D; current.next
+                &#125;
+                prev.next &#x3D; node
+                node.next &#x3D; current
+                this.count++
+            &#125;
         &#125;
     &#125;
-    return result
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.loli.net/2020/11/19/IVMrUiCW5cSXfAq.png" alt="输出结果4"></p>
+    getElementAt(index)&#123;
+        if (index &lt;&#x3D; this.size() &amp;&amp; index &gt;&#x3D; 0) &#123;
+           let current &#x3D; this.head
+           for (let i &#x3D; 0; i &lt; index &amp;&amp; current.next !&#x3D; null; i++) &#123;
+              current &#x3D; current.next
+           &#125;
+           return current.element
+        &#125;
+        return undefined 
+    &#125;
+    remove(element)&#123;
+       const index &#x3D; this.indexOf(element)
+       this.removeAt(index)
+    &#125;
+    removeAt(index)&#123;
+        &#x2F;&#x2F; 检查越界值
+        if (index &gt;&#x3D; 0 &amp;&amp; index &lt; this.count) &#123; &#x2F;&#x2F; 合法值
+            let current &#x3D; this.head
+            if (index &#x3D;&#x3D; 0) &#123;
+                this.head &#x3D; current.next
+            &#125; else &#123;
+                let prev  &#x2F;&#x2F; 定义一个值 将下一项值的next
+                for (let i &#x3D; 0; i &lt; index; i++) &#123;
+                    prev &#x3D; current
+                    current &#x3D; current.next
+                &#125;
+                prev.next &#x3D; current.next
+            &#125;
+            this.count --
+            return current.element
+        &#125;
+        return undefined
+    &#125;
+    indexOf(element)&#123;
+        let current &#x3D; this.head
+        for (let i &#x3D; 0; i &lt; this.size() &amp;&amp; current !&#x3D; null; i++) &#123;
+            if (this.equalsFn(element,current.element)) &#123;
+              return i  
+            &#125;
+            current &#x3D; current.next
+        &#125;
+        return -1
+
+    &#125;
+    size()&#123;
+        return this.count
+    &#125;
+    toString()&#123;
+        let resultString &#x3D; &#39;&#39;
+        let current &#x3D; this.head
+        if (this.head !&#x3D; null) &#123;
+            resultString &#x3D; current.element
+            while (current.next !&#x3D; null) &#123; 
+                resultString &#x3D; &#96;$&#123;resultString&#125;,$&#123;current.next.element&#125;&#96; 
+                current &#x3D; current.next
+            &#125;
+        &#125;
+        return resultString
+    &#125;
+    isEmpty()&#123;
+        return this.size() &#x3D;&#x3D;&#x3D; 0
+    &#125;
+&#125;
+
+&#x2F;&#x2F; 创建链表中的节点
+class Node &#123;
+    constructor(element)&#123;
+        this.element &#x3D; element
+        this.next &#x3D; undefined
+    &#125;
+&#125;
+
+var linkList &#x3D; new LinkList()
+
+linkList.push(1)
+
+linkList.push(2)
+
+linkList.push(3)
+
+linkList.push(4)
+
+&#x2F;** 
+LinkList &#123;
+    count: 4,
+    head: Node &#123; element: 1, next: Node &#123; element: 2, next: [Node] &#125; &#125;,
+    equalsFn: [Function: defaultEquals]
+&#125; 
+**&#x2F;
+
+console.log(linkList.toString()) &#x2F;&#x2F; 1,2,3,4
+
+console.log(linkList.indexOf(2))  &#x2F;&#x2F; 1
+
+console.log(linkList.indexOf(5)) &#x2F;&#x2F; -1
+
+linkList.remove(2)
+
+console.log(linkList.toString()) &#x2F;&#x2F; 1,3,4
+
+console.log(linkList.size()) &#x2F;&#x2F; 3
+
+linkList.insert(2,0) 
+
+console.log(linkList)
+
+console.log(linkList.toString())  &#x2F;&#x2F; 2,1,3,4
+
+linkList.insert(5,2)
+
+console.log(linkList.toString()) &#x2F;&#x2F; 2,1,5,3,4
+
+linkList.insert(6,5)
+
+console.log(linkList.toString()) &#x2F;&#x2F; 2,1,5,3,4,6
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>这里的重点是理解代码中的添加和移除元素</strong></p>
+<h4 id="3-双向链表"><a href="#3-双向链表" class="headerlink" title="3. 双向链表"></a>3. <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/JS-Data-structure/blob/main/JS/DoubleLinkList.js">双向链表</a></h4><p>双向链表和普通链表的区别在于在链表中一个节点只有链向下一个节点的链接，而<strong>双向链表中，链接是双向的，一个链接指向下一个节点的链接，一个链接指向上一个节点的链接</strong>。如下图所示</p>
+<p><img src="https://s2.loli.net/2022/03/03/tW4f8MSCo9hUmZX.jpg" alt="双向链表.jpg"></p>
+<p>我们这次在链表的基础上扩展一下双向链表的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">class DoubleLinkList extends LinkList &#123;
+    constructor(equalsFn &#x3D; defaultEquals)&#123;
+        super(equalsFn)
+        this.tail &#x3D; undefined
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里的defaultEquals方法在创建链表时有定义</p>
+<p>双向链表中的DoublyNode也是在链表中Node的基础上继承扩展的</p>
+<pre class="line-numbers language-none"><code class="language-none">class DoublyNode &#123;
+    constructor(element)&#123;
+        super(element,next)
+        this.prev &#x3D; undefined
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-双向链表的方法"><a href="#4-双向链表的方法" class="headerlink" title="4.双向链表的方法"></a>4.双向链表的方法</h4><p>创建的双向链表的类中的注释方法可以理解为上述方法的第二种方法。双向链表中重点掌握在任意位置插入和移除元素就可以了。</p>
+<pre class="line-numbers language-none"><code class="language-none">class DoubleLinkList extends LinkList &#123;
+    constructor(equalsFn &#x3D; defaultEquals)&#123;
+        super(equalsFn)
+        this.tail &#x3D; undefined
+    &#125;
+    push(element)&#123;
+        const node &#x3D; new DoublyNode(element)
+        if (this.head &#x3D;&#x3D; null) &#123;
+            this.head &#x3D; node
+            this.tail &#x3D; node
+        &#125; else &#123;
+            node.prev &#x3D; this.tail
+            this.tail.next &#x3D; node
+            this.tail &#x3D; node
+        &#125;
+    &#125;
+    insert(element,index)&#123;
+        if (index &#x3D;&#x3D; this.count) &#123; &#x2F;&#x2F; 在链表尾部追加
+            this.push(element)
+        &#125; else &#123;
+            const node &#x3D; new DoublyNode(element)
+            &#x2F;&#x2F; 在链表头部追加
+            if (index &#x3D;&#x3D; 0) &#123;
+                if (this.head &#x3D;&#x3D; null) &#123; &#x2F;&#x2F; 链表为空
+                    this.head &#x3D; node
+                    this.tail &#x3D; node
+                &#125; else &#123;
+                    const firstNode &#x3D; this.head
+                    this.head &#x3D; node
+                    firstNode.prev &#x3D; node
+                    node.next &#x3D; firstNode 
+                &#125;
+            &#125;
+            &#x2F;&#x2F; 在链表中间插入值,
+            const prevItem &#x3D; this.getElementAt(index -1) &#x2F;&#x2F; 拿到的前一项
+            let current &#x3D; prevItem.next
+            prevItem.next &#x3D; node
+            node.next &#x3D; current
+            node.prev &#x3D; prevItem
+            current.prev &#x3D; node
+
+            this.count++
+            return true
+            &#x2F;&#x2F; let current &#x3D; this.head
+            &#x2F;&#x2F; let prev
+            &#x2F;&#x2F; for (let i &#x3D; 0; i &lt; index &amp;&amp; index &lt; this.count; i++) &#123;
+            &#x2F;&#x2F;    prev &#x3D; current
+            &#x2F;&#x2F;    current &#x3D; current.next
+            &#x2F;&#x2F; &#125;
+            &#x2F;&#x2F; prev.next &#x3D; node
+            &#x2F;&#x2F; node.next &#x3D; current
+        &#125;
+        return false
+    &#125;
+    indexOf(element)&#123;
+        if (this.head &#x3D;&#x3D; null) &#123;
+            return -1
+        &#125;
+        let current &#x3D; this.head
+        let index &#x3D; 0
+        while (current.next !&#x3D; null) &#123;
+            if (this.equalsFn(current.element , element)) &#123;
+               return index
+            &#125;
+            index ++
+            current &#x3D; current.next
+        &#125;
+    &#125;
+    &#x2F;&#x2F; getElementAt(index)&#123; &#x2F;&#x2F;查找所在位置的元素,和链表中的方法一样
+    &#x2F;&#x2F;     if (this.head &#x3D;&#x3D; null) &#123;
+    &#x2F;&#x2F;         return undefined
+    &#x2F;&#x2F;     &#125;
+    &#x2F;&#x2F;     let current &#x3D; this.head
+    &#x2F;&#x2F;     let prev
+    &#x2F;&#x2F;     for (let i &#x3D; 0; i &lt; index; i++) &#123;
+    &#x2F;&#x2F;         current &#x3D; current.next
+    &#x2F;&#x2F;     &#125;
+    &#x2F;&#x2F;     return current
+    &#x2F;&#x2F; &#125;
+    removeAt(index)&#123; &#x2F;&#x2F; 从任意位置移除元素
+        if (index &gt;&#x3D; 0 &amp;&amp; index &lt; this.count) &#123;
+            let current 
+            if (index &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; 移除双向链表头部的元素
+                current &#x3D; this.head
+                this.head &#x3D; current.next
+            &#125; else if (index &#x3D;&#x3D; this.count - 1) &#123; &#x2F;&#x2F; 移除双向链表尾部的元素
+                current &#x3D; this.tail
+                this.tail &#x3D; current.prev
+                this.tail.next &#x3D; undefined
+            &#125; else &#123; &#x2F;&#x2F; 移除链表中间的元素,可用getElementAt()的方法
+                let current &#x3D; this.getElementAt(index )
+                let prevItem &#x3D; current.prev
+                prevItem.next &#x3D; current.next
+                current.next.prev &#x3D; prevItem
+                &#x2F;&#x2F; let prev
+                &#x2F;&#x2F; for (let i &#x3D; 0; i &lt; index ; i++) &#123;
+                &#x2F;&#x2F;     prev &#x3D; current
+                &#x2F;&#x2F;     current &#x3D; current.next
+                &#x2F;&#x2F; &#125;
+                &#x2F;&#x2F; prev.next &#x3D; current.next
+                &#x2F;&#x2F; current.next.prev &#x3D; prev
+            &#125;
+            this.count --
+            return current.element
+        &#125;
+        return undefined
+    &#125;
+    getHead()&#123;
+        return this.head
+    &#125;
+    getTail()&#123;
+        return this.tail
+    &#125;
+    clear()&#123;
+        super.clear()
+        this.tail &#x3D; undefined
+    &#125;
+    toString()&#123;&#125;
+    inverseToString()&#123;&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-循环链表"><a href="#5-循环链表" class="headerlink" title="5. 循环链表"></a>5. 循环链表</h4><p>循环链表和链表唯一的区别就在于 最后一个元素指向下一个元素的指针，最后一个元素的<code>tail.next</code>指向的是第一个元素(head)，如下图所示，看图理解会更容易一些</p>
+<p><img src="https://s2.loli.net/2022/03/04/I5QuPAjlRFGm9gY.jpg" alt="循环链表.jpg"></p>
+<p>接下来我们创建一个循环链表的类<code>circleLinkList</code>,<code>circleLinkList</code>类仍是继承基础链表的某些方法</p>
+<pre class="line-numbers language-none"><code class="language-none">import LinkList from &#39;.&#x2F;Linklist&#39;
+import DoublyNode from &#39;.&#x2F;DoublyNode&#39;
+import &#123; defaultEquals &#125; from &#39;..&#x2F;utils&#x2F;index&#39;
+class CircleLinkList extends LinkList&#123;
+    constructor(equals &#x3D; defaultEquals)&#123;
+        super(equals)
+    &#125;
+    push(element)&#123;
+        const node &#x3D; new DoublyNode(element)
+        if (this.head &#x3D;&#x3D; null) &#123;
+            this.head &#x3D; node
+        &#125; else &#123;
+            let current &#x3D; this.getElementAt(this.size() - 1)
+            current.next &#x3D; node
+            this.tail &#x3D; node
+            node.next &#x3D; this.head
+        &#125;
+    &#125;
+    insert(element,index)&#123;
+       const node &#x3D; new DoublyNode(element)
+       if (index &gt; 0 &amp;&amp; index &lt;&#x3D; this.count) &#123;
+            if (this.head &#x3D;&#x3D; null) &#123;
+                this.head &#x3D; node 
+                node.prev &#x3D; this.head
+            &#125; else &#123;
+                if (index &#x3D;&#x3D; this.count) &#123; &#x2F;&#x2F; 最后一个元素
+                    let lastItem &#x3D; this.getElementAt(this.count - 1)
+                   lastItem.next &#x3D; node
+                   node.prev &#x3D; this.head
+                   node.next &#x3D; undefined
+                &#125; else &#123;
+                    &#x2F;&#x2F; 插入到链表中间位置
+                    let prevItem &#x3D; this.getElementAt(index - 1)
+                    let current &#x3D; prevItem.next
+                    prevItem.next &#x3D; node
+                    node.prev &#x3D; prevItem
+                    node.next &#x3D; current
+                &#125;
+            &#125;
+            this.count ++ 
+            return true
+       &#125;
+       return false
+         
+    &#125;
+    removeAt(index)&#123;
+        if (this.head &#x3D; null) &#123;
+            return undefined
+        &#125;
+        let prevItem &#x3D; this.getElementAt(index -1) &#x2F;&#x2F; 前一个元素
+        const result &#x3D; prevItem.next
+        prevItem.next &#x3D; result.next
+        result.prev &#x3D; prevItem
+        return result
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="6-有序链表"><a href="#6-有序链表" class="headerlink" title="6. 有序链表"></a>6. 有序链表</h4><p>有序链表是值保持元素有序的链表结构，除了使用排序的算法外，还可以将元素插入到正确的位置确保链表的有序性</p>
+<p>这里不再创建有序链表类了，有需要的可以自己尝试创建一下。</p>
+<h4 id="7-通过链表表示栈"><a href="#7-通过链表表示栈" class="headerlink" title="7. 通过链表表示栈"></a>7. 通过链表表示栈</h4><p>用双向链表更容易表示栈的数据结构，双向数据链表可以直接获取头尾元素，减少过程的消耗，他的时间复杂度和原始的Stack类实现相同，为O(1)</p>
 
             </div>
             <hr/>
@@ -555,7 +935,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2020/11/18/ti-huan-kong-ge/">https://dreamitgirl.github.io/2020/11/18/ti-huan-kong-ge/</a>
+                    <a href="https://dreamitgirl.github.io/2022/03/02/lian-biao/">https://dreamitgirl.github.io/2022/03/02/lian-biao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -761,9 +1141,9 @@
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://dreamitgirl.github.io/2020/11/18/ti-huan-kong-ge/';
-        this.page.identifier = '/2020/11/18/ti-huan-kong-ge/';
-        this.page.title = '替换空格';
+        this.page.url = 'https://dreamitgirl.github.io/2022/03/02/lian-biao/';
+        this.page.identifier = '/2022/03/02/lian-biao/';
+        this.page.title = '链表';
     };
     let disqus_shortname = '';
 
@@ -789,17 +1169,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/25/xxs-gong-ji/">
+                <a href="/2022/03/02/lian-biao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="XXS攻击">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="链表">
                         
-                        <span class="card-title">XXS攻击</span>
+                        <span class="card-title">链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -809,26 +1190,31 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
-                                    网络安全
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">网络安全</span>
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -842,12 +1228,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/18/shu-zu-zhong-chong-fu-de-shu-zi/">
+                <a href="/2022/02/28/dui-lie-he-shuang-duan-dui-lie/">
                     <div class="card-image">
                         
-                        <img src="https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg" class="responsive-img" alt="数组中重复的数字">
                         
-                        <span class="card-title">数组中重复的数字</span>
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="队列和双端队列">
+                        
+                        <span class="card-title">队列和双端队列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -858,7 +1245,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
                             </span>
                         <span class="publish-author">
                             
