@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>栈 | yaru.Li的博客</title>
+    <title>集合 | yaru.Li的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">栈</h1>
+                    <h1 class="description center-align post-title">集合</h1>
                 </div>
             </div>
         </div>
@@ -450,7 +450,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-28
+                    2022-03-08
                 </div>
                 
 
@@ -464,14 +464,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    673
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    2 分
                 </div>
                 
 
@@ -486,192 +486,94 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>通过数组的学习，我们复习了数组的一些API，这些在JS中是很基础的。我会从这一节开始，将一些函数整理到自己的<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/JS-Data-structure">github</a>库中，以便大家查看及学习。</p>
-<p>本次内容主要包括</p>
+                <p>本篇博客的所有代码都整理到自己的<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/JS-Data-structure">github</a>库中，以便大家查看及学习。</p>
+<p>这篇文章主要介绍了集合，会从以下几个方面展开学习</p>
 <ul>
-<li>栈数据结构</li>
-<li>向栈中增加元素</li>
-<li>删除栈中的元素</li>
-<li>如何使用Stack类</li>
-<li>十进制转二进制</li>
+<li>构建数据集合</li>
+<li>创建集合类</li>
+<li>集合运算</li>
+<li>Set类</li>
+<li>多重集或袋</li>
 </ul>
-<h4 id="1-栈数据结构"><a href="#1-栈数据结构" class="headerlink" title="1. 栈数据结构"></a>1. 栈数据结构</h4><p>栈是一种遵循后进先出(LIFO = last in first out)原则,是一种用来表示元素的集合，主要操作有两种，<code>push</code> 和 <code>pop</code></p>
-<p><code>push</code> 是向栈的顶部(尾部)中增加一个元素<br><code>pop</code> 是移除栈中最顶端(尾部)的元素 </p>
-<p><img src="https://camo.githubusercontent.com/7163784baed9e988949a1dfbf1e749eac91ea38cd1f738ec5094469f22242675/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f622f62342f4c69666f5f737461636b2e706e67" alt="如图所示"></p>
-<h4 id="2-创建一个基于数组的栈"><a href="#2-创建一个基于数组的栈" class="headerlink" title="2. 创建一个基于数组的栈"></a>2. 创建一个基于数组的栈</h4><p>根据栈遵循的LIFO的原则，我们需要对元素的插入和删除功能做一些限制，我们要为栈声明以下几种方法</p>
-<ul>
-<li><code>push(elements)</code>：向栈顶添加一个或几个元素到栈顶</li>
-<li><code>pop()</code> ： 移除栈顶的元素，返回值为移除的元素</li>
-<li><code>peek()</code> : 返回栈顶的元素，不对它做任何处理（只是返回这一值）</li>
-<li><code>isEmpty()</code>: 判断栈是否为空</li>
-<li><code>clear()</code> : 清空栈中的元素</li>
-<li><code>size()</code> : 返回栈中元素的个数，类似于数组的<code>length</code></li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">class Stack &#123;
+<h4 id="1-构建数据集合"><a href="#1-构建数据集合" class="headerlink" title="1. 构建数据集合"></a>1. 构建数据集合</h4><p>集合时一组无序且唯一(即不能重复)的项组成。使用了数学概念中的有序集合，应用到计算机科学的数据结构中。</p>
+<h4 id="2-创建集合类"><a href="#2-创建集合类" class="headerlink" title="2. 创建集合类"></a>2. 创建集合类</h4><p>ECMA2015中介绍了<code>Set</code>类是JS API的一部分，我们会继承ECMA2015中的<code>Set</code>类实现自己的<code>Set</code>类<br>首先声明<code>Set</code>类及构造函数</p>
+<pre class="line-numbers language-none"><code class="language-none">class Set&#123;
     constructor()&#123;
-        this.items &#x3D; [] &#x2F;&#x2F; 我们可以用数组来保存栈中的数据
+        this.items &#x3D; &#123;&#125;
     &#125;
-    push(elem)&#123;
-        this.items.push(elem) &#x2F;&#x2F; 通过上面的图，我们可以使用数组中的push方法将元素推到栈顶
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接下来我们需要注意的是我们使用对象而不是数组来表示集合(<code>items</code>)；接下来需要声明一些集合可用的方法。</p>
+<ul>
+<li><code>add(element)</code>：向集合中添加一个新的元素</li>
+<li><code>delete(element)</code> ：从集合中移除一个元素</li>
+<li><code>has(element)</code> ：判断几个钟是否含有该元素</li>
+<li><code>clear()</code> ： 移除集合中所有元素</li>
+<li><code>size()</code> ： 返回集合所包含的元素数量</li>
+<li><code>values()</code> ：返回一个包含集合中所有值（元素）的数据</li>
+</ul>
+<p>接下来我们先实现<code>has(element)</code>,因为该方法在好几个方法中都会被引用</p>
+<pre class="line-numbers language-none"><code class="language-none">class Set&#123;
+    constructor()&#123;
+        this.items &#x3D; &#123;&#125;
     &#125;
-    pop()&#123;
-       return this.items.pop()
+    has(element)&#123;
+        return Object.prototype.hasOwnProperty.call(this.items,element)
     &#125;
-    peek()&#123;
-      return this.items[this.items.length - 1]  
+    add(element)&#123;
+        if (this.has(element)) &#123;
+            return false
+        &#125;
+        this.items[element] &#x3D; element
+        return true
     &#125;
-    isEmpty()&#123;
-        return this.items.length &#x3D;&#x3D;&#x3D; 0
+    delete(element)&#123;
+        if (this.has(element)) &#123;
+            const result &#x3D;  this.items[element]
+            delete this.items[element]
+            return result
+        &#125;
+        return undefined
     &#125;
     clear()&#123;
-        this.items &#x3D; []
+        this.items &#x3D; &#123;&#125;
     &#125;
     size()&#123;
-        return this.items.length 
+        return Object.keys(this.items).length
     &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>接下来我们使用一下我们封装的<code>Stack</code>类</p>
-<pre class="line-numbers language-none"><code class="language-none">var stack &#x3D; new Stack()
-console.log(stack.isEmpty()) &#x2F;&#x2F; true
-stack.push(9)
-stack.push(8)
-console.log(stack.size()) &#x2F;&#x2F; 2
-console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8 ] &#125;
-stack.push(7)
-stack.push(6)
-console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8, 7, 6] &#125;
-
-console.log(stack.peek()) &#x2F;&#x2F; 6
-
-console.log(stack.pop()) &#x2F;&#x2F; 6
-
-console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8, 7 ] &#125;
-
-stack.clear()
-console.log(stack) &#x2F;&#x2F; Stack &#123; items: [] &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="3-如何使用Stack类"><a href="#3-如何使用Stack类" class="headerlink" title="3. 如何使用Stack类"></a>3. 如何使用Stack类</h4><p>在我们使用数组中的方法是，大部分的API的时间复杂度是O(n)</p>
-<p>上述的代码中我们只是在栈顶去推入一个元素。我们现在需要改进一下我们的例子,在<code>Stack</code>的构造函数中增加<code>count</code>的属性，这样可以在栈的任何位置插入元素,下面的代码只拿出来修改的部分</p>
-<pre class="line-numbers language-none"><code class="language-none">constructor()&#123;
-    this.items &#x3D; [] &#x2F;&#x2F; 我们可以用数组来保存栈中的数据
-    this.count &#x3D; 0
-&#125;
-push(elem)&#123;
-   &#x2F;&#x2F; this.items.push(elem) &#x2F;&#x2F; 通过上面的图，我们可以使用数组中的push方法将元素推到栈顶
-   this.items[this.count] &#x3D; elem
-   this.count ++
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们测试之后</p>
-<pre class="line-numbers language-none"><code class="language-none">var stack &#x3D; new Stack()
-console.log(stack) &#x2F;&#x2F; Stack &#123; items: [], count: 0 &#125;
-stack.push(9)
-stack.push(8)
-console.log(stack) &#x2F;&#x2F; Stack &#123; items: [ 9, 8 ], count: 2 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>同样的思路，我们将其他方法也修改一下，升级后的<code>Stack</code>类如下</p>
-<pre class="line-numbers language-none"><code class="language-none">class Stack &#123;
-    constructor()&#123;
-        this.items &#x3D; [] &#x2F;&#x2F; 我们可以用数组来保存栈中的数据
-        this.count &#x3D; 0
-    &#125;
-    push(elem)&#123;
-        this.items[this.count] &#x3D; elem
-        this.count++
-        &#x2F;&#x2F; this.items.push(elem)
-    &#125;
-    pop()&#123;
-        if (this.isEmpty()) &#123;
-            return undefined 
+    values()&#123;
+        let result &#x3D; []
+        if (this.size() &gt; 0) &#123;
+            for (const key in this.items) &#123;
+                result.push(this.items[key])
+            &#125;
         &#125;
-        const item &#x3D; this.items[this.count-1]
-        this.count--
-        return item
-    &#x2F;&#x2F;    return this.items.pop()
+       return result
     &#125;
-    peek()&#123;
-        if (this.isEmpty()) &#123;
-           return undefined 
-        &#125;
-        return this.items[this.count - 1]  
-    &#125;
-    isEmpty()&#123;
-        return this.count &#x3D;&#x3D;&#x3D; 0
-    &#125;
-    clear()&#123;
-        this.items &#x3D; []
-        this.count &#x3D; 0
-    &#125;
-    size()&#123;
-        return this.count
-    &#125;
-    
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>接下来，我们在<code>Stack</code>类中增加一个<code>toString()</code>的方法，将数组结构转化为字符串</p>
-<pre class="line-numbers language-none"><code class="language-none">toString()&#123;
-    if (this.isEmpty()) &#123;
-        return &#39;&#39;
-    &#125;
-    let objString &#x3D; &#96;$&#123;this.items[0]&#125;&#96;
-    for (let i &#x3D; 1; i &lt; this.items.length; i++) &#123;
-        objString &#x3D; &#96;$&#123;objString&#125;,$&#123;this.items[i]&#125;&#96;
-    &#125;
-    return objString
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">var stack &#x3D; new Stack()
-stack.push(9)
-stack.push(8)
-stack.push(7)
-stack.push(6)
-console.log(stack.toString()) &#x2F;&#x2F; 9,8,7,6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="4-用栈解决问题"><a href="#4-用栈解决问题" class="headerlink" title="4. 用栈解决问题"></a>4. 用栈解决问题</h4><p>我们在回溯算法问题中，栈可以用来存储访问过的任务或者路径、撤销操作。又或者在前端访问页面时的历史记录就是一个栈，我们这里介绍的是十进制转化为二进制，以及任意进制转换的算法</p>
-<p><img src="https://s2.loli.net/2022/02/28/6lvSIfqXbxD1Pen.png" alt="进制转换.png"></p>
-<p>通过上述的图我们可以看到十进制转化为二进制的过程</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;  进制转换函数
-function decimalToBinary(decNumber) &#123;
-    const remStack &#x3D; new Stack()
-    let number &#x3D; decNumber
-    let rem;
-    let binaryString &#x3D; &#39;&#39;
-    while (number &gt; 0) &#123;
-        rem &#x3D; Math.floor(number % 2)
-        remStack.push(rem)
-        number &#x3D; Math.floor(number &#x2F; 2)
-    &#125;
-    console.log(remStack,&#39;remStack&#39;,remStack.isEmpty())
-    while (!remStack.isEmpty()) &#123;
-        binaryString +&#x3D; remStack.pop().toString()
-    &#125;
-    return binaryString
 &#125;
 
-console.log(decimalToBinary(10)) &#x2F;&#x2F; 1010<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>接下来我们可以对这个函数进行改造一下，让它可以实现任意进制转换</p>
-<pre class="line-numbers language-none"><code class="language-none">function baseConvert(decNumber,base) &#123;
-    const remStack &#x3D; new Stack()
-    const digits &#x3D; &#39;0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ&#39;
-    let number &#x3D; decNumber
-    let rem ;
-    let binaryString &#x3D; &#39;&#39;
 
-    if (!(base &gt;&#x3D; 2 &amp;&amp; base &lt;&#x3D; 36)) &#123;
-        return &#39;&#39;
-    &#125;
-    while (number &gt; 0) &#123;
-        rem &#x3D; Math.floor(number % base)
-        remStack.push(rem)
-        number &#x3D; Math.floor(number &#x2F; base)
-    &#125;
+var set &#x3D; new Set()
+set.add(1)
+set.add(2)
+set.add(3)
+set.add(4)
+console.log(set) &#x2F;&#x2F; Set &#123; items: &#123; &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4 &#125; &#125;
+set.delete(3)
+console.log(set) &#x2F;&#x2F; Set &#123; items: &#123; &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;4&#39;: 4 &#125; &#125;
+console.log(set.size()) &#x2F;&#x2F; 3
+console.log(set.values()) &#x2F;&#x2F; [1,2,4]
+console.log(set) &#x2F;&#x2F; Set &#123; items: &#123;&#125; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-    while (!remStack.isEmpty()) &#123;
-        binaryString +&#x3D; digits[remStack.pop()]
-    &#125;
-    
-    return binaryString
-&#125;
-console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>下一篇文章是关于队列的，队列则和我们生活中的排队是一样的，遵循先进先出，后进后出的原则。这也是和栈最重要的区别</strong></p>
+<h4 id="3-集合运算"><a href="#3-集合运算" class="headerlink" title="3. 集合运算"></a>3. 集合运算</h4><ul>
+<li>并集：对于给定的两个集合，返回一个包含两个集合中所有元素的新集合</li>
+<li>交集：对于给定的两个集合，返回一个两个集合中的共有元素的新集合</li>
+<li>差集：对于给定的两个集合，返回一个包含所有存在于第一个集合且不存在于第二个集合的元素的新集合</li>
+<li>子集：验证一个给定集合是否为另一个集合的子集</li>
+</ul>
+<ol>
+<li><em>并集</em></li>
+</ol>
 
             </div>
             <hr/>
@@ -697,7 +599,7 @@ console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="tr
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2022/02/28/zhan/">https://dreamitgirl.github.io/2022/02/28/zhan/</a>
+                    <a href="https://dreamitgirl.github.io/2022/03/08/ji-he/">https://dreamitgirl.github.io/2022/03/08/ji-he/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -903,9 +805,9 @@ console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="tr
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://dreamitgirl.github.io/2022/02/28/zhan/';
-        this.page.identifier = '/2022/02/28/zhan/';
-        this.page.title = '栈';
+        this.page.url = 'https://dreamitgirl.github.io/2022/03/08/ji-he/';
+        this.page.identifier = '/2022/03/08/ji-he/';
+        this.page.title = '集合';
     };
     let disqus_shortname = '';
 
@@ -935,13 +837,13 @@ console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="tr
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/02/28/dui-lie-he-shuang-duan-dui-lie/">
+                <a href="/2022/03/21/h5-tiao-zhuan-wen-ti-ji-lu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="队列和双端队列">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="H5跳转问题记录">
                         
-                        <span class="card-title">队列和双端队列</span>
+                        <span class="card-title">H5跳转问题记录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -952,14 +854,14 @@ console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="tr
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-21
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/H5/" class="post-category">
+                                    H5
                                 </a>
                             
                             
@@ -973,10 +875,6 @@ console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="tr
                         <span class="chip bg-color">js</span>
                     </a>
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -988,13 +886,13 @@ console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="tr
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/24/shu-zu/">
+                <a href="/2022/03/02/lian-biao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="数组">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="链表">
                         
-                        <span class="card-title">数组</span>
+                        <span class="card-title">链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1005,7 +903,7 @@ console.log(baseConvert(100345,3)) &#x2F;&#x2F; 12002122111<span aria-hidden="tr
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-02
                             </span>
                         <span class="publish-author">
                             
