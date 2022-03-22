@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="proxy的应用场景, yaru.Li的博客">
+    <meta name="keywords" content="H5问题记录">
     <meta name="description" content="前端技术博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>proxy的应用场景 | yaru.Li的博客</title>
+    <title>H5和安卓转义问题 | yaru.Li的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://i.loli.net/2021/10/23/ATlKvnwmgZ1YS78.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">proxy的应用场景</h1>
+                    <h1 class="description center-align post-title">H5和安卓转义问题</h1>
                 </div>
             </div>
         </div>
@@ -425,14 +425,6 @@
                                 <span class="chip bg-color">js</span>
                             </a>
                         
-                            <a href="/tags/ES6/">
-                                <span class="chip bg-color">ES6</span>
-                            </a>
-                        
-                            <a href="/tags/vue/">
-                                <span class="chip bg-color">vue</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -441,8 +433,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/ES6%E7%B3%BB%E5%88%97/" class="post-category">
-                                ES6系列
+                            <a href="/categories/H5/" class="post-category">
+                                H5
                             </a>
                         
                     </div>
@@ -454,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-17
+                    2022-03-22
                 </div>
                 
 
@@ -468,14 +460,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    392
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    1 分
                 </div>
                 
 
@@ -490,149 +482,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>欢迎大家访问我的博客<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl">dreamITGirl</a>，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在 <a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/dreamITGirl.github.io/issues">GitHub</a>问我.</p>
-<p><strong>写在前面</strong><br>随着Vue3越来越被大家学习，关于Proxy的使用也是不断收到关注。<code>Proxy</code>和<code>Object.defineProperty</code>的对比也备受关注。这篇文章适合有vue开发经验的同学阅读。</p>
-<h4 id="回顾Object-defineProperty"><a href="#回顾Object-defineProperty" class="headerlink" title="回顾Object.defineProperty"></a>回顾<code>Object.defineProperty</code></h4><p>在vue2.x版本中，是通过<code>Object.defineProperty</code>进行双向数据绑定的，接下来看一下<code>Object.defineProperty</code>是如何进行双向绑定的。接下来简单实现一下。</p>
-<pre class="line-numbers language-none"><code class="language-none">function observe(obj) &#123;
-    if (typeof obj &#x3D;&#x3D;&#x3D; &#39;object&#39; ) &#123;
-        for (const key in obj) &#123;
-            defineReactive(obj,key,obj[key])
-        &#125;
-    &#125;
-&#125;
-function defineReactive(obj,key,value) &#123; 
-    &#x2F;&#x2F; 针对value是对象，进行递归
-    observe(value)
-    Object.defineProperty(obj,key,&#123;
-        get:function () &#123;
-            console.log(&#96;获取$&#123;key&#125;:value是$&#123;value&#125;&#96;)
-            return value
-        &#125;,
-        set:function (v) &#123;
-            observe(v)
-            console.log(&#96;$&#123;key&#125;数据改变了&#96;)
-            value &#x3D; v
-        &#125;
-    &#125;)
-&#125;
+                <h4 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h4><h5 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h5><p>嵌入到APP中的H5页面在获取原生APP拿到的二维码串时出现了个别字符转义的问题，但是在IOS手机上并没有出现此问题。</p>
+<h5 id="2-问题解决"><a href="#2-问题解决" class="headerlink" title="2. 问题解决"></a>2. 问题解决</h5><p>了解到安卓手机传给H5的JSON串在底层做了转义，如果传给H5的JSON串不做转义的话，在传值的时候就会有问题，存在传递不过来的情况，因此H5对这一转义过的字符串又再一次进行转义，其实也就是还原。</p>
+<h5 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3. 解决方案"></a>3. 解决方案</h5><pre class="line-numbers language-none"><code class="language-none">function reductStr(str)&#123;
+    let code &#x3D; str.replace(&#x2F;%25&#x2F;g,&#39;%&#39;) &#x2F;&#x2F; 安卓对%做了转义
+    code &#x3D; code.replace(&#x2F;%20&#x2F;g,&#39; &#39;) 
+    code &#x3D; code.replace(&#x2F;%2B&#x2F;g,&#39;+&#39;) 
+    code &#x3D; code.replace(&#x2F;%23&#x2F;g,&#39;#&#39;) 
+    code &#x3D; code.replace(&#x2F;%26&#x2F;g,&#39;&amp;&#39;) 
+    code &#x3D; code.replace(&#x2F;%3D&#x2F;g,&#39;&#x3D;&#39;) 
+    code &#x3D; code.replace(&#x2F;%7B&#x2F;g,&#39;&#123;&#39;) &#x2F;&#x2F;安卓对&#123;做了转义
+    code &#x3D; code.replace(&#x2F;%7D&#x2F;g,&#39;&#125;&#39;) &#x2F;&#x2F;安卓对&#125;做了转义
+    code &#x3D; code.replace(&#x2F;%22&#x2F;g,&#39;&quot;&#39;) &#x2F;&#x2F;安卓对&quot;做了转义,一般不会涉及到这个引号，这里也写出来，防止后续用到时漏掉
+   return code
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-let obj &#x3D; &#123;  
-    name: &#39;守候&#39;,  
-    flag: &#123;  
-        book: &#123;  
-            name: &#39;js&#39;,  
-            page: 325  
-        &#125;,  
-        interest: [&#39;火锅&#39;, &#39;旅游&#39;],  
-    &#125;  
-&#125;
-observe(obj)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><img src="https://i.loli.net/2020/11/23/tLFbcE46hAfMIXw.png" alt="测试结果"></p>
-<p><strong>问题一：<code>Object.defineProperty</code>无法监听增加或删除的属性</strong></p>
-<p>我们知道<code>Object.defineProperty</code>无法监听增加或者删除的属性，<br>在我们使用vue2.x中，增加属性我们一般会通过<code>$set</code>的方法进行操作，<code>$set</code>内部也是通过使用<code>Object.defineProperty</code>实现的</p>
-<p><img src="https://i.loli.net/2020/11/23/tVkfeP6QoA8b1C4.png" alt="测试结果1"></p>
-<p><strong>问题二：<code>Object.defineProperty</code>无法监听到数组的变化</strong></p>
-<p><img src="https://i.loli.net/2020/11/23/EaUgiGTpwh8H3vA.png" alt="测试结果2"></p>
-<p>从上面的图片中我们可以看到修改数组中的值是可以的，但是不能被监听到，输出的interest数组还是改之前的数组</p>
-<p><strong>问题三：如果对象的层级很多的情况下，不断的递归，会导致时间过长，影响性能</strong></p>
-<h4 id="回顾Proxy"><a href="#回顾Proxy" class="headerlink" title="回顾Proxy"></a>回顾<code>Proxy</code></h4><p>vue3的版本中，采用了<code>Proxy</code>的方式。MDN 中的定义如下：</p>
-<blockquote>
-<p>对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）</p>
-</blockquote>
-<p>简单来说就是，对目标对象设置一层拦截，任何对这个对象的操作都会经常这层拦截。这就相当于Axios的拦截器。</p>
-<p>接下来写个案例，理解一下Proxy</p>
-<pre class="line-numbers language-none"><code class="language-none">function observerProxy(obj) &#123;  
-    let handler &#x3D; &#123;  
-        get(target, key, receiver) &#123;  
-            console.log(&#39;获取：&#39; + key) &#x2F;&#x2F; 如果是对象，就递归添加 proxy 拦截  
-            if (typeof target[key] &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; target[key] !&#x3D;&#x3D; null) &#123;  
-                return new Proxy(target[key], handler)  
-            &#125;  
-            return Reflect.get(target, key, receiver)  
-        &#125;,  
-        set(target, key, value, receiver) &#123;  
-            console.log(key + &quot;-数据改变了&quot;) 
-            return Reflect.set(target, key, value, receiver)  
-        &#125;  
-    &#125;  
-    return new Proxy(obj, handler)  
-&#125;  
-let obj &#x3D; &#123;  
-    name: &#39;守候&#39;,  
-    flag: &#123;  
-        book: &#123;  
-            name: &#39;js&#39;,  
-            page: 325  
-        &#125;,  
-        interest: [&#39;火锅&#39;, &#39;旅游&#39;],  
-    &#125;  
-&#125;  
-let objTest &#x3D; observerProxy(obj)  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://i.loli.net/2020/11/23/TJg1GciB2FuPE9x.png" alt="Proxy输出结果"></p>
-<p>操作数组的时候也会监听到</p>
-<p><img src="https://i.loli.net/2020/11/23/3hUBpJHeKoX6vbl.png" alt="修改数组"></p>
-<p>操作对象属性中是对象的时候也会监听到</p>
-<p><img src="https://i.loli.net/2020/11/23/CqVv39JjmSt2MoE.png" alt="修改对象"></p>
-<h4 id="比较两者的区别"><a href="#比较两者的区别" class="headerlink" title="比较两者的区别"></a>比较两者的区别</h4><p>通过上面的代码，我们不难看出来它们的区别，<code>proxy</code>还是很强大的，有11种方法。能够处理<code>Object.defineProperty</code>这个方法中无法处理的。</p>
-<h4 id="Proxy的处理场景"><a href="#Proxy的处理场景" class="headerlink" title="Proxy的处理场景"></a>Proxy的处理场景</h4><h5 id="负索引数组"><a href="#负索引数组" class="headerlink" title="负索引数组"></a>负索引数组</h5><p>在使用<code>splice(-1)</code> 和 <code>slice(-1)</code>等API的时候，当输入的是负数时，会自动定位到数组的尾部最后一项，但是在普通的数组中，负数是不能用的。</p>
-<pre class="line-numbers language-none"><code class="language-none">let arr &#x3D; [1,2,3]
-console.log(arr.splice(-1)) &#x2F;&#x2F; [3]
-console.log(arr[-1]) &#x2F;&#x2F; undefined<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>这种情况下我们可以通过创建一个<code>proxy</code>对象，进行控制返回值</p>
-<pre class="line-numbers language-none"><code class="language-none">function arrProxy(params) &#123;
-    let handler &#x3D; &#123;
-        get(target,key)&#123;
-            if (target instanceof Array &amp;&amp; target.length &gt; 0) &#123;
-                if (key &gt; 0) &#123;
-                    return target[key]
-                &#125; else &#123;
-                    let len &#x3D; target.length 
-                    if (key * -1 &gt; len) &#123;
-                        return new Error(&#39;该下标不存在&#39;)
-                    &#125;
-                    let index &#x3D; len + Number(key) &#x2F;&#x2F; key是字符串
-                    return target[index]
-                &#125;
-            &#125; else if (typeof target &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; target !&#x3D;&#x3D; null) &#123;
-                console.log(&#39;这是一个对象&#39;)
-                return target[key]
-            &#125;
-        &#125;
-    &#125;
-    return new Proxy(params,handler)
-&#125;
-let arr &#x3D; [1,2,3,4,5,6]
-let testArr &#x3D; arrProxy(arr)
-console.log(testArr[-1]) &#x2F;&#x2F; 6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="表单校验"><a href="#表单校验" class="headerlink" title="表单校验"></a>表单校验</h5><p>在对于表单的验证上，当用户修改表单中的数据时，可通过<code>proxy</code>进行设置拦截。<br>举个例子：</p>
-<pre class="line-numbers language-none"><code class="language-none">function validFrom(formObj) &#123;
-    let handler &#x3D; &#123;
-        set(target,key,value)&#123;
-            if (key &#x3D;&#x3D;&#x3D; &#39;age&#39;) &#123;
-                console.log(&#39;here&#39;,value &gt; 10 &amp;&amp; value &lt; 40,typeof value &#x3D;&#x3D; &#39;number&#39; )
-
-                if (typeof value &#x3D;&#x3D; &#39;number&#39; &amp;&amp; (value &gt; 10 &amp;&amp; value &lt; 40)) &#123;
-                    target[key] &#x3D; value
-                &#125; else &#123;
-                    console.log(&#39;出现错误&#39;)
-                    throw new Error(&#39;请输入准确的值&#39;)
-                &#125;
-            &#125;
-        &#125;
-    &#125;
-    return new Proxy(formObj,handler)
-&#125;
-
-let form &#x3D; &#123;
-    name:&#39;Alice&#39;,
-    age:20
-&#125;
-let testForm &#x3D; validFrom(form)
-testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="根据用户输入值，解析存储"><a href="#根据用户输入值，解析存储" class="headerlink" title="根据用户输入值，解析存储"></a>根据用户输入值，解析存储</h5><p>比如有一个需求，根据用户输入的值，将其解析分成对应属性的值。这样的话可以使用proxy。我看到网站上有其他博客写的一个案例，案例的需求是这样的，根据用户输入的身份证号码，将其所在省份、出生日期分别写在表单中的对应表格中。<br><a target="_blank" rel="noopener" href="https://www.imooc.com/article/305773">文章链接</a></p>
-<h5 id="数据格式化"><a href="#数据格式化" class="headerlink" title="数据格式化"></a>数据格式化</h5><p>数据格式化，相对来说好理解一些。当后台返回接口数据不是我们想要的格式时，我们可以通过修改设置成我们想要的格式。这里就不再举例了赘述了。</p>
+<p>从上述函数可以看到一般项目中，安卓对字符串的转义一般只会做上述有注释的几种。没有注释的则是在日常JS转义中也会经常遇到的，<code>%25</code>的那个除外，这个是我们最常见的转义字符</p>
 
             </div>
             <hr/>
@@ -658,7 +523,7 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2020/11/17/proxy-de-ying-yong-chang-jing/">https://dreamitgirl.github.io/2020/11/17/proxy-de-ying-yong-chang-jing/</a>
+                    <a href="https://dreamitgirl.github.io/2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/">https://dreamitgirl.github.io/2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -698,14 +563,6 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
                             
                                 <a href="/tags/js/">
                                     <span class="chip bg-color">js</span>
-                                </a>
-                            
-                                <a href="/tags/ES6/">
-                                    <span class="chip bg-color">ES6</span>
-                                </a>
-                            
-                                <a href="/tags/vue/">
-                                    <span class="chip bg-color">vue</span>
                                 </a>
                             
                         </div>
@@ -868,9 +725,9 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://dreamitgirl.github.io/2020/11/17/proxy-de-ying-yong-chang-jing/';
-        this.page.identifier = '/2020/11/17/proxy-de-ying-yong-chang-jing/';
-        this.page.title = 'proxy的应用场景';
+        this.page.url = 'https://dreamitgirl.github.io/2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/';
+        this.page.identifier = '/2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/';
+        this.page.title = 'H5和安卓转义问题';
     };
     let disqus_shortname = '';
 
@@ -896,16 +753,18 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/18/shu-zu-zhong-chong-fu-de-shu-zi/">
+                <a href="/2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/">
                     <div class="card-image">
                         
-                        <img src="https://static.leetcode-cn.com/cn-mono-assets/production/main/assets/logo-dark-cn.c42314a8.svg" class="responsive-img" alt="数组中重复的数字">
                         
-                        <span class="card-title">数组中重复的数字</span>
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="H5和安卓转义问题">
+                        
+                        <span class="card-title">H5和安卓转义问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -915,30 +774,27 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/H5/" class="post-category">
+                                    H5
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/js/">
                         <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -952,12 +808,13 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/16/promise-de-xue-xi/">
+                <a href="/2022/03/21/h5-tiao-zhuan-wen-ti-ji-lu/">
                     <div class="card-image">
                         
-                        <img src="https://i.loli.net/2021/10/23/ATlKvnwmgZ1YS78.jpg" class="responsive-img" alt="promise的学习">
                         
-                        <span class="card-title">promise的学习</span>
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="H5跳转问题记录">
+                        
+                        <span class="card-title">H5跳转问题记录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -968,14 +825,14 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/ES6%E7%B3%BB%E5%88%97/" class="post-category">
-                                    ES6系列
+                            <a href="/categories/H5/" class="post-category">
+                                    H5
                                 </a>
                             
                             
@@ -987,10 +844,6 @@ testArr.age &#x3D; 60 &#x2F;&#x2F; &#39;请输入准确的值&#39;<span aria-hid
                     
                     <a href="/tags/js/">
                         <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/ES6/">
-                        <span class="chip bg-color">ES6</span>
                     </a>
                     
                 </div>

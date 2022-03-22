@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>H5和安卓转义问题</title>
+      <link href="2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/"/>
+      <url>2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<h4 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h4><h5 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h5><p>嵌入到APP中的H5页面在获取原生APP拿到的二维码串时出现了个别字符转义的问题，但是在IOS手机上并没有出现此问题。</p><h5 id="2-问题解决"><a href="#2-问题解决" class="headerlink" title="2. 问题解决"></a>2. 问题解决</h5><p>了解到安卓手机传给H5的JSON串在底层做了转义，如果传给H5的JSON串不做转义的话，在传值的时候就会有问题，存在传递不过来的情况，因此H5对这一转义过的字符串又再一次进行转义，其实也就是还原。</p><h5 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3. 解决方案"></a>3. 解决方案</h5><pre class="line-numbers language-none"><code class="language-none">function reductStr(str)&#123;    let code &#x3D; str.replace(&#x2F;%25&#x2F;g,&#39;%&#39;) &#x2F;&#x2F; 安卓对%做了转义    code &#x3D; code.replace(&#x2F;%20&#x2F;g,&#39; &#39;)     code &#x3D; code.replace(&#x2F;%2B&#x2F;g,&#39;+&#39;)     code &#x3D; code.replace(&#x2F;%23&#x2F;g,&#39;#&#39;)     code &#x3D; code.replace(&#x2F;%26&#x2F;g,&#39;&amp;&#39;)     code &#x3D; code.replace(&#x2F;%3D&#x2F;g,&#39;&#x3D;&#39;)     code &#x3D; code.replace(&#x2F;%7B&#x2F;g,&#39;&#123;&#39;) &#x2F;&#x2F;安卓对&#123;做了转义    code &#x3D; code.replace(&#x2F;%7D&#x2F;g,&#39;&#125;&#39;) &#x2F;&#x2F;安卓对&#125;做了转义    code &#x3D; code.replace(&#x2F;%22&#x2F;g,&#39;&quot;&#39;) &#x2F;&#x2F;安卓对&quot;做了转义,一般不会涉及到这个引号，这里也写出来，防止后续用到时漏掉   return code&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>从上述函数可以看到一般项目中，安卓对字符串的转义一般只会做上述有注释的几种。没有注释的则是在日常JS转义中也会经常遇到的，<code>%25</code>的那个除外，这个是我们最常见的转义字符</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> H5 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> js </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>H5跳转问题记录</title>
       <link href="2022/03/21/h5-tiao-zhuan-wen-ti-ji-lu/"/>
       <url>2022/03/21/h5-tiao-zhuan-wen-ti-ji-lu/</url>
