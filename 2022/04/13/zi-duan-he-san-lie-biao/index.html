@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>集合 | Alice.Li的博客</title>
+    <title>字段和散列表 | Alice.Li的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">集合</h1>
+                    <h1 class="description center-align post-title">字段和散列表</h1>
                 </div>
             </div>
         </div>
@@ -450,7 +450,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-08
+                    2022-04-13
                 </div>
                 
 
@@ -464,14 +464,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    383
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
 
@@ -486,171 +486,31 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本篇博客的所有代码都整理到自己的<a target="_blank" rel="noopener" href="https://github.com/dreamITGirl/JS-Data-structure">github</a>库中，以便大家查看及学习。</p>
-<p>这篇文章主要介绍了集合，会从以下几个方面展开学习</p>
+                <h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><blockquote>
+<p>字典和集合的结构相似，集合是以[值，值]的形式存储元素的，字典则是通过[键，值]的方式来存储元素，字典也称为映射、符号表或者关联数组</p>
+</blockquote>
+<p>接下来会从以下几个地方介绍一下字典，在ECMA2015中包含了一个<code>Map</code>类，它和我们说的字典结构很像，但是不同于存储[值，值]对的形式。</p>
+<pre class="line-numbers language-none"><code class="language-none">import &#123;defaultToString&#125; from &#39;..&#x2F;utils&#x2F;index&#39; &#x2F;&#x2F; 引入公共函数封装的转化字符串的方法
+class Dictionary &#123;
+    constructor(toStringFn &#x3D; defaultToString)&#123;
+        this.toString &#x3D; toStringFn
+        this.table &#x3D; &#123;&#125; &#x2F;&#x2F;用来接收存储的[键，值]对
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>接下来我们对<code>Dictionary</code>类进行扩展以下方法</p>
 <ul>
-<li>构建数据集合</li>
-<li>创建集合类</li>
-<li>集合运算</li>
-<li>Set类</li>
-<li>多重集或袋</li>
+<li><code>set(key,value)</code> : 通过设置键值对向字典中增加新的元素，如果字典中已存在key,则已存在的<code>value</code>值会被新的<code>value</code>替换。</li>
+<li><code>remove(key)</code> : 从字典中移除键值对对应的数据值</li>
+<li><code>hasKey(key)</code> : 判断字典中是否含有某个键值</li>
+<li><code>get(key)</code> : 获取字典中某一键值下的数据值</li>
+<li><code>clear()</code> : 清空字典</li>
+<li><code>size()</code> : 获取字典中键值对的个数</li>
+<li><code>isEmpty()</code> : 判断字典是否为空</li>
+<li><code>keys()</code> : 获取字典中所有的键组成的数组</li>
+<li><code>values()</code> : 获取字典中所有的值组成的数组</li>
+<li><code>keyValues()</code> : 将字典中所有的键值对返回</li>
+<li><code>forEach(callbackFn)</code> : 迭代字典中所有的键值对，<code>callbackFn</code>有两个参数，<code>key</code> 和 <code>value</code> 该方法可在回调函数中返回<code>false</code>时停止</li>
 </ul>
-<h4 id="1-构建数据集合"><a href="#1-构建数据集合" class="headerlink" title="1. 构建数据集合"></a>1. 构建数据集合</h4><p>集合时一组无序且唯一(即不能重复)的项组成。使用了数学概念中的有序集合，应用到计算机科学的数据结构中。</p>
-<h4 id="2-创建集合类"><a href="#2-创建集合类" class="headerlink" title="2. 创建集合类"></a>2. 创建集合类</h4><p>ECMA2015中介绍了<code>Set</code>类是JS API的一部分，我们会继承ECMA2015中的<code>Set</code>类实现自己的<code>Set</code>类<br>首先声明<code>Set</code>类及构造函数</p>
-<pre class="line-numbers language-none"><code class="language-none">class Set&#123;
-    constructor()&#123;
-        this.items &#x3D; &#123;&#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>接下来我们需要注意的是我们使用对象而不是数组来表示集合(<code>items</code>)；接下来需要声明一些集合可用的方法。</p>
-<ul>
-<li><code>add(element)</code>：向集合中添加一个新的元素</li>
-<li><code>delete(element)</code> ：从集合中移除一个元素</li>
-<li><code>has(element)</code> ：判断几个钟是否含有该元素</li>
-<li><code>clear()</code> ： 移除集合中所有元素</li>
-<li><code>size()</code> ： 返回集合所包含的元素数量</li>
-<li><code>values()</code> ：返回一个包含集合中所有值（元素）的数据</li>
-</ul>
-<p>接下来我们先实现<code>has(element)</code>,因为该方法在好几个方法中都会被引用</p>
-<pre class="line-numbers language-none"><code class="language-none">class Set&#123;
-    constructor()&#123;
-        this.items &#x3D; &#123;&#125;
-    &#125;
-    has(element)&#123;
-        return Object.prototype.hasOwnProperty.call(this.items,element)
-    &#125;
-    add(element)&#123;
-        if (this.has(element)) &#123;
-            return false
-        &#125;
-        this.items[element] &#x3D; element
-        return true
-    &#125;
-    delete(element)&#123;
-        if (this.has(element)) &#123;
-            const result &#x3D;  this.items[element]
-            delete this.items[element]
-            return result
-        &#125;
-        return undefined
-    &#125;
-    clear()&#123;
-        this.items &#x3D; &#123;&#125;
-    &#125;
-    size()&#123;
-        return Object.keys(this.items).length
-    &#125;
-    values()&#123;
-        let result &#x3D; []
-        if (this.size() &gt; 0) &#123;
-            for (const key in this.items) &#123;
-                result.push(this.items[key])
-            &#125;
-        &#125;
-       return result
-    &#125;
-&#125;
-
-
-var set &#x3D; new Set()
-set.add(1)
-set.add(2)
-set.add(3)
-set.add(4)
-console.log(set) &#x2F;&#x2F; Set &#123; items: &#123; &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4 &#125; &#125;
-set.delete(3)
-console.log(set) &#x2F;&#x2F; Set &#123; items: &#123; &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;4&#39;: 4 &#125; &#125;
-console.log(set.size()) &#x2F;&#x2F; 3
-console.log(set.values()) &#x2F;&#x2F; [1,2,4]
-console.log(set) &#x2F;&#x2F; Set &#123; items: &#123;&#125; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="3-集合运算"><a href="#3-集合运算" class="headerlink" title="3. 集合运算"></a>3. 集合运算</h4><ul>
-<li>并集：对于给定的两个集合，返回一个包含两个集合中所有元素的新集合</li>
-<li>交集：对于给定的两个集合，返回一个两个集合中的共有元素的新集合</li>
-<li>差集：对于给定的两个集合，返回一个包含所有存在于第一个集合且不存在于第二个集合的元素的新集合</li>
-<li>子集：验证一个给定集合是否为另一个集合的子集</li>
-</ul>
-<ol>
-<li><em>并集</em></li>
-</ol>
-<p>基于封装的<code>Set</code>类的<code>union</code>方法</p>
-<pre class="line-numbers language-none"><code class="language-none">union(otherSet)&#123;
-    let resultSet &#x3D; new Set()
-    this.values().forEach((item) &#x3D;&gt; &#123;
-        resultSet.add(item)
-    &#125;)
-    otherSet.values().forEach((item) &#x3D;&gt; [
-        resultSet.add(item)
-    ])
-    return resultSet
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="2">
-<li><em>交集</em></li>
-</ol>
-<p>我们通过了解交集的数学概念，可以实现<code>Set</code>类的<code>intersection</code>方法</p>
-<pre class="line-numbers language-none"><code class="language-none">intersection(otherSet)&#123; &#x2F;&#x2F; 交集
-    const intersection &#x3D; new Set() &#x2F;&#x2F; 创建一个新的变量，获取当前集合的值
-    const values &#x3D; this.values
-    for (let i &#x3D; 0; i &lt; values.length; i++) &#123;
-        if (otherSet.has(values[i])) &#123; &#x2F;&#x2F; 判断传入的集合中是否含有该值，将两个集合都含有的值放到新的集合中，并返回
-            intersection.add(values[i])
-        &#125;
-    &#125;
-    return intersection
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上述代码中，我们可以看到如果SetA的值是[2,3] ,SetB 的值是[1,2,3,4,5,6,7],按照上述的方法，我们需要遍历SetB值的长度。所以我们可以将上述的方法改进一下，遍历集合长度小的，减少遍历次数</p>
-<pre class="line-numbers language-none"><code class="language-none">intersection(otherSet)&#123; &#x2F;&#x2F; 交集
-    const intersection &#x3D; new Set()
-    const values &#x3D; this.values
-    const otherSetValues &#x3D; otherSet.values 
-    let bigSet &#x3D; values
-    let smallSet &#x3D; otherSetValues
-    if (otherSetValues.length - values.length &gt; 0) &#123; &#x2F;&#x2F; 传入的集合大
-        bigSet &#x3D; otherSetValues
-        smallSet &#x3D; values
-    &#125;
-    smallSet.forEach(item &#x3D;&gt; &#123;
-        if (bigSet.has(item)) &#123;
-            intersection.add(item)
-        &#125;
-    &#125;)
-    return intersection
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<ol start="3">
-<li><em>差集</em></li>
-</ol>
-<p>差集是集合A中的元素只属于它自己。<br>如果在差集中还是采用上述交集的方式，代码就会变得冗余</p>
-<pre class="line-numbers language-none"><code class="language-none"> difference(otherSet)&#123; 
-    const differenceSet &#x3D; new Set()
-    this.values.forEach(item &#x3D;&gt; &#123;
-        if (!otherSet.has(item)) &#123;
-            differenceSet.add(item)
-        &#125;
-    &#125;)
-    return differenceSet
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="4">
-<li><em>子集</em></li>
-</ol>
-<p>判断当前集合是否为传入集合的子集，返回值为<code>Boolean</code></p>
-<pre class="line-numbers language-none"><code class="language-none">isSubsetOf(otherSet)&#123;
-    if (this.size() &gt; otherSet.size()) &#123; &#x2F;&#x2F; 当前的集合大
-        return false
-    &#125; 
-    let isSubset &#x3D; true
-    this.values().every(values &#x3D;&gt; &#123;
-        if (!otherSet.has(values)) &#123;
-            isSubset &#x3D; false
-            return false
-        &#125;
-        return true
-    &#125;)
-    return isSubset
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -676,7 +536,7 @@ console.log(set) &#x2F;&#x2F; Set &#123; items: &#123;&#125; &#125;<span aria-hi
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dreamitgirl.github.io/2022/03/08/ji-he/">https://dreamitgirl.github.io/2022/03/08/ji-he/</a>
+                    <a href="https://dreamitgirl.github.io/2022/04/13/zi-duan-he-san-lie-biao/">https://dreamitgirl.github.io/2022/04/13/zi-duan-he-san-lie-biao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -882,9 +742,9 @@ console.log(set) &#x2F;&#x2F; Set &#123; items: &#123;&#125; &#125;<span aria-hi
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://dreamitgirl.github.io/2022/03/08/ji-he/';
-        this.page.identifier = '/2022/03/08/ji-he/';
-        this.page.title = '集合';
+        this.page.url = 'https://dreamitgirl.github.io/2022/04/13/zi-duan-he-san-lie-biao/';
+        this.page.identifier = '/2022/04/13/zi-duan-he-san-lie-biao/';
+        this.page.title = '字段和散列表';
     };
     let disqus_shortname = '';
 
@@ -910,17 +770,18 @@ console.log(set) &#x2F;&#x2F; Set &#123; items: &#123;&#125; &#125;<span aria-hi
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/21/h5-tiao-zhuan-wen-ti-ji-lu/">
+                <a href="/2022/04/13/zi-duan-he-san-lie-biao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="H5跳转问题记录">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="字段和散列表">
                         
-                        <span class="card-title">H5跳转问题记录</span>
+                        <span class="card-title">字段和散列表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -930,9 +791,63 @@ console.log(set) &#x2F;&#x2F; Set &#123; items: &#123;&#125; &#125;<span aria-hi
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-21
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="H5和安卓转义问题">
+                        
+                        <span class="card-title">H5和安卓转义问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -950,59 +865,6 @@ console.log(set) &#x2F;&#x2F; Set &#123; items: &#123;&#125; &#125;<span aria-hi
                     
                     <a href="/tags/js/">
                         <span class="chip bg-color">js</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/03/02/lian-biao/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="链表">
-                        
-                        <span class="card-title">链表</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            欢迎大家访问我的博客，不要吝啬你们的小星星，点个star～ 有问题的话，你可以将问题在留言板留言问我.
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-02
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/js/">
-                        <span class="chip bg-color">js</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>

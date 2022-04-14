@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>字段和散列表</title>
+      <link href="2022/04/13/zi-duan-he-san-lie-biao/"/>
+      <url>2022/04/13/zi-duan-he-san-lie-biao/</url>
+      
+        <content type="html"><![CDATA[<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><blockquote><p>字典和集合的结构相似，集合是以[值，值]的形式存储元素的，字典则是通过[键，值]的方式来存储元素，字典也称为映射、符号表或者关联数组</p></blockquote><p>接下来会从以下几个地方介绍一下字典，在ECMA2015中包含了一个<code>Map</code>类，它和我们说的字典结构很像，但是不同于存储[值，值]对的形式。</p><pre class="line-numbers language-none"><code class="language-none">import &#123;defaultToString&#125; from &#39;..&#x2F;utils&#x2F;index&#39; &#x2F;&#x2F; 引入公共函数封装的转化字符串的方法class Dictionary &#123;    constructor(toStringFn &#x3D; defaultToString)&#123;        this.toString &#x3D; toStringFn        this.table &#x3D; &#123;&#125; &#x2F;&#x2F;用来接收存储的[键，值]对    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>接下来我们对<code>Dictionary</code>类进行扩展以下方法</p><ul><li><code>set(key,value)</code> : 通过设置键值对向字典中增加新的元素，如果字典中已存在key,则已存在的<code>value</code>值会被新的<code>value</code>替换。</li><li><code>remove(key)</code> : 从字典中移除键值对对应的数据值</li><li><code>hasKey(key)</code> : 判断字典中是否含有某个键值</li><li><code>get(key)</code> : 获取字典中某一键值下的数据值</li><li><code>clear()</code> : 清空字典</li><li><code>size()</code> : 获取字典中键值对的个数</li><li><code>isEmpty()</code> : 判断字典是否为空</li><li><code>keys()</code> : 获取字典中所有的键组成的数组</li><li><code>values()</code> : 获取字典中所有的值组成的数组</li><li><code>keyValues()</code> : 将字典中所有的键值对返回</li><li><code>forEach(callbackFn)</code> : 迭代字典中所有的键值对，<code>callbackFn</code>有两个参数，<code>key</code> 和 <code>value</code> 该方法可在回调函数中返回<code>false</code>时停止</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> js </tag>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>H5和安卓转义问题</title>
       <link href="2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/"/>
       <url>2022/03/22/h5-he-an-zhuo-zhuan-yi-wen-ti/</url>
