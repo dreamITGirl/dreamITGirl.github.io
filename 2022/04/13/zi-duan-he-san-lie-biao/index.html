@@ -457,21 +457,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-14
+                    2022-04-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    383
+                    842
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -486,7 +486,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><blockquote>
+                <p>本节的数据结构中涉及到的代码在gitHub库中()</p>
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><blockquote>
 <p>字典和集合的结构相似，集合是以[值，值]的形式存储元素的，字典则是通过[键，值]的方式来存储元素，字典也称为映射、符号表或者关联数组</p>
 </blockquote>
 <p>接下来会从以下几个地方介绍一下字典，在ECMA2015中包含了一个<code>Map</code>类，它和我们说的字典结构很像，但是不同于存储[值，值]对的形式。</p>
@@ -511,6 +512,99 @@ class Dictionary &#123;
 <li><code>keyValues()</code> : 将字典中所有的键值对返回</li>
 <li><code>forEach(callbackFn)</code> : 迭代字典中所有的键值对，<code>callbackFn</code>有两个参数，<code>key</code> 和 <code>value</code> 该方法可在回调函数中返回<code>false</code>时停止</li>
 </ul>
+<p>下面的代码中，我们依次讲了字典的基本方法，具体应用时，可以在</p>
+<p>示例代码如下:</p>
+<pre class="line-numbers language-none"><code class="language-none">import &#123; defaultToString &#125; from &#39;..&#x2F;utils&#x2F;index.js&#39;
+
+class Dictionary &#123;
+    constructor( toStringFn &#x3D; defaultToString)&#123;
+        this.toString &#x3D; toStringFn
+        this.table &#x3D; &#123;&#125;
+    &#125;
+    set(key,value)&#123; 
+        if (key &amp;&amp; value ) &#123;
+            this.table[key] &#x3D; value
+            return true
+        &#125;
+        return false
+    &#125;
+    remove(key)&#123;
+        if (key &amp;&amp; this.hasKey(key)) &#123;
+            delete this.table[key]
+            return true
+        &#125;
+        return false
+        
+    &#125;
+    hasKey(key)&#123;
+        return Object.prototype.hasOwnProperty.call(this.table,key)
+    &#125;
+    get(key)&#123;
+        if (this.hasKey(key)) &#123;
+            return this.table[key]
+        &#125;
+        return undefined
+    
+    &#125;
+    clear()&#123;
+        this.table &#x3D; &#123;&#125;
+    &#125;
+    size()&#123;
+        return Object.keys(this.table).length
+    &#125;
+    isEmpty()&#123;
+        if (this.size() &#x3D;&#x3D;&#x3D; 0) &#123;
+            return true
+        &#125;
+        return false
+    &#125;
+    keys()&#123;
+      return Object.keys(this.table)  
+    &#125;
+    values()&#123;
+        return Object.values(this.table)
+    &#125;
+    keyValues()&#123;
+        return this.table
+    &#125;
+&#125;
+
+var dictory &#x3D; new Dictionary()
+dictory.set(&#39;name&#39;,&#39;Alice&#39;)
+dictory.set(&#39;age&#39;,30)
+dictory.set(&#39;country&#39;,&#39;China&#39;)
+dictory.set(&#39;name&#39;,&#39;Alice&#39;)
+console.log(dictory,&#39;dictory&#39;) 
+&#x2F;**
+ * Dictionary &#123;
+  toString: [Function: defaultToString],
+  table: &#123; name: &#39;Alice&#39;, age: 30, country: &#39;China&#39; &#125;
+&#125;
+ *  *&#x2F; 
+console.log(dictory.hasKey(&#39;age&#39;)) &#x2F;&#x2F; true
+
+console.log(dictory.get(&#39;name&#39;)) &#x2F;&#x2F; Alice
+
+console.log(dictory.remove(&#39;country&#39;)) &#x2F;&#x2F; true
+console.log(dictory,&#39;dictory&#39;) 
+&#x2F;** 
+ * Dictionary &#123;
+  toString: [Function: defaultToString],
+  table: &#123; name: &#39;Alice&#39;, age: 30 &#125;
+&#125; 
+*&#x2F;
+
+console.log(dictory.keys()) &#x2F;&#x2F; [ &#39;name&#39;, &#39;age&#39; ]
+console.log(dictory.size()) &#x2F;&#x2F; 2
+console.log(dictory.isEmpty()) &#x2F;&#x2F; false
+console.log(dictory.values()) &#x2F;&#x2F;[ &#39;Alice&#39;, 30 ]
+console.log(dictory.keyValues()) &#x2F;&#x2F; &#123; name: &#39;Alice&#39;, age: 30 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><blockquote>
+<p>散列表又称为<code>hashMap</code>，是<code>Dictionary</code>类中的一种散列表实现方式，散列算法的作用是尽可能快的在数据结构中找都一个值。散列表的作用是给它一个键值，然后返回在表中的地址</p>
+</blockquote>
+<p>还是从创建散列表开始讲起</p>
+<p>未完待续…</p>
 
             </div>
             <hr/>
@@ -1106,7 +1200,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">29.1k</span>&nbsp;字
+                class="white-color">29.6k</span>&nbsp;字
             
             
             
