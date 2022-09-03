@@ -4,6 +4,91 @@
   
     
     <entry>
+      <title>前端监控系统那些事儿之数据上报</title>
+      <link href="2022/09/03/qian-duan-jian-kong-xi-tong-na-xie-shi-er-zhi-shu-ju-shang-bao/"/>
+      <url>2022/09/03/qian-duan-jian-kong-xi-tong-na-xie-shi-er-zhi-shu-ju-shang-bao/</url>
+      
+        <content type="html"><![CDATA[<h2 id="数据上报"><a href="#数据上报" class="headerlink" title="数据上报"></a>数据上报</h2><h3 id="数据埋点"><a href="#数据埋点" class="headerlink" title="数据埋点"></a>数据埋点</h3><p>前端常见的埋点方案：代码埋点、可视化埋点、无痕埋点<br>代码埋点：开发人员自己开发，可自定义在何处设置埋点<br>可视化埋点：一般情况会使用第三方的方案，通过配置，对UI通用类的元素进行设置<br>无痕埋点：一般是通过嵌入SDK，来监控我们的前端页面或者http请求的数据埋点</p><table><thead><tr><th>-</th><th>代码埋点</th><th>可视化埋点</th><th>无痕埋点</th></tr></thead><tbody><tr><td>使用方式</td><td>手动开发</td><td>可视化圈选</td><td>嵌入SDK</td></tr><tr><td>自定义数据</td><td>可自定义</td><td>难自定义</td><td>难自定义</td></tr><tr><td>是否需要更新</td><td>是</td><td>配置更新</td><td>不需要</td></tr><tr><td>成本</td><td>大</td><td>中间</td><td>低</td></tr><tr><td>适用场景</td><td>高度自定义</td><td>UI通用数据</td><td>对于生命周期数据埋点</td></tr></tbody></table><h5 id="代码埋点"><a href="#代码埋点" class="headerlink" title="代码埋点"></a>代码埋点</h5><p>一般情况下，是通过和后台约定好具体的数据格式，前端在埋点采集的时候自动转换成接口需要的数据格式进行本地存储，然后进行上报。举个例子：在实际项目中有时会在用户点击时记录用户信息及功能模块，传给后台。</p><p>有效的数据埋点，既可用于单用户的链路操作的追踪，也可用于整体用户数据的统计。针对这些数据做相应的调整。</p><h5 id="用户日志自动化埋点"><a href="#用户日志自动化埋点" class="headerlink" title="用户日志自动化埋点"></a>用户日志自动化埋点</h5><p>日志通常用来定位用户问题时使用。我们通常需要提前在代码中打印日志，可通过全局代理、装饰器处理关键模块和方法等方式来进行日志的自动打印</p><h3 id="数据上报-1"><a href="#数据上报-1" class="headerlink" title="数据上报"></a>数据上报</h3><p>数据采集完成后，我们需要将这些数据上报到后台服务，一般还包括时间、名称、会话标记、版本号信息等；</p><p>常用的上报方式：<br>定时/定量上报     —&gt;       达到日志阈值或者到时间后上报<br>关键生命周期上报.   —&gt;  发生异常、页面关闭前上报<br>用户主动提交    —&gt;      引导用户上报</p><h3 id="用户日志上报"><a href="#用户日志上报" class="headerlink" title="用户日志上报"></a>用户日志上报</h3><p>日志通常数据量较大，项目中常用日志上报的方案</p><ul><li>上报到服务器：<br>  如果要上传的日志数据量很大，在传输过程或者存储中可能会出现日志丢失或者查询速度慢或者影响我们项目的性能<br>  如果过于频繁的上报，会增加服务器的压力</li><li>本地上传<br>  引导用户主动提交<br>  通过后台下发命令拉取日志数据</li></ul><p>文章理解源于： <a href="https://space.bilibili.com/42233366">https://space.bilibili.com/42233366</a></p><p>被删老师的讲的视频和她的博客都很好，推荐大家去看，从里面能学到很多的东西。被删老师的博客地址：<a href="https://godbasin.github.io/front-end-playground/">https://godbasin.github.io/front-end-playground/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端工程化 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JS </tag>
+            
+            <tag> 前端工程化 </tag>
+            
+            <tag> Nodejs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>前端监控系统那些事儿之数据采集</title>
+      <link href="2022/09/02/qian-duan-jian-kong-xi-tong-na-xie-shi-er-zhi-shu-ju-cai-ji/"/>
+      <url>2022/09/02/qian-duan-jian-kong-xi-tong-na-xie-shi-er-zhi-shu-ju-cai-ji/</url>
+      
+        <content type="html"><![CDATA[<h2 id="为什么要搭建前端监控系统"><a href="#为什么要搭建前端监控系统" class="headerlink" title="为什么要搭建前端监控系统"></a>为什么要搭建前端监控系统</h2><p>通常我们建立搭建前端监控体系，主要是解决两个问题：</p><ul><li>如何发现问题</li><li>如何快速定位并解决问题</li></ul><p>在用户量很大的情况下，我们需要用一个这样一个工具来监控我们的线上系统的正常运行。如果等到用户来反馈到我们的话，真的就完犊子了</p><h2 id="前端监控系统主要做什么？"><a href="#前端监控系统主要做什么？" class="headerlink" title="前端监控系统主要做什么？"></a>前端监控系统主要做什么？</h2><p>一般从产品和研发的角度来说，做一个前端监控体系，需要包括一下几点：</p><ul><li>页面的整体访问情况，包括常见的PV、UV、用户行为上报；</li><li>页面的性能情况监控，包括加载耗时、接口耗时统计</li><li>灰度发布与有效的监控能力，方便及时发现问题</li><li>用户反馈问题，需要足够的日志定位问题</li></ul><p>综合上述的功能点，前端监控系统整体做了三件事：数据收集 + 数据上报 + 数据监控</p><p>今天这篇文章的切入点以数据收集来入手。</p><h4 id="前端质量评估"><a href="#前端质量评估" class="headerlink" title="前端质量评估"></a>前端质量评估</h4><p>要进行有效的监控，首先我们需要将监控数据进行上报，传统的页面开发过程中，系统的质量一般会从三个方面进行评测：</p><ul><li>页面的访问速度        —&gt;      HTTP 请求速度、页面加载速度</li><li>页面的稳定性/异常   —&gt;      HTTP异常、JavaScript执行异常、业务逻辑异常</li><li>外部服务调用情况     —&gt;      CGI接口异常、服务调用异常</li></ul><p>对前端来说，一般需要采集这些数据：<strong>HTTP请求信息、页面加载情况、系统运行情况</strong></p><p>####前端监控数据采集</p><ul><li><p>HTTP请求信息：请求耗时、请求异常<br>有些请求可能还没有访问到服务器就已经发生了问题，在这部分的异常中后台的监控日志是没有办法监控到前端的异常的；监控请求耗时主要是用来从侧面看我们的业务逻辑以及在代码中是否写了影响请求的问题代码等</p></li><li><p>页面加载情况：生命周期数据、PV/UV、用户行为数据<br>目前大部分的前端项目是依赖于前端框架VUE、REACT、JQUERY等进行构建的，我们需要监控相关的生命周期钩子函数来判断问题是否在渲染页面时出现问题<br>在PV、UV的监控则一般是运营想要看的数据，这里说一下什么是PV和UV</p></li></ul><blockquote><p>PV（Page View）访问量, 即页面浏览量或点击量，衡量网站用户访问的网页数量；在一定统计周期内用户每打开或刷新一个页面就记录1次，多次打开或刷新同一页面则浏览量累计。</p></blockquote><blockquote><p>UV（Unique Visitor）独立访客，统计1天内访问某站点的用户数(以cookie为依据);访问网站的一台电脑客户端为一个访客。可以理解成访问某网站的电脑的数量。网站判断来访电脑的身份是通过来访电脑的cookies实现的。如果更换了IP后但不清除cookies，再访问相同网站，该网站的统计中UV数是不变的。如果用户不保存cookies访问、清除了cookies或者更换设备访问，计数会加1。00:00-24:00内相同的客户端多次访问只计为1个访客。</p></blockquote><p>用户行为数据：一般会监控用户的操作事件、比如说<code>click</code>、<code>tarch</code>等事件，另一方面也会从用户的操作频率设置埋点，查看用户转化率等问题</p><ul><li>系统运行情况： 异常数据、用户行为数据</li><li>用户操作日志：主要是便于进行对反馈的问题进行排查</li></ul><p>接下来从 生命周期数据、HTTP测速数据、用户行为数据、日志四方面介绍一下</p><h3 id="生命周期数据-–-PerformanceTiming"><a href="#生命周期数据-–-PerformanceTiming" class="headerlink" title="生命周期数据 – PerformanceTiming"></a>生命周期数据 – <a href="https://www.w3.org/TR/navigation-timing-2/" title="PerformanceTiming">PerformanceTiming</a></h3><p>生命周期包括页面加载的关键时间点，比如说页面打开、更新、关闭等耗时的数据。可以通过<code>PerformanceTiming    </code>属性获取相关的数据 。具体可看下图讲解</p><p><img src="https://img2022.cnblogs.com/blog/1234038/202209/1234038-20220902084348623-1153064024.png" alt="image"></p><h3 id="生命周期数据–MutationObserver"><a href="#生命周期数据–MutationObserver" class="headerlink" title="生命周期数据–MutationObserver"></a>生命周期数据–MutationObserver</h3><p>当原始的HTML被完全加载和解析完成之后，DOMContentLoaded事件会被触发。由于现在的大部分项目都是基于前端框架来构建的，所以，页面的渲染都是交给框架来控制，我们可以在框架本身提供的生命周期函数进行数据的收集</p><p>我们可以使用<code>MutationObserver</code>接口：这个接口提供了监听页面DOM树变化的能力，结合<code>PerformanceTiming</code>获取到具体的时间</p><p>案例展示：</p><p><img src="https://img2022.cnblogs.com/blog/1234038/202209/1234038-20220902084938398-1436707415.png" alt="image"></p><h3 id="HTTP测速数据"><a href="#HTTP测速数据" class="headerlink" title="HTTP测速数据"></a>HTTP测速数据</h3><p>同样可以通过<code>PerformanceTiming</code>数据来获取</p><p><img src="https://img2022.cnblogs.com/blog/1234038/202209/1234038-20220902090147167-1212819688.png" alt="image"></p><h3 id="异常数据"><a href="#异常数据" class="headerlink" title="异常数据"></a>异常数据</h3><p>一般来说，脚本执行异常大多数情况下会直接导致功能不可用，因此，需要首先关注系统异常的数据</p><p>常见的前端异常主要包括：</p><ul><li>逻辑错误：        开发实现功能时，逻辑梳理不和预期</li><li>代码健壮性：     代码边界考虑不周，异常逻辑执行出错</li><li>网络错误：        用户情况异常，后台服务异常等错误</li><li>系统错误：        代码运行环境兼容性问题导致出错</li><li>页面内容异常： 缺少内容、绑定事件异常、样式异常等</li></ul><p>上述的问题可以使用下面的方法进行拦截</p><ul><li>window.onerror</li><li>document.addEventListener(err)</li><li>XMLHTTPRequest ststus</li></ul><p>通过监听到window.onerror的事件，我们可以获取项目中的错误和分析堆栈，将错误信息自动上报到后台服务器</p><h3 id="用户相关数据"><a href="#用户相关数据" class="headerlink" title="用户相关数据"></a>用户相关数据</h3><p>用户相关统计数据通常用统计分析用户的行为，来针对调整页面的功能，更好的发挥页面的作用。同时，我们可以通过一些用户交互数据，来观测系统功能是否正常；</p><ul><li>页面的浏览量以及点击量</li><li>页面的停留时间</li><li>用户通过哪些入口来访问到该页面</li><li>用户在页面中的一些操作行为(eg： 滚动、点击、下拉事件等)</li></ul><h3 id="用户日志"><a href="#用户日志" class="headerlink" title="用户日志"></a>用户日志</h3><ul><li>系统出现异常的时候，用日志数据来定位</li></ul><p>文章理解源于： <a href="https://space.bilibili.com/42233366">https://space.bilibili.com/42233366</a></p><p>被删老师的讲的视频和她的博客都很好，推荐大家去看，从里面能学到很多的东西。被删老师的博客地址：<a href="https://godbasin.github.io/front-end-playground/">https://godbasin.github.io/front-end-playground/</a></p><p><em>这部分的内容在下篇文章中更新。。。快要进行今天的面试了，要放松一下准备进入面试状态了。哈哈 如果有机会，后面还会更新面试中遇到的问题</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端工程化 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JS </tag>
+            
+            <tag> 前端工程化 </tag>
+            
+            <tag> Nodejs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>el-form子组件表单校验无法传给父组件</title>
+      <link href="2022/04/26/el-form-zi-zu-jian-biao-dan-xiao-yan-wu-fa-chuan-gei-fu-zu-jian/"/>
+      <url>2022/04/26/el-form-zi-zu-jian-biao-dan-xiao-yan-wu-fa-chuan-gei-fu-zu-jian/</url>
+      
+        <content type="html"><![CDATA[<p>这篇博客主要记录这次在项目开发中，开发的公共组件无法将表单校验结果传给父组件</p><h4 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h4><p>在父组件中引用封装的公共表单组件无法通过<code>this.$refs[formName].validate()</code>事件拿到返回的数据。也从网上尝试了各种方案，发现<code>validate</code>方法只是走到了<code>Pending</code>状态。<code>Promise</code> 的对象并没有返回结果.这是开始检查我之前自定义的校验规则。</p><h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p><strong>在校验规则中发现有一种情况没有执行callbac</strong>k，所以导致表单校验一直卡在了<code>Pending</code>状态,没办法继续向下走。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Project experience </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Project experience </tag>
+            
+            <tag> JS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>字典和散列表</title>
       <link href="2022/04/13/zi-duan-he-san-lie-biao/"/>
       <url>2022/04/13/zi-duan-he-san-lie-biao/</url>
